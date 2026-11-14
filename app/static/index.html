@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="uz" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ovozli Tarjimon — Tezkor Ko'p tilli AI Ovozli Tarjimon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            darkBg: '#0b0f19',
+            cardBg: '#111827',
+            cardBorder: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.18); opacity: 0.25; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-animation {
+      animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .swap-btn:active {
+      transform: rotate(180deg);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0f19; }
+    ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4a5568; }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-600 selection:text-white">
+
+  <!-- Top Navigation -->
+  <header class="border-b border-gray-800 bg-[#0f172a]/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <i class="fa-solid fa-earth-americas text-white text-xl"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight tracking-tight flex items-center gap-2">
+            Ovozli Tarjimon
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">Jonli VAD</span>
+          </h1>
+          <p class="text-xs text-gray-400">O'zbek • Turk • Rus • Ingliz • Xitoy</p>
+        </div>
+      </div>
+
+      <!-- Header Right Status & Settings -->
+      <div class="flex items-center gap-3">
+        <button id="openSettingsBtn" class="p-2 rounded-xl bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700/60 text-gray-300 hover:text-white transition" title="Ovoz va sozlamalar">
+          <i class="fa-solid fa-sliders text-sm"></i>
+        </button>
+
+        <div id="statusIndicator" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="statusText">Tayyor</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+    <!-- Left / Center: Translation Workspace (8 cols on lg) -->
+    <div class="lg:col-span-8 flex flex-col gap-4">
+      
+      <!-- 2-Way Quick Language Selector -->
+      <div class="bg-[#111827] border border-gray-800 rounded-2xl p-4 shadow-xl flex flex-col gap-3">
+        
+        <!-- Row 1: Source Language (Men gapiradigan til) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-800/80">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-microphone"></i>
+            </span>
+            <span class="text-xs font-bold text-gray-200">1. Men gapiradigan til (Nutq):</span>
+            <span id="activeSrcBadge" class="px-2 py-0.5 rounded-md bg-blue-600/20 text-blue-300 font-semibold text-xs border border-blue-500/30">🇺🇿 O'zbekcha</span>
+          </div>
+
+          <div id="srcPills" class="flex flex-wrap items-center gap-1.5">
+            <button type="button" data-src="uz" class="src-pill px-3 py-1 rounded-xl text-xs font-medium border border-blue-500 bg-blue-600/30 text-white transition shadow-sm shadow-blue-500/20">🇺🇿 O'zbekcha</button>
+            <button type="button" data-src="tr" class="src-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇹🇷 Türkçe</button>
+            <button type="button" data-src="ru" class="src-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇷🇺 Русский</button>
+            <button type="button" data-src="en" class="src-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇬🇧 English</button>
+            <button type="button" data-src="zh" class="src-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇨🇳 中文</button>
+          </div>
+        </div>
+
+        <!-- Row 2: Target Language (Tarjima va eshitish tili) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-volume-high"></i>
+            </span>
+            <span class="text-xs font-bold text-gray-200">2. Tarjima va ovoz tili (Eshitish):</span>
+            <span id="activeTgtBadge" class="px-2 py-0.5 rounded-md bg-cyan-600/20 text-cyan-300 font-semibold text-xs border border-cyan-500/30">🇹🇷 Türkçe</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div id="tgtPills" class="flex flex-wrap items-center gap-1.5">
+              <button type="button" data-tgt="tr" class="tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-cyan-500 bg-cyan-600/30 text-white transition shadow-sm shadow-cyan-500/20">🇹🇷 Türkçe (Emel)</button>
+              <button type="button" data-tgt="ru" class="tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇷🇺 Русский</button>
+              <button type="button" data-tgt="uz" class="tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇺🇿 O'zbekcha</button>
+              <button type="button" data-tgt="en" class="tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇬🇧 English</button>
+              <button type="button" data-tgt="zh" class="tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white">🇨🇳 中文</button>
+            </div>
+
+            <!-- Swap button -->
+            <button id="swapLangsBtn" class="swap-btn p-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border border-gray-700 transition duration-300 shadow-sm shrink-0" title="Tillarni almashtirish (Swap)">
+              <i class="fa-solid fa-arrow-right-arrow-left text-xs text-blue-400"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Translation Text Panels -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Source Box -->
+        <div class="bg-[#111827] border border-gray-800 rounded-2xl p-4 flex flex-col shadow-xl">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+            <div class="flex items-center gap-2">
+              <span class="text-base" id="srcFlag">🇺🇿</span>
+              <span class="font-semibold text-sm text-gray-200" id="srcName">O'zbekcha (Asl nutq)</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="clearSourceBtn" class="p-1.5 text-gray-400 hover:text-gray-200 rounded-lg hover:bg-gray-800 transition text-xs" title="Tozalash">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <button id="copySourceBtn" class="p-1.5 text-gray-400 hover:text-gray-200 rounded-lg hover:bg-gray-800 transition text-xs" title="Nusxalash">
+                <i class="fa-solid fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <textarea id="sourceText" rows="6" 
+            placeholder="Mikrofonni bosib gapiring yoki bu yerga matn yozing..." 
+            class="w-full bg-transparent resize-none border-0 focus:ring-0 text-gray-100 placeholder-gray-500 text-base mt-3 leading-relaxed focus:outline-none"></textarea>
+
+          <div class="mt-auto pt-3 border-t border-gray-800/60 flex items-center justify-between text-xs text-gray-500">
+            <span id="sourceCharCount">0 belgi</span>
+            <button id="translateManualBtn" class="px-3 py-1 rounded-lg bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 border border-blue-500/30 transition flex items-center gap-1.5 font-medium">
+              <i class="fa-solid fa-bolt text-[11px]"></i>
+              <span>Tarjima qilish</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Target Box -->
+        <div class="bg-[#111827] border border-gray-800 rounded-2xl p-4 flex flex-col shadow-xl relative overflow-hidden">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+            <div class="flex items-center gap-2">
+              <span class="text-base" id="tgtFlag">🇹🇷</span>
+              <span class="font-semibold text-sm text-cyan-400" id="tgtName">Türkçe (Tarjima & Ovoz)</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="replayTargetBtn" class="px-2.5 py-1 text-cyan-400 hover:text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-lg transition text-xs font-medium flex items-center gap-1" title="Qayta ovozlashtirish">
+                <i class="fa-solid fa-volume-high text-[11px]"></i>
+                <span>Eshitish</span>
+              </button>
+              <button id="copyTargetBtn" class="p-1.5 text-gray-400 hover:text-gray-200 rounded-lg hover:bg-gray-800 transition text-xs" title="Nusxalash">
+                <i class="fa-solid fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="targetTextContainer" class="flex-1 mt-3 overflow-y-auto min-h-[140px]">
+            <p id="targetText" class="text-gray-100 text-base leading-relaxed whitespace-pre-wrap">Tarjima bu yerda chiqadi va tanlangan tilda ovozlashtiriladi...</p>
+          </div>
+
+          <!-- Embedded Audio Controller -->
+          <div id="audioPlayerWidget" class="mt-auto pt-3 border-t border-gray-800 flex items-center justify-between gap-3 bg-[#0d131f] -mx-4 -mb-4 p-3 rounded-b-2xl">
+            <div class="flex items-center gap-3">
+              <button id="playAudioBtn" class="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 text-gray-950 flex items-center justify-center shadow-lg shadow-cyan-500/20 transition active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+                <i class="fa-solid fa-play text-sm ml-0.5" id="playIcon"></i>
+              </button>
+              <div>
+                <p class="text-xs font-semibold text-gray-200" id="activeVoiceLabel">Emel (Türkçe)</p>
+                <p class="text-[11px] text-gray-400" id="audioDurationText">00:00</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="downloadAudioBtn" class="p-2 text-gray-400 hover:text-cyan-400 rounded-lg hover:bg-gray-800 transition text-xs disabled:opacity-30" disabled title="MP3 yuklab olish">
+                <i class="fa-solid fa-download"></i>
+              </button>
+              <label class="flex items-center gap-1.5 cursor-pointer text-xs text-gray-400 select-none">
+                <input type="checkbox" id="autoPlayCheckbox" checked class="rounded bg-gray-800 border-gray-700 text-cyan-500 focus:ring-0">
+                <span>Avto-ijro</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Microphone & Waveform Control Panel -->
+      <div class="bg-[#111827] border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
+        
+        <!-- Live Canvas Waveform -->
+        <canvas id="waveformCanvas" class="w-full h-24 mb-4 rounded-xl bg-[#090d16] border border-gray-800/80"></canvas>
+
+        <!-- Big Mic Button -->
+        <div class="relative flex items-center justify-center my-2">
+          <div id="micRing" class="absolute w-24 h-24 rounded-full bg-blue-600/30 pulse-animation hidden"></div>
+          <button id="micBtn" class="relative z-10 w-20 h-20 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white flex items-center justify-center shadow-xl shadow-blue-500/30 transition-all duration-300 transform active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-microphone text-2xl" id="micIcon"></i>
+          </button>
+        </div>
+
+        <!-- Recording Timer & Instructions -->
+        <div class="mt-4 text-center">
+          <p id="micStateLabel" class="text-sm font-medium text-gray-200">Gapirish uchun mikrofonni bosing</p>
+          <div class="flex items-center justify-center gap-2 mt-1">
+            <p id="recTimer" class="text-xs text-gray-500 font-mono">Avtomatik sukut sezgich (VAD) faol</p>
+            <button id="manualStopBtn" class="hidden px-2 py-0.5 rounded-lg bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-semibold hover:bg-red-600/30 transition">
+              ■ To'xtatish
+            </button>
+          </div>
+        </div>
+
+        <!-- Latency Metrics Footer -->
+        <div id="latencyBar" class="w-full mt-6 pt-4 border-t border-gray-800/60 flex flex-wrap items-center justify-between text-xs text-gray-400 gap-2">
+          <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-ear-listen text-blue-400"></i> STT: <strong class="text-gray-200" id="metricSTT">—</strong></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-brain text-cyan-400"></i> Tarjima: <strong class="text-gray-200" id="metricTrans">—</strong></span>
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-volume-high text-emerald-400"></i> Ovoz: <strong class="text-gray-200" id="metricTTS">—</strong></span>
+          </div>
+          <div>
+            Jami kechikish: <strong class="text-blue-400" id="metricTotal">—</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- File Upload Zone -->
+      <div class="bg-[#111827] border border-gray-800 rounded-2xl p-4 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-300">
+            <i class="fa-solid fa-file-audio"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-200">Audio faylni yuklab tarjima qilish</p>
+            <p class="text-xs text-gray-500">WAV, MP3, M4A, OGG yoki WebM formatidagi audio</p>
+          </div>
+        </div>
+        <div>
+          <input type="file" id="audioFileInput" accept="audio/*" class="hidden">
+          <button id="uploadAudioBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-medium border border-gray-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            <span>Fayl tanlash</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar: Translation History (4 cols on lg) -->
+    <div class="lg:col-span-4 flex flex-col gap-4">
+      <div class="bg-[#111827] border border-gray-800 rounded-2xl p-4 flex flex-col h-full shadow-xl">
+        <div class="flex items-center justify-between pb-3 border-b border-gray-800">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-clock-rotate-left text-blue-400 text-sm"></i>
+            <h2 class="font-bold text-sm text-gray-200">Suhbat jurnali</h2>
+          </div>
+          <button id="clearHistoryBtn" class="text-xs text-gray-500 hover:text-gray-300 transition">
+            Tozalash
+          </button>
+        </div>
+
+        <!-- History Items Feed -->
+        <div id="historyList" class="flex-1 overflow-y-auto mt-3 space-y-3 max-h-[680px] pr-1">
+          <div id="emptyHistory" class="text-center py-16 text-gray-500 text-xs">
+            <i class="fa-regular fa-comment-dots text-3xl mb-2 block opacity-40"></i>
+            Ovozli tarjimalar tarixi shu yerda saqlanadi
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-[#111827] border border-gray-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-800">
+        <h3 class="font-bold text-base text-gray-100 flex items-center gap-2">
+          <i class="fa-solid fa-gear text-blue-400"></i>
+          Tarjimon Sozlamalari
+        </h3>
+        <button id="closeSettingsBtn" class="text-gray-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-4">
+        <!-- Voice Choice -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Neyron Ovoz (TTS Voice)</label>
+          <select id="voiceSelect" class="w-full bg-[#0b0f19] border border-gray-700 rounded-xl px-3 py-2 text-sm text-gray-100 focus:outline-none focus:border-cyan-500">
+            <optgroup label="🇹🇷 Turkcha Ovozlar">
+              <option value="tr-TR-EmelNeural" selected>Emel (Türkçe) — Kadın sesi, doğal (Tavsiye edilir)</option>
+              <option value="tr-TR-AhmetNeural">Ahmet (Türkçe) — Erkek sesi</option>
+            </optgroup>
+            <optgroup label="🇺🇿 O'zbekcha Ovozlar">
+              <option value="uz-UZ-MadinaNeural">Madina (O'zbekcha) — Ayol, tabiiy (Tavsiya etiladi)</option>
+              <option value="uz-UZ-SardorNeural">Sardor (O'zbekcha) — Erkak</option>
+            </optgroup>
+            <optgroup label="🇷🇺 Ruscha Ovozlar">
+              <option value="ru-RU-SvetlanaNeural">Светлана (Svetlana) — Ayol, ravon va tabiiy</option>
+              <option value="ru-RU-DmitryNeural">Дмитрий (Dmitry) — Erkak, vazmin va aniq</option>
+              <option value="ru-RU-EkaterinaNeural">Екатерина (Ekaterina) — Ayol, rasmiy</option>
+            </optgroup>
+            <optgroup label="🇬🇧 Inglizcha Ovozlar">
+              <option value="en-US-AvaNeural">Ava (US) — Female, natural</option>
+              <option value="en-US-AndrewNeural">Andrew (US) — Male</option>
+            </optgroup>
+            <optgroup label="🇨🇳 Xitoycha Ovozlar">
+              <option value="zh-CN-XiaoxiaoNeural">晓晓 (Xiaoxiao) — 女声 (Ayol)</option>
+              <option value="zh-CN-YunxiNeural">云希 (Yunxi) — 男声 (Erkak)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Speech Rate -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Gapirish tezligi</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" data-rate="-15%" class="rate-btn py-1.5 rounded-xl border border-gray-700 bg-gray-800/60 text-xs font-medium text-gray-300 hover:bg-gray-700">Sekin (0.85x)</button>
+            <button type="button" data-rate="+0%" class="rate-btn py-1.5 rounded-xl border border-blue-500 bg-blue-600/20 text-xs font-medium text-blue-400">Normal (1.0x)</button>
+            <button type="button" data-rate="+15%" class="rate-btn py-1.5 rounded-xl border border-gray-700 bg-gray-800/60 text-xs font-medium text-gray-300 hover:bg-gray-700">Tez (1.15x)</button>
+          </div>
+        </div>
+
+        <!-- Pipeline Info -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Tizim Ma'lumoti</label>
+          <div class="p-3 rounded-xl bg-[#0b0f19] border border-gray-800 text-xs text-gray-400 space-y-1">
+            <div class="flex items-center justify-between text-gray-200">
+              <span>Qo'llab-quvvatlanadigan tillar:</span>
+              <strong class="text-blue-400">🇺🇿 🇹🇷 🇷🇺 🇬🇧 🇨🇳 (5 til)</strong>
+            </div>
+            <div class="flex items-center justify-between text-gray-200">
+              <span>Sun'iy Intellekt:</span>
+              <strong class="text-cyan-400">Gemini 3.5 Flash Lite (Tezkor)</strong>
+            </div>
+            <div class="flex items-center justify-between text-gray-200">
+              <span>Ovoz Dvigateli:</span>
+              <strong class="text-emerald-400">Edge Neural + Kesh</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end">
+        <button id="saveSettingsBtn" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md transition">
+          Saqlash
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element for Playback -->
+  <audio id="globalAudio" class="hidden" preload="auto"></audio>
+
+  <!-- JavaScript Client Logic -->
+  <script>
+    const LANG_DATA = {
+      uz: { name: "O'zbekcha (Uzbek)", flag: "🇺🇿", defaultVoice: "uz-UZ-MadinaNeural", placeholder: "Mikrofonni bosib o'zbekcha gapiring yoki yozing..." },
+      tr: { name: "Türkçe (Turkish)", flag: "🇹🇷", defaultVoice: "tr-TR-EmelNeural", placeholder: "Mikrofonu tıklayın ve Türkçe konuşun veya buraya yazın..." },
+      ru: { name: "Русский (Russian)", flag: "🇷🇺", defaultVoice: "ru-RU-SvetlanaNeural", placeholder: "Нажмите на микрофон или введите русский текст..." },
+      en: { name: "English (Inglizcha)", flag: "🇬🇧", defaultVoice: "en-US-AvaNeural", placeholder: "Click the microphone or type English text here..." },
+      zh: { name: "中文 (Chinese Mandarin)", flag: "🇨🇳", defaultVoice: "zh-CN-XiaoxiaoNeural", placeholder: "点击麦克风说话或在此输入中文..." }
+    };
+
+    const state = {
+      sourceLang: 'uz',
+      targetLang: 'tr',
+      selectedVoice: 'tr-TR-EmelNeural',
+      selectedRate: '+0%',
+      isRecording: false,
+      autoPlay: true,
+      audioCtx: null,
+      mediaStream: null,
+      scriptProcessor: null,
+      analyser: null,
+      ws: null,
+      currentAudioBase64: null,
+      recStartTime: 0,
+      recTimerInterval: null,
+      history: [],
+
+      // Smart VAD (Voice Activity Detection)
+      hasSpoken: false,
+      lastVoiceTime: 0,
+      silenceThresholdMs: 1400, // 1.4s of silence after speech ends automatically stops recording
+      voiceRmsThreshold: 0.007, // Sensitive to normal speaking volume
+    };
+
+    // DOM Elements
+    const activeSrcBadge = document.getElementById('activeSrcBadge');
+    const activeTgtBadge = document.getElementById('activeTgtBadge');
+    const swapLangsBtn = document.getElementById('swapLangsBtn');
+
+    const srcFlag = document.getElementById('srcFlag');
+    const srcName = document.getElementById('srcName');
+    const tgtFlag = document.getElementById('tgtFlag');
+    const tgtName = document.getElementById('tgtName');
+
+    const sourceText = document.getElementById('sourceText');
+    const targetText = document.getElementById('targetText');
+    const sourceCharCount = document.getElementById('sourceCharCount');
+    const replayTargetBtn = document.getElementById('replayTargetBtn');
+
+    const micBtn = document.getElementById('micBtn');
+    const micIcon = document.getElementById('micIcon');
+    const micRing = document.getElementById('micRing');
+    const micStateLabel = document.getElementById('micStateLabel');
+    const recTimer = document.getElementById('recTimer');
+    const manualStopBtn = document.getElementById('manualStopBtn');
+    const waveformCanvas = document.getElementById('waveformCanvas');
+
+    const playAudioBtn = document.getElementById('playAudioBtn');
+    const playIcon = document.getElementById('playIcon');
+    const downloadAudioBtn = document.getElementById('downloadAudioBtn');
+    const autoPlayCheckbox = document.getElementById('autoPlayCheckbox');
+    const activeVoiceLabel = document.getElementById('activeVoiceLabel');
+    const audioDurationText = document.getElementById('audioDurationText');
+    const globalAudio = document.getElementById('globalAudio');
+
+    const statusText = document.getElementById('statusText');
+    const statusIndicator = document.getElementById('statusIndicator');
+
+    const metricSTT = document.getElementById('metricSTT');
+    const metricTrans = document.getElementById('metricTrans');
+    const metricTTS = document.getElementById('metricTTS');
+    const metricTotal = document.getElementById('metricTotal');
+
+    const historyList = document.getElementById('historyList');
+    const emptyHistory = document.getElementById('emptyHistory');
+
+    const voiceSelect = document.getElementById('voiceSelect');
+    const settingsModal = document.getElementById('settingsModal');
+    const openSettingsBtn = document.getElementById('openSettingsBtn');
+    const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+    const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+
+    // Canvas Waveform
+    const canvasCtx = waveformCanvas.getContext('2d');
+    function drawIdleWaveform() {
+      const width = waveformCanvas.width = waveformCanvas.offsetWidth;
+      const height = waveformCanvas.height = waveformCanvas.offsetHeight;
+      canvasCtx.clearRect(0, 0, width, height);
+      canvasCtx.lineWidth = 2;
+      canvasCtx.strokeStyle = '#1e293b';
+      canvasCtx.beginPath();
+      const sliceWidth = width / 60;
+      let x = 0;
+      for (let i = 0; i < 60; i++) {
+        const y = height / 2 + Math.sin(i * 0.2) * 3;
+        if (i === 0) canvasCtx.moveTo(x, y);
+        else canvasCtx.lineTo(x, y);
+        x += sliceWidth;
+      }
+      canvasCtx.stroke();
+    }
+    window.addEventListener('resize', drawIdleWaveform);
+    drawIdleWaveform();
+
+    // Update UI Elements for Selected Languages
+    function updateLanguageUI() {
+      const srcMeta = LANG_DATA[state.sourceLang] || LANG_DATA.uz;
+      const tgtMeta = LANG_DATA[state.targetLang] || LANG_DATA.tr;
+
+      activeSrcBadge.textContent = `${srcMeta.flag} ${srcMeta.name.split(' ')[0]}`;
+      activeTgtBadge.textContent = `${tgtMeta.flag} ${tgtMeta.name.split(' ')[0]}`;
+
+      srcFlag.textContent = srcMeta.flag;
+      srcName.textContent = `${srcMeta.name} (Asl nutq)`;
+      sourceText.placeholder = srcMeta.placeholder;
+
+      tgtFlag.textContent = tgtMeta.flag;
+      tgtName.textContent = `${tgtMeta.name} (Tarjima & Ovoz)`;
+
+      state.selectedVoice = tgtMeta.defaultVoice;
+      voiceSelect.value = state.selectedVoice;
+
+      const voiceOpt = voiceSelect.options[voiceSelect.selectedIndex];
+      if (voiceOpt) {
+        activeVoiceLabel.textContent = voiceOpt.text.split('—')[0].trim();
+      }
+
+      // Update Source Pills
+      document.querySelectorAll('.src-pill').forEach(btn => {
+        const lang = btn.getAttribute('data-src');
+        if (lang === state.sourceLang) {
+          btn.className = 'src-pill px-3 py-1 rounded-xl text-xs font-semibold border border-blue-500 bg-blue-600/30 text-white transition shadow-sm shadow-blue-500/20';
+        } else {
+          btn.className = 'src-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white';
+        }
+      });
+
+      // Update Target Pills
+      document.querySelectorAll('.tgt-pill').forEach(btn => {
+        const lang = btn.getAttribute('data-tgt');
+        if (lang === state.targetLang) {
+          btn.className = 'tgt-pill px-3 py-1 rounded-xl text-xs font-semibold border border-cyan-500 bg-cyan-600/30 text-white transition shadow-sm shadow-cyan-500/20';
+        } else {
+          btn.className = 'tgt-pill px-3 py-1 rounded-xl text-xs font-medium border border-gray-700 bg-gray-800/80 text-gray-300 transition hover:bg-gray-700 hover:text-white';
+        }
+      });
+
+      if (state.isRecording) {
+        micStateLabel.textContent = `${srcMeta.name.split(' ')[0]} tilida gapiring...`;
+      } else {
+        micStateLabel.textContent = `${srcMeta.name.split(' ')[0]} tilida gapirish uchun mikrofonni bosing`;
+      }
+    }
+
+    // Instant Re-Translation when Target Language changes
+    async function triggerInstantReTranslation() {
+      const text = sourceText.value.trim();
+      if (!text) return;
+
+      const tgtNameStr = LANG_DATA[state.targetLang]?.name || state.targetLang;
+      statusText.textContent = `${tgtNameStr} tilida yangratilmoqda...`;
+      targetText.classList.add('opacity-50');
+
+      try {
+        const resp = await fetch('/api/v1/translate-text', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: text,
+            source_lang: state.sourceLang,
+            target_lang: state.targetLang,
+            voice: state.selectedVoice,
+            rate: state.selectedRate,
+            synthesize_audio: true
+          })
+        });
+        const data = await resp.json();
+        targetText.classList.remove('opacity-50');
+        handleTranslationResult(data);
+      } catch (err) {
+        console.error(err);
+        targetText.classList.remove('opacity-50');
+        statusText.textContent = 'Tayyor';
+      }
+    }
+
+    // Source Language Pills Click
+    document.querySelectorAll('.src-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const chosenSrc = btn.getAttribute('data-src');
+        if (state.sourceLang === chosenSrc) return;
+
+        state.sourceLang = chosenSrc;
+        // If source matches target, flip target to another language
+        if (state.sourceLang === state.targetLang) {
+          const fallback = ['tr', 'uz', 'ru', 'en', 'zh'].find(l => l !== state.sourceLang);
+          state.targetLang = fallback;
+        }
+        updateLanguageUI();
+      });
+    });
+
+    // Target Language Pills Click (Instant Re-translate & Voice)
+    document.querySelectorAll('.tgt-pill').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const chosenTgt = btn.getAttribute('data-tgt');
+        if (state.targetLang === chosenTgt) {
+          // If already selected, re-play current audio
+          playCurrentAudio();
+          return;
+        }
+
+        state.targetLang = chosenTgt;
+        // If target matches source, flip source
+        if (state.targetLang === state.sourceLang) {
+          const fallback = ['uz', 'tr', 'ru', 'en', 'zh'].find(l => l !== state.targetLang);
+          state.sourceLang = fallback;
+        }
+        updateLanguageUI();
+
+        if (sourceText.value.trim()) {
+          await triggerInstantReTranslation();
+        }
+      });
+    });
+
+    // Swap Languages Button
+    swapLangsBtn.addEventListener('click', async () => {
+      const prevSrc = state.sourceLang;
+      state.sourceLang = state.targetLang;
+      state.targetLang = prevSrc;
+
+      const sVal = sourceText.value;
+      const tVal = targetText.textContent;
+      if (sVal && tVal && !tVal.includes('...')) {
+        sourceText.value = tVal;
+        targetText.textContent = sVal;
+        sourceCharCount.textContent = `${sourceText.value.length} belgi`;
+      }
+
+      updateLanguageUI();
+
+      if (sourceText.value.trim()) {
+        await triggerInstantReTranslation();
+      }
+    });
+
+    // Audio Autoplay Priming Helper (Unlocks browser autoplay policies)
+    function primeAudioPlayback() {
+      try {
+        // Unlock HTML5 Audio element with a minimal silent base64 tick
+        globalAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+        const p = globalAudio.play();
+        if (p !== undefined) {
+          p.then(() => globalAudio.pause()).catch(() => {});
+        }
+      } catch (_) {}
+    }
+
+    // WebSocket Setup with Progressive Real-Time Streaming
+    function connectWebSocket() {
+      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${protocol}//${location.host}/ws/translator`;
+      state.ws = new WebSocket(wsUrl);
+
+      state.ws.onopen = () => {
+        statusText.textContent = 'Tayyor';
+        statusIndicator.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium';
+      };
+
+      state.ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          
+          if (msg.type === 'stage') {
+            statusText.textContent = msg.stage;
+          } else if (msg.type === 'transcript') {
+            sourceText.value = msg.source_text || '';
+            sourceCharCount.textContent = `${sourceText.value.length} belgi`;
+          } else if (msg.type === 'translation') {
+            targetText.textContent = msg.translated_text || '';
+          } else if (msg.type === 'result' && msg.payload) {
+            handleTranslationResult(msg.payload);
+          } else if (msg.type === 'error') {
+            alert(msg.message || 'Xatolik yuz berdi');
+            resetRecordingUI();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
+      state.ws.onclose = () => {
+        statusText.textContent = 'Ulanish uzildi';
+        statusIndicator.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium';
+        setTimeout(connectWebSocket, 3000);
+      };
+    }
+    connectWebSocket();
+
+    // Microphone Recording with Smart VAD
+    micBtn.addEventListener('click', () => {
+      primeAudioPlayback();
+      if (!state.isRecording) {
+        startRecording();
+      } else {
+        stopRecording();
+      }
+    });
+
+    manualStopBtn.addEventListener('click', () => {
+      stopRecording();
+    });
+
+    async function startRecording() {
+      try {
+        state.mediaStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            channelCount: 1,
+            sampleRate: 16000,
+            echoCancellation: true,
+            noiseSuppression: true,
+          }
+        });
+
+        state.audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+        if (state.audioCtx.state === 'suspended') {
+          await state.audioCtx.resume();
+        }
+
+        const source = state.audioCtx.createMediaStreamSource(state.mediaStream);
+        state.analyser = state.audioCtx.createAnalyser();
+        state.analyser.fftSize = 256;
+        source.connect(state.analyser);
+
+        state.scriptProcessor = state.audioCtx.createScriptProcessor(4096, 1, 1);
+        source.connect(state.scriptProcessor);
+        state.scriptProcessor.connect(state.audioCtx.destination);
+
+        state.hasSpoken = false;
+        state.lastVoiceTime = Date.now();
+
+        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+          state.ws.send(JSON.stringify({
+            type: 'start_utterance',
+            source_lang: state.sourceLang,
+            target_lang: state.targetLang,
+            voice: state.selectedVoice,
+            rate: state.selectedRate,
+            mime_type: 'audio/pcm',
+            sample_rate: 16000
+          }));
+        }
+
+        state.scriptProcessor.onaudioprocess = (e) => {
+          if (!state.isRecording) return;
+          const inputData = e.inputBuffer.getChannelData(0);
+          
+          // Compute volume (RMS) for VAD
+          let sumSquares = 0.0;
+          const pcm16 = new Int16Array(inputData.length);
+          for (let i = 0; i < inputData.length; i++) {
+            const s = Math.max(-1, Math.min(1, inputData[i]));
+            sumSquares += s * s;
+            pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+          }
+          const rms = Math.sqrt(sumSquares / inputData.length);
+
+          const now = Date.now();
+          if (rms > state.voiceRmsThreshold) { // Voice detected
+            state.hasSpoken = true;
+            state.lastVoiceTime = now;
+            statusText.textContent = `${LANG_DATA[state.sourceLang]?.name || state.sourceLang} nutqi eshitilmoqda...`;
+          } else if (state.hasSpoken && (now - state.lastVoiceTime > state.silenceThresholdMs)) {
+            // Auto-stop recording on silence!
+            statusText.textContent = 'Nutq tugadi, tarjima qilinmoqda...';
+            stopRecording();
+            return;
+          }
+
+          if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+            state.ws.send(pcm16.buffer);
+          }
+        };
+
+        state.isRecording = true;
+        micBtn.classList.add('from-red-600', 'to-rose-500');
+        micIcon.className = 'fa-solid fa-square text-2xl';
+        micRing.classList.remove('hidden');
+        manualStopBtn.classList.remove('hidden');
+        
+        const srcNameStr = LANG_DATA[state.sourceLang]?.name || state.sourceLang;
+        micStateLabel.textContent = `${srcNameStr} tilida gapiring... Tugatishingiz bilan avtomatik tarjima qilinadi`;
+        statusText.textContent = 'Eshitmoqda...';
+
+        state.recStartTime = Date.now();
+        state.recTimerInterval = setInterval(() => {
+          const sec = Math.floor((Date.now() - state.recStartTime) / 1000);
+          const m = String(Math.floor(sec / 60)).padStart(2, '0');
+          const s = String(sec % 60).padStart(2, '0');
+          recTimer.textContent = `${m}:${s} • Jonli VAD faol`;
+        }, 500);
+
+        renderWaveformAnimation();
+
+      } catch (err) {
+        console.error(err);
+        alert('Mikrofonni yoqishda xatolik: ' + err.message);
+      }
+    }
+
+    function stopRecording() {
+      if (!state.isRecording) return;
+      state.isRecording = false;
+
+      clearInterval(state.recTimerInterval);
+      resetRecordingUI();
+      statusText.textContent = 'Tarjima qilinmoqda...';
+
+      if (state.scriptProcessor) {
+        state.scriptProcessor.disconnect();
+        state.scriptProcessor = null;
+      }
+      if (state.mediaStream) {
+        state.mediaStream.getTracks().forEach(track => track.stop());
+        state.mediaStream = null;
+      }
+      if (state.audioCtx) {
+        state.audioCtx.close();
+        state.audioCtx = null;
+      }
+
+      if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+        state.ws.send(JSON.stringify({
+          type: 'end_utterance',
+          source_lang: state.sourceLang,
+          target_lang: state.targetLang,
+          voice: state.selectedVoice,
+          rate: state.selectedRate
+        }));
+      }
+    }
+
+    function resetRecordingUI() {
+      micBtn.classList.remove('from-red-600', 'to-rose-500');
+      micIcon.className = 'fa-solid fa-microphone text-2xl';
+      micRing.classList.add('hidden');
+      manualStopBtn.classList.add('hidden');
+      const srcNameStr = LANG_DATA[state.sourceLang]?.name || state.sourceLang;
+      micStateLabel.textContent = `${srcNameStr} tilida gapirish uchun mikrofonni bosing`;
+      recTimer.textContent = 'Avtomatik sukut sezgich (VAD) faol';
+      drawIdleWaveform();
+    }
+
+    function renderWaveformAnimation() {
+      if (!state.isRecording || !state.analyser) return;
+      requestAnimationFrame(renderWaveformAnimation);
+
+      const bufferLength = state.analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      state.analyser.getByteTimeDomainData(dataArray);
+
+      const width = waveformCanvas.width;
+      const height = waveformCanvas.height;
+      canvasCtx.clearRect(0, 0, width, height);
+      canvasCtx.lineWidth = 2.5;
+      canvasCtx.strokeStyle = '#38bdf8';
+      canvasCtx.beginPath();
+
+      const sliceWidth = width * 1.0 / bufferLength;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = v * height / 2;
+        if (i === 0) canvasCtx.moveTo(x, y);
+        else canvasCtx.lineTo(x, y);
+        x += sliceWidth;
+      }
+      canvasCtx.lineTo(width, height / 2);
+      canvasCtx.stroke();
+    }
+
+    // Play Current Audio Safely with Fallback
+    function playCurrentAudio() {
+      if (!globalAudio.src || globalAudio.src.length < 50) {
+        // Fallback to browser SpeechSynthesis if audio element has no data
+        const text = targetText.textContent.trim();
+        if (text && !text.includes('...')) {
+          speakViaBrowserTTS(text, state.targetLang);
+        }
+        return;
+      }
+
+      globalAudio.currentTime = 0;
+      const playPromise = globalAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          playIcon.className = 'fa-solid fa-pause text-sm';
+          playAudioBtn.classList.remove('ring-4', 'ring-cyan-400', 'animate-pulse');
+        }).catch(err => {
+          console.warn('Playback error, falling back to browser synthesis:', err);
+          speakViaBrowserTTS(targetText.textContent.trim(), state.targetLang);
+        });
+      }
+    }
+
+    // Fallback: Browser Web Speech API
+    function speakViaBrowserTTS(text, lang) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const langMap = { tr: 'tr-TR', uz: 'uz-UZ', ru: 'ru-RU', en: 'en-US', zh: 'zh-CN' };
+      utterance.lang = langMap[lang] || 'tr-TR';
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Handle Results from Backend
+    function handleTranslationResult(result) {
+      statusText.textContent = 'Tayyor';
+      sourceText.value = result.source_text || '';
+      targetText.textContent = result.translated_text || '';
+      sourceCharCount.textContent = `${sourceText.value.length} belgi`;
+
+      if (result.latency) {
+        metricSTT.textContent = `${result.latency.stt_ms} ms`;
+        metricTrans.textContent = `${result.latency.translation_ms} ms`;
+        metricTTS.textContent = `${result.latency.tts_ms} ms`;
+        metricTotal.textContent = `${result.latency.total_ms} ms`;
+      }
+
+      if (result.audio_base64) {
+        state.currentAudioBase64 = result.audio_base64;
+        const audioSrc = `data:${result.audio_mime || 'audio/mpeg'};base64,${result.audio_base64}`;
+        globalAudio.src = audioSrc;
+        playAudioBtn.disabled = false;
+        downloadAudioBtn.disabled = false;
+
+        if (state.autoPlay) {
+          const playPromise = globalAudio.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              playIcon.className = 'fa-solid fa-pause text-sm';
+              playAudioBtn.classList.remove('ring-4', 'ring-cyan-400', 'animate-pulse');
+            }).catch(e => {
+              console.warn('Autoplay prevented by browser:', e);
+              playIcon.className = 'fa-solid fa-play text-sm ml-0.5';
+              playAudioBtn.classList.add('ring-4', 'ring-cyan-400', 'animate-pulse');
+              statusText.textContent = "Audioni eshitish uchun 'Ijro' tugmasini bosing";
+            });
+          }
+        }
+      }
+
+      if (result.source_text && result.translated_text) {
+        addToHistory(result);
+      }
+    }
+
+    // Audio Playback Controls
+    playAudioBtn.addEventListener('click', () => {
+      if (!globalAudio.src) return;
+      if (globalAudio.paused) {
+        playCurrentAudio();
+      } else {
+        globalAudio.pause();
+        playIcon.className = 'fa-solid fa-play text-sm ml-0.5';
+      }
+    });
+
+    replayTargetBtn.addEventListener('click', () => {
+      playCurrentAudio();
+    });
+
+    globalAudio.onended = () => {
+      playIcon.className = 'fa-solid fa-play text-sm ml-0.5';
+    };
+
+    globalAudio.onloadedmetadata = () => {
+      if (!isFinite(globalAudio.duration) || isNaN(globalAudio.duration)) {
+        audioDurationText.textContent = 'Audio tayyor';
+        return;
+      }
+      const d = Math.round(globalAudio.duration);
+      const m = String(Math.floor(d / 60)).padStart(2, '0');
+      const s = String(d % 60).padStart(2, '0');
+      audioDurationText.textContent = `${m}:${s}`;
+    };
+
+    downloadAudioBtn.addEventListener('click', () => {
+      if (!state.currentAudioBase64) return;
+      const a = document.createElement('a');
+      a.href = `data:audio/mpeg;base64,${state.currentAudioBase64}`;
+      a.download = `tarjima_${state.sourceLang}_${state.targetLang}_${Date.now()}.mp3`;
+      a.click();
+    });
+
+    autoPlayCheckbox.addEventListener('change', (e) => {
+      state.autoPlay = e.target.checked;
+    });
+
+    // Manual Text Translation
+    translateManualBtn.addEventListener('click', async () => {
+      primeAudioPlayback();
+      const text = sourceText.value.trim();
+      if (!text) return;
+      await triggerInstantReTranslation();
+    });
+
+    // Audio File Upload
+    const audioFileInput = document.getElementById('audioFileInput');
+    document.getElementById('uploadAudioBtn').addEventListener('click', () => {
+      primeAudioPlayback();
+      audioFileInput.click();
+    });
+
+    audioFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      statusText.textContent = 'Fayl yuklanmoqda va tarjima qilinmoqda...';
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('source_lang', state.sourceLang);
+      formData.append('target_lang', state.targetLang);
+      formData.append('voice', state.selectedVoice);
+      formData.append('rate', state.selectedRate);
+
+      try {
+        const resp = await fetch('/api/v1/translate-audio', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await resp.json();
+        handleTranslationResult(data);
+      } catch (err) {
+        alert('Audio faylni tarjima qilishda xatolik: ' + err.message);
+        statusText.textContent = 'Tayyor';
+      }
+      audioFileInput.value = '';
+    });
+
+    // History Feed
+    function addToHistory(item) {
+      if (emptyHistory) emptyHistory.remove();
+
+      const card = document.createElement('div');
+      card.className = 'p-3 rounded-xl bg-[#0d131f] border border-gray-800/80 hover:border-gray-700/80 transition text-xs space-y-1.5 shadow';
+      
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const sFlag = LANG_DATA[item.source_lang]?.flag || '🌐';
+      const tFlag = LANG_DATA[item.target_lang]?.flag || '🌐';
+
+      card.innerHTML = `
+        <div class="flex items-center justify-between text-gray-400 text-[11px]">
+          <span class="font-medium text-blue-400">${sFlag} ➔ ${tFlag} (${(item.source_lang || '').toUpperCase()} ➔ ${(item.target_lang || '').toUpperCase()})</span>
+          <span>${timeStr}</span>
+        </div>
+        <p class="text-gray-300 font-medium">${escapeHtml(item.source_text)}</p>
+        <p class="text-cyan-400">${escapeHtml(item.translated_text)}</p>
+        <div class="pt-1 flex items-center justify-between">
+          <span class="text-[10px] text-gray-500">${item.latency ? item.latency.total_ms + ' ms' : ''}</span>
+          ${item.audio_base64 ? `
+            <button class="history-play-btn text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold text-[11px]">
+              <i class="fa-solid fa-play text-[10px]"></i> Eshitish
+            </button>
+          ` : ''}
+        </div>
+      `;
+
+      if (item.audio_base64) {
+        const btn = card.querySelector('.history-play-btn');
+        btn.addEventListener('click', () => {
+          globalAudio.src = `data:audio/mpeg;base64,${item.audio_base64}`;
+          playCurrentAudio();
+        });
+      }
+
+      historyList.prepend(card);
+    }
+
+    document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+      historyList.innerHTML = `
+        <div id="emptyHistory" class="text-center py-16 text-gray-500 text-xs">
+          <i class="fa-regular fa-comment-dots text-3xl mb-2 block opacity-40"></i>
+          Ovozli tarjimalar tarixi shu yerda saqlanadi
+        </div>
+      `;
+    });
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    document.getElementById('copySourceBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(sourceText.value);
+    });
+    document.getElementById('copyTargetBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(targetText.textContent);
+    });
+    document.getElementById('clearSourceBtn').addEventListener('click', () => {
+      sourceText.value = '';
+      sourceCharCount.textContent = '0 belgi';
+    });
+    sourceText.addEventListener('input', () => {
+      sourceCharCount.textContent = `${sourceText.value.length} belgi`;
+    });
+
+    // Settings Modal
+    openSettingsBtn.addEventListener('click', () => settingsModal.classList.remove('hidden'));
+    closeSettingsBtn.addEventListener('click', () => settingsModal.classList.add('hidden'));
+    saveSettingsBtn.addEventListener('click', () => {
+      state.selectedVoice = voiceSelect.value;
+      const opt = voiceSelect.options[voiceSelect.selectedIndex];
+      activeVoiceLabel.textContent = opt.text.split('—')[0].trim();
+      settingsModal.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.rate-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.rate-btn').forEach(b => {
+          b.className = 'rate-btn py-1.5 rounded-xl border border-gray-700 bg-gray-800/60 text-xs font-medium text-gray-300 hover:bg-gray-700';
+        });
+        btn.className = 'rate-btn py-1.5 rounded-xl border border-blue-500 bg-blue-600/20 text-xs font-medium text-blue-400';
+        state.selectedRate = btn.getAttribute('data-rate');
+      });
+    });
+
+    // Initial language setup
+    updateLanguageUI();
+
+  </script>
+</body>
+</html>
