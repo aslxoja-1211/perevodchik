@@ -85,5 +85,5 @@ def test_root_serves_html(client):
     assert response.status_code == 200
     assert "Ovozli Tarjimon" in response.text
     assert "tr-TR-EmelNeural" in response.text
-    assert "srcPillText" in response.text
-    assert "tgtPillText" in response.text
+    assert "sphere1Name" in response.text
+    assert "sphere2Name" in response.text

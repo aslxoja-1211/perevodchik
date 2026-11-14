@@ -1,413 +1,619 @@
 <!DOCTYPE html>
-<html lang="uz" class="dark">
+<html lang="uz" class="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ovozli Tarjimon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Ovozli Tarjimon — Apple Intelligence Style</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Segoe UI"', 'Inter', 'sans-serif'],
+          },
           colors: {
-            noirBg: '#151515',
-            creamSheet: '#ede8df',
-            creamSheetDark: '#e3ddd1',
-            terracotta: '#885151',
-            terracottaHover: '#995c5c',
-            darkPill: '#242323',
-            mediumPill: '#413f3f',
-            neonGreen: '#22c55e',
+            appleBg: '#fbfbfd',
+            appleText: '#1d1d1f',
+            appleSubtext: '#6e6e73',
+            appleBlue: '#0071e3',
+            appleBlueHover: '#0077ed',
           }
         }
       }
     }
   </script>
+
   <style>
-    /* Organic Fluid Orb Animations */
-    @keyframes morph-blob {
-      0% {
-        border-radius: 62% 38% 46% 54% / 56% 36% 64% 44%;
-      }
-      33% {
-        border-radius: 48% 52% 60% 40% / 42% 64% 36% 58%;
-      }
-      66% {
-        border-radius: 58% 42% 38% 62% / 62% 44% 56% 38%;
-      }
-      100% {
-        border-radius: 62% 38% 46% 54% / 56% 36% 64% 44%;
-      }
+    /* Pure Apple Typography & Smooth Rendering */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
     }
 
-    .organic-orb {
-      animation: morph-blob 9s ease-in-out infinite alternate;
-      background: radial-gradient(circle at 65% 35%, #2a2222 0%, #171515 70%);
+    body {
+      background: radial-gradient(130% 120% at 50% 0%, #ffffff 0%, #f7f8fc 45%, #edf1f8 100%);
+      color: #1d1d1f;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Inter, sans-serif;
+    }
+
+    /* Apple Frosted Glass (Ultra Refined Light Glassmorphism) */
+    .apple-glass {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       box-shadow: 
-        inset 0 0 35px rgba(168, 107, 107, 0.35),
-        0 15px 45px rgba(0, 0, 0, 0.6);
-      border: 1.5px solid rgba(168, 107, 107, 0.45);
-      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        0 10px 30px -10px rgba(0, 0, 0, 0.04),
+        0 20px 45px -15px rgba(0, 0, 0, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
     }
 
-    .organic-orb.recording {
-      border-color: rgba(244, 63, 94, 0.85);
+    .apple-glass-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(30px) saturate(200%);
+      -webkit-backdrop-filter: blur(30px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       box-shadow: 
-        inset 0 0 50px rgba(244, 63, 94, 0.5),
-        0 0 50px rgba(244, 63, 94, 0.3);
-      /* Orb o'lchami kattalashmaydi, barqaror qoladi */
+        0 20px 40px -15px rgba(0, 0, 0, 0.05),
+        0 1px 3px rgba(0, 0, 0, 0.02),
+        inset 0 1px 2px rgba(255, 255, 255, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Floating Luminous Pearl inside the Orb */
-    .luminous-pearl {
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ede5d8 60%, #c4baa7 100%);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.85), 0 0 55px rgba(237, 229, 216, 0.5);
-      will-change: transform;
+    .apple-glass-card:hover {
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.03),
+        inset 0 1px 2px rgba(255, 255, 255, 1);
     }
 
-    /* Smooth Blur Card Reveal */
-    @keyframes card-blur-in {
+    /* Apple Siri / Intelligence Ambient Glows */
+    .ambient-glow-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .ambient-blob-1 {
+      position: absolute;
+      top: -10%;
+      left: 20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(199, 210, 254, 0.5) 0%, rgba(224, 231, 255, 0) 70%);
+      filter: blur(80px);
+      animation: float-blob-1 18s ease-in-out infinite alternate;
+    }
+    .ambient-blob-2 {
+      position: absolute;
+      top: 15%;
+      right: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(254, 205, 211, 0.45) 0%, rgba(254, 226, 226, 0) 70%);
+      filter: blur(90px);
+      animation: float-blob-2 22s ease-in-out infinite alternate;
+    }
+    .ambient-blob-3 {
+      position: absolute;
+      bottom: 5%;
+      left: 30%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(224, 242, 254, 0.55) 0%, rgba(240, 249, 255, 0) 70%);
+      filter: blur(100px);
+      animation: float-blob-3 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-blob-1 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 80px) scale(1.15); }
+    }
+    @keyframes float-blob-2 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-70px, 60px) scale(1.1); }
+    }
+    @keyframes float-blob-3 {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -70px) scale(1.2); }
+    }
+
+    /* Living Orb Container & Shadows */
+    .orb-stage-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .orb-stage-wrapper:active {
+      transform: scale(0.97);
+    }
+
+    /* Realistic Soft Shadow beneath the Living Orb */
+    .orb-surface-shadow {
+      position: absolute;
+      bottom: -18px;
+      width: 55%;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.10) 0%, rgba(234, 88, 12, 0.07) 35%, rgba(0, 0, 0, 0) 70%);
+      filter: blur(14px);
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .orb-surface-shadow.recording {
+      width: 70%;
+      height: 34px;
+      background: radial-gradient(ellipse at center, rgba(244, 63, 94, 0.28) 0%, rgba(225, 29, 72, 0.14) 45%, rgba(0, 0, 0, 0) 75%);
+      filter: blur(18px);
+    }
+
+    /* Apple Siri Soundwave Bars */
+    .soundbar {
+      width: 3.5px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+      transition: height 0.08s ease;
+      min-height: 4px;
+    }
+
+    /* Apple Spring Blur Reveal */
+    @keyframes apple-reveal {
       0% {
         opacity: 0;
-        filter: blur(16px);
-        transform: translateY(24px) scale(0.96);
+        transform: translateY(24px) scale(0.97);
+        filter: blur(12px);
       }
       100% {
         opacity: 1;
-        filter: blur(0px);
         transform: translateY(0) scale(1);
+        filter: blur(0);
       }
     }
-    .animate-blur-card {
-      animation: card-blur-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .animate-apple-reveal {
+      animation: apple-reveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Pulse Ring for Microphone */
-    @keyframes mic-pulse-ring {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 0.2; }
-      100% { transform: scale(0.95); opacity: 0.8; }
+    /* Apple Button Styles */
+    .apple-primary-btn {
+      background: #0071e3;
+      color: #ffffff;
+      box-shadow: 
+        0 4px 14px rgba(0, 113, 227, 0.32),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .mic-pulse-ring-anim {
-      animation: mic-pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    .apple-primary-btn:hover {
+      background: #0077ed;
+      box-shadow: 
+        0 6px 20px rgba(0, 113, 227, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    .apple-primary-btn:active {
+      transform: scale(0.96);
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 999px; }
+    .apple-rec-btn {
+      background: #ff3b30;
+      color: #ffffff;
+      box-shadow: 
+        0 4px 18px rgba(255, 59, 48, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      animation: apple-rec-pulse 1.8s infinite;
+    }
+    @keyframes apple-rec-pulse {
+      0%, 100% {
+        box-shadow: 0 4px 16px rgba(255, 59, 48, 0.4);
+      }
+      50% {
+        box-shadow: 0 6px 26px rgba(255, 59, 48, 0.7);
+      }
+    }
+
+    .apple-pill-btn {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #1d1d1f;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .apple-pill-btn:hover {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+    .apple-pill-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 999px; }
+    ::-webkit-scrollbar-track { background: transparent; }
   </style>
 </head>
-<body class="bg-[#0e0e0e] text-gray-100 min-h-screen flex flex-col items-center justify-center p-0 sm:p-4 font-sans antialiased selection:bg-[#885151] selection:text-white select-none">
+<body class="selection:bg-blue-500 selection:text-white">
 
-  <!-- APP DEVICE FRAME (Exact layout from the reference mockup) -->
-  <div class="w-full max-w-sm sm:max-w-md h-screen sm:h-[840px] sm:max-h-[92vh] sm:rounded-[44px] sm:border-[5px] sm:border-[#2a2929] bg-[#161616] flex flex-col justify-between relative overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)]">
+  <!-- AMBIENT PASTEL GLOW MESH -->
+  <div class="ambient-glow-mesh">
+    <div class="ambient-blob-1"></div>
+    <div class="ambient-blob-2"></div>
+    <div class="ambient-blob-3"></div>
+  </div>
+
+  <!-- MAIN APPLICATION SHELL -->
+  <div class="relative z-10 flex flex-col min-h-screen justify-between pb-28 sm:pb-32">
     
-    <!-- TOP BAR (Logo + Green Status Pill) -->
-    <div class="pt-5 px-6 pb-2 flex items-center justify-between z-30">
-      
-      <!-- App Name & Minimal Icon -->
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#885151] to-[#3a3737] flex items-center justify-center text-white text-xs shadow-md">
-          <i class="fa-solid fa-earth-americas text-[11px]"></i>
-        </div>
-        <div>
-          <h1 class="text-xs font-bold tracking-tight text-gray-200 uppercase leading-none">Ovozli Tarjimon</h1>
-          <p class="text-[9px] text-gray-500 font-mono tracking-wider mt-0.5">AI VOICE TRANSLATOR</p>
-        </div>
-      </div>
-
-      <!-- Reference Neon Green Pill -->
-      <div class="flex items-center gap-2">
-        <div id="statusBadge" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e2e22] border border-[#22c55e]/40 shadow-sm shadow-[#22c55e]/20">
-          <span class="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
-          <span id="statusText" class="text-[10px] font-bold text-[#4ade80] tracking-wider uppercase">Tayyor</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- CENTER CANVAS AREA (Organic Morphing Orb + Minimalist Directional Labels) -->
-    <div class="flex-1 flex flex-col items-center justify-center relative px-6 py-2 overflow-hidden">
-      
-      <!-- Minimalist Axis Labels around Orb (Like "WEAK", "STRONG", "BITTER", etc. in the image) -->
-      <div class="absolute inset-x-0 top-3 text-center">
-        <span class="text-[10px] font-mono tracking-[0.25em] text-gray-500 uppercase" id="labelTop">NUTQ TILI (UZ)</span>
-      </div>
-      <div class="absolute inset-y-0 left-2 flex items-center">
-        <span class="text-[9px] font-mono tracking-[0.25em] text-gray-600 uppercase -rotate-90 origin-center" id="labelLeft">JONLI VAD</span>
-      </div>
-      <div class="absolute inset-y-0 right-2 flex items-center">
-        <span class="text-[9px] font-mono tracking-[0.25em] text-gray-600 uppercase rotate-90 origin-center" id="labelRight">TEZKOR AI</span>
-      </div>
-      <div class="absolute inset-x-0 bottom-4 text-center">
-        <span class="text-[10px] font-mono tracking-[0.25em] text-gray-500 uppercase" id="labelBottom">TARJIMA TILI (TR)</span>
-      </div>
-
-      <!-- The Morphing Organic Blob Orb -->
-      <div id="mainOrganicOrb" class="organic-orb w-64 h-64 sm:w-72 sm:h-72 relative flex items-center justify-center cursor-pointer active:scale-95 transition-transform duration-300">
+    <!-- TOP NAVIGATION BAR (APPLE GLASS) -->
+    <header class="sticky top-0 z-40 w-full apple-glass border-b border-black/[0.05] transition-all">
+      <div class="max-w-6xl mx-auto px-3.5 sm:px-6 py-2.5 sm:py-0 sm:h-16 flex flex-col md:flex-row items-center justify-between gap-2.5 md:gap-3">
         
-        <!-- Inside Glowing Luminous Pearl (Moves and reacts to speech!) -->
-        <div id="luminousPearl" class="luminous-pearl w-14 h-14 rounded-full absolute flex items-center justify-center pointer-events-none" style="top: calc(50% - 28px); left: calc(50% - 28px); transform: translate(52px, -52px);">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#9f9687] opacity-60"></span>
-        </div>
-
-        <!-- Center Prompt Text (Hidden when active) -->
-        <div id="orbIdleText" class="text-center px-6 pointer-events-none transition-opacity duration-300">
-          <i class="fa-solid fa-microphone-lines text-2xl text-rose-300/40 mb-2 block animate-pulse"></i>
-          <p class="text-xs font-semibold tracking-wider text-gray-300/80 uppercase">Gapiring...</p>
-          <p class="text-[10px] text-gray-500 font-mono mt-1">Avtomatik sukut sezgich faol</p>
-        </div>
-
-        <!-- Live Transcribing Overlay inside Orb (appears when speaking) -->
-        <div id="orbLiveTranscription" class="hidden absolute inset-0 rounded-full flex flex-col items-center justify-center p-6 text-center z-20 backdrop-blur-[2px]">
-          <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping mb-2"></span>
-          <p id="livePartialText" class="text-xs sm:text-sm font-semibold text-rose-200 leading-snug line-clamp-4">Eshitmoqda...</p>
-          <span id="liveTimerText" class="text-[10px] font-mono text-gray-400 mt-2">00:01</span>
-        </div>
-
-      </div>
-
-      <!-- FLOATING TRANSLATION RESULT CARD (Appears over/below the orb with a sleek blur transition!) -->
-      <div id="floatingResultCard" class="hidden absolute inset-x-4 top-10 bottom-6 z-30 bg-[#121212]/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 shadow-2xl flex flex-col justify-between animate-blur-card">
-        
-        <!-- Header: Languages + Close Button -->
-        <div class="flex items-center justify-between pb-2.5 border-b border-gray-800">
-          <div class="flex items-center gap-2">
-            <span id="cardDirectionBadge" class="px-2.5 py-0.5 rounded-full bg-[#885151]/30 border border-[#885151]/60 text-[#e9a6a6] text-[10px] font-mono font-bold tracking-wider uppercase">
-              UZ ➔ TR
-            </span>
-            <span id="cardTimestamp" class="text-[10px] text-gray-500 font-mono">15:00</span>
-          </div>
-          <button id="dismissCardBtn" class="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-gray-800 text-xs transition" title="Yopish">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <!-- Middle: Source Speech (Top) & Translation (Bottom) -->
-        <div class="flex-1 overflow-y-auto py-3 space-y-4 pr-1">
+        <!-- Mobile Top Row / Desktop Left Side -->
+        <div class="w-full md:w-auto flex items-center justify-between gap-2">
           
-          <!-- Top: Asl Nutq -->
-          <div class="space-y-1">
-            <div class="flex items-center justify-between text-xs text-gray-400">
-              <span class="flex items-center gap-1.5 font-medium">
-                <span id="cardSrcFlag">🇺🇿</span>
-                <span id="cardSrcName" class="text-gray-300 font-semibold">O'zbekcha (Asl nutq)</span>
-              </span>
-              <button id="copySrcBtn" class="text-gray-400 hover:text-white p-1 rounded transition text-xs" title="Nusxalash">
+          <!-- Brand Mark -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-gradient-to-tr from-indigo-500 via-sky-400 to-pink-400 p-[1.5px] shadow-sm flex items-center justify-center shrink-0">
+              <div class="w-full h-full bg-white/90 rounded-[14px] flex items-center justify-center">
+                <i class="fa-solid fa-sparkles text-[10px] sm:text-xs bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent"></i>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h1 class="font-semibold text-xs sm:text-base tracking-tight text-[#1d1d1f]">Ovozli Tarjimon</h1>
+                <span class="text-[9px] font-medium tracking-wide uppercase px-1.5 py-0.2 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hidden sm:inline-block">AI Studio</span>
+              </div>
+              <p class="text-[10px] text-[#86868b] hidden md:block">Apple Intelligence Aesthetic • Realtime Voice</p>
+            </div>
+          </div>
+
+          <!-- Mobile Only Quick Controls -->
+          <div class="flex items-center gap-2 md:hidden">
+            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-black/[0.06] text-[10px] font-medium text-[#1d1d1f] shadow-xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" id="statusDotMobile"></span>
+              <span id="statusLabelMobile" class="text-[10px] text-[#424245]">Tinglashga tayyor</span>
+            </div>
+            <button id="openHistoryDrawerBtnMobile" title="Suhbatlar tarixi" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-[#424245]">
+              <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Center Language Switcher Dock -->
+        <div class="w-full md:w-auto flex items-center justify-center">
+          <div class="inline-flex items-center bg-black/[0.04] p-1 rounded-full border border-black/[0.04] shadow-inner max-w-full">
+            
+            <!-- Source Language Pill -->
+            <button id="openSrcModalBtn" class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white shadow-sm hover:shadow text-xs font-medium text-[#1d1d1f] flex items-center gap-1.5 transition active:scale-95 shrink-0">
+              <span id="sphere1Flag" class="inline-flex items-center justify-center"></span>
+              <span id="sphere1Name" class="font-medium text-xs">O'zbekcha</span>
+              <i class="fa-solid fa-chevron-down text-[8px] text-[#86868b] ml-0.5"></i>
+            </button>
+
+            <!-- Swap Button -->
+            <button id="swapLangsBtn" title="Tillarni almashtirish" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-white/60 transition active:scale-90 mx-0.5 shrink-0">
+              <i class="fa-solid fa-arrow-right-arrow-left text-[10px] sm:text-xs" id="swapIcon"></i>
+            </button>
+
+            <!-- Target Language Pill -->
+            <button id="openTgtModalBtn" class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white shadow-sm hover:shadow text-xs font-medium text-[#1d1d1f] flex items-center gap-1.5 transition active:scale-95 shrink-0">
+              <span id="sphere2Flag" class="inline-flex items-center justify-center"></span>
+              <span id="sphere2Name" class="font-medium text-xs">Türkçe</span>
+              <i class="fa-solid fa-chevron-down text-[8px] text-[#86868b] ml-0.5"></i>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Desktop Right Controls -->
+        <div class="hidden md:flex items-center gap-2">
+          
+          <!-- Dynamic Status Pill -->
+          <div id="systemStatusPill" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-black/[0.06] text-xs font-medium text-[#1d1d1f] shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="statusDot"></span>
+            <span id="statusLabel" class="text-[11px] font-medium text-[#424245]">Tinglashga tayyor</span>
+          </div>
+
+          <!-- History Button -->
+          <button id="openHistoryDrawerBtn" title="Suhbatlar tarixi" class="w-9 h-9 rounded-full apple-pill-btn flex items-center justify-center text-[#424245]">
+            <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+          </button>
+
+        </div>
+
+      </div>
+    </header>
+
+    <!-- MAIN CENTRAL STAGE (LIVING ORB & TRANSLATIONS) -->
+    <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 flex flex-col items-center justify-center flex-1">
+      
+      <!-- HERO ORB STAGE -->
+      <div class="flex flex-col items-center justify-center my-4 sm:my-6 relative">
+        
+        <!-- The Living Orb Interactive Element -->
+        <div class="orb-stage-wrapper" id="orbClickTarget" title="Gapirish uchun bosing yoki Space tugmasini bosing">
+          
+          <!-- WebGL Living Orb Canvas -->
+          <canvas id="orbCanvas" width="560" height="560" class="w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] rounded-full drop-shadow-xl transition-transform duration-300"></canvas>
+          
+          <!-- Soft Colored Floor Shadow -->
+          <div class="orb-surface-shadow" id="orbShadow"></div>
+        </div>
+
+        <!-- Orb State Label & Prompt -->
+        <div class="mt-4 sm:mt-5 flex flex-col items-center text-center">
+          <div id="orbStateBadge" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-black/[0.06] text-xs font-medium text-[#424245] shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" id="badgeDot"></span>
+            <span id="orbStateText">Gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing</span>
+          </div>
+
+          <!-- Realtime Soundwave Spectrum (Visualizer) -->
+          <div id="soundwaveContainer" class="flex items-center gap-[3px] h-6 mt-3 px-3 py-1 rounded-full bg-white/50 border border-black/[0.04]">
+            <!-- 20 Sound wave bars generated via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TRANSLATION CARDS CONTAINER -->
+      <div id="cardsSection" class="w-full max-w-2xl mt-2 space-y-4">
+
+        <!-- IDLE WELCOME SUGGESTIONS (Apple Style) -->
+        <div id="idleSuggestions" class="apple-glass-card rounded-3xl p-5 sm:p-6 text-center">
+          <p class="text-xs font-semibold text-[#86868b] uppercase tracking-wider mb-3">Tezkor iboralar</p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
+              "Salom, yaxshimisiz?"
+            </button>
+            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
+              "Bugun havo juda ajoyib"
+            </button>
+            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
+              "Bu yerda qanday qilib markazga boriladi?"
+            </button>
+            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
+              "Rahmat, ishlaringizga omad!"
+            </button>
+          </div>
+        </div>
+
+        <!-- ACTIVE TRANSLATION RESULT VIEW (Smooth Apple Reveal) -->
+        <div id="activeTranslationView" class="hidden space-y-4 animate-apple-reveal">
+          
+          <!-- Source Speech Card -->
+          <div class="apple-glass-card rounded-3xl p-5 sm:p-6 border-l-4 border-l-gray-400">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-black/[0.05]">
+              <div class="flex items-center gap-2">
+                <span id="transSrcFlag" class="text-base">🇺🇿</span>
+                <span id="transSrcName" class="text-xs font-bold text-[#1d1d1f]">O'zbekcha</span>
+                <span class="text-[11px] text-[#86868b] font-normal">— Asl nutq</span>
+              </div>
+              <button id="copySrcTextBtn" title="Nusxalash" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
                 <i class="fa-regular fa-copy"></i>
               </button>
             </div>
-            <p id="cardSrcText" class="text-sm text-gray-200 font-medium leading-relaxed bg-[#1a1919] p-3 rounded-2xl border border-gray-800/80">...</p>
+            <p id="displaySrcText" class="text-[#1d1d1f] text-base sm:text-lg font-normal leading-relaxed break-words">
+              Nutqingiz bu yerda ko'rinadi...
+            </p>
           </div>
 
-          <!-- Bottom: Tarjima -->
-          <div class="space-y-1">
-            <div class="flex items-center justify-between text-xs text-rose-300">
-              <span class="flex items-center gap-1.5 font-semibold">
-                <span id="cardTgtFlag">🇹🇷</span>
-                <span id="cardTgtName">Türkçe (Tarjima)</span>
-              </span>
-              <button id="copyTgtBtn" class="text-rose-400 hover:text-rose-300 p-1 rounded transition text-xs" title="Nusxalash">
-                <i class="fa-regular fa-copy"></i>
-              </button>
+          <!-- Target Translation Card (Apple Accent) -->
+          <div class="apple-glass-card rounded-3xl p-5 sm:p-6 border-l-4 border-l-blue-500 bg-gradient-to-br from-white/95 to-blue-50/40">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-blue-500/10">
+              <div class="flex items-center gap-2">
+                <span id="transTgtFlag" class="text-base">🇹🇷</span>
+                <span id="transTgtName" class="text-xs font-bold text-blue-600">Türkçe</span>
+                <span class="text-[11px] text-blue-500/80 font-normal">— AI Tarjima</span>
+                <span id="metricLatency" class="text-[10px] font-mono text-gray-400 bg-white/70 px-2 py-0.5 rounded-full border border-black/[0.04]"></span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="replaySpeechBtn" title="Tinglash" class="w-8 h-8 rounded-full apple-primary-btn flex items-center justify-center text-xs">
+                  <i class="fa-solid fa-play" id="replayIcon"></i>
+                </button>
+                <button id="downloadMp3Btn" title="MP3 yuklab olish" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
+                  <i class="fa-solid fa-download text-xs"></i>
+                </button>
+                <button id="copyTgtTextBtn" title="Nusxalash" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
             </div>
-            <p id="cardTgtText" class="text-base font-bold text-white leading-relaxed bg-[#201d1d] p-3 rounded-2xl border border-[#885151]/30">...</p>
+            <p id="displayTgtText" class="text-[#1d1d1f] text-lg sm:text-xl font-semibold leading-relaxed break-words mb-3">
+              Tarjima kutilmoqda...
+            </p>
+
+            <!-- VOICE GENDER & PLAYBACK CONTROLS -->
+            <div class="pt-3 border-t border-blue-500/10 flex flex-wrap items-center justify-between gap-2.5">
+              
+              <!-- Voice Gender Switcher (Ayol / Erkak) -->
+              <div class="flex items-center gap-1.5 text-xs text-[#6e6e73]">
+                <span class="font-medium text-[11px] text-[#424245]">Ovoz:</span>
+                <div class="inline-flex items-center bg-black/[0.04] p-0.5 rounded-full border border-black/[0.04] shadow-inner">
+                  <button id="voiceGenderFemaleBtn" type="button" class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5">
+                    <span>👩</span>
+                    <span id="femaleVoiceLabel">Ayol (Emel)</span>
+                  </button>
+                  <button id="voiceGenderMaleBtn" type="button" class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5">
+                    <span>👨</span>
+                    <span id="maleVoiceLabel">Erkak (Ahmet)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Speed Quick Toggle (1.0x / 0.85x / 1.15x) -->
+              <div class="inline-flex items-center bg-black/[0.04] p-0.5 rounded-full border border-black/[0.04] text-[10px] font-mono">
+                <button data-speed="1.0" class="speed-pill px-2.5 py-0.5 rounded-full bg-white text-blue-600 font-bold shadow-xs">1.0x</button>
+                <button data-speed="0.85" class="speed-pill px-2 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]">0.85x</button>
+                <button data-speed="1.15" class="speed-pill px-2 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]">1.15x</button>
+              </div>
+
+            </div>
           </div>
 
-        </div>
-
-        <!-- Bottom Action Bar on the Card -->
-        <div class="pt-3 border-t border-gray-800 flex items-center justify-between gap-2">
-          <div class="flex items-center gap-2">
-            <button id="cardPlayAudioBtn" class="px-4 py-2 rounded-2xl bg-[#885151] hover:bg-[#995c5c] text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-[#885151]/30 transition active:scale-95">
-              <i class="fa-solid fa-play text-xs" id="cardPlayIcon"></i>
-              <span>Qayta eshitish</span>
-            </button>
-            <button id="cardDownloadAudioBtn" class="p-2.5 rounded-2xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs transition" title="MP3 yuklab olish">
-              <i class="fa-solid fa-download"></i>
-            </button>
-          </div>
-          <span id="cardLatencyText" class="text-[10px] font-mono text-gray-500">2400 ms</span>
         </div>
 
       </div>
 
+    </main>
+
+    <!-- EXPANDABLE MANUAL TEXT INPUT (APPLE SEARCH BAR STYLE) -->
+    <div id="textInputDrawer" class="hidden fixed bottom-24 sm:bottom-28 inset-x-0 mx-auto max-w-xl px-4 z-40 animate-apple-reveal">
+      <div class="apple-glass rounded-2xl p-2 shadow-2xl flex items-center gap-2 border border-black/[0.08]">
+        <i class="fa-solid fa-keyboard text-gray-400 ml-3 text-sm"></i>
+        <input id="manualTextInput" type="text" placeholder="Tarjima uchun matn yozing va Enter bosing..." class="flex-1 bg-transparent border-0 text-sm text-[#1d1d1f] placeholder-gray-400 px-2 py-2 focus:outline-none">
+        <button id="sendTextBtn" class="px-4 py-2 rounded-xl apple-primary-btn text-xs font-semibold flex items-center gap-1.5">
+          <span>Yuborish</span>
+          <i class="fa-solid fa-arrow-up text-xs"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- BOTTOM SHEET CONTAINER (Exact match to the Cream/Ivory Sheet in the reference image) -->
-    <div class="bg-[#ede8df] rounded-t-[38px] p-5 sm:p-6 flex flex-col gap-3 shadow-[0_-15px_30px_rgba(0,0,0,0.4)] text-[#1a1919] z-20">
-      
-      <!-- ROW 1: [ Source Lang Pill ] [ Swap Square ] [ Target Lang Pill ] -->
-      <div class="flex items-center gap-2">
+    <!-- FLOATING APPLE BOTTOM CONTROL ISLAND (DYNAMIC DOCK) -->
+    <div class="fixed bottom-4 sm:bottom-6 inset-x-0 mx-auto max-w-lg px-3 sm:px-4 z-40">
+      <div class="apple-glass rounded-full p-1.5 sm:p-2 shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.08] flex items-center justify-between gap-1.5 sm:gap-2">
         
-        <!-- Source Lang Pill -->
-        <button id="openSrcModalBtn" class="flex-1 h-12 rounded-full bg-[#242323] hover:bg-[#2e2d2d] text-white px-4 flex items-center justify-between text-xs font-semibold shadow-sm transition active:scale-95">
-          <span id="srcPillText" class="flex items-center gap-1.5 truncate">
-            <span>🇺🇿</span> <span>O'zbekcha</span>
-          </span>
-          <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 ml-1"></i>
+        <!-- Upload Audio File Button -->
+        <button id="uploadAudioBtn" title="Audio fayl yuklash" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#424245] shrink-0">
+          <i class="fa-solid fa-arrow-up-from-bracket text-xs sm:text-sm"></i>
+          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Fayl</span>
+        </button>
+        <input type="file" id="audioFileInput" accept="audio/*" class="hidden">
+
+        <!-- Central Main Action Button (Apple Glowing Pill) -->
+        <button id="micBtn" class="flex-1 h-11 sm:h-12 px-3 sm:px-6 rounded-full apple-primary-btn flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm transition">
+          <i class="fa-solid fa-microphone text-sm sm:text-base" id="micIcon"></i>
+          <span id="micButtonText">Gapirish</span>
+          <span id="recTimer" class="hidden font-mono text-xs opacity-90">00:00</span>
         </button>
 
-        <!-- Swap Square Button -->
-        <button id="swapLangsBtn" class="w-12 h-12 rounded-2xl bg-[#242323] hover:bg-[#2e2d2d] text-white flex items-center justify-center shadow-sm shrink-0 transition active:scale-90" title="Tillarni almashtirish">
-          <i class="fa-solid fa-arrow-right-arrow-left text-xs text-rose-300"></i>
+        <!-- Text Input Mode Toggle -->
+        <button id="toggleTextModeBtn" title="Matn orqali kiritish" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#424245] shrink-0">
+          <i class="fa-solid fa-keyboard text-xs sm:text-sm"></i>
+          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Matn</span>
         </button>
 
-        <!-- Target Lang Pill -->
-        <button id="openTgtModalBtn" class="flex-1 h-12 rounded-full bg-[#242323] hover:bg-[#2e2d2d] text-white px-4 flex items-center justify-between text-xs font-semibold shadow-sm transition active:scale-95">
-          <span id="tgtPillText" class="flex items-center gap-1.5 truncate">
-            <span>🇹🇷</span> <span>Türkçe</span>
-          </span>
-          <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 ml-1"></i>
+        <!-- Clear / New Session Button -->
+        <button id="resetSessionBtn" title="Yangi suhbat" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#6e6e73] hover:text-[#1d1d1f] shrink-0">
+          <i class="fa-solid fa-rotate-right text-xs sm:text-sm"></i>
+          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Yangilash</span>
         </button>
 
       </div>
-
-      <!-- ROW 2: The Red Translator Voice Pill (Terracotta Wide Button) -->
-      <button id="openVoiceModalBtn" class="w-full h-12 rounded-full bg-[#885151] hover:bg-[#995c5c] text-white px-5 flex items-center justify-between text-xs font-bold tracking-wide shadow-md shadow-[#885151]/25 transition active:scale-[0.98]">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-headphones-simple text-sm text-rose-200"></i>
-          <span id="activeVoiceDisplay">Emel (Türkçe)</span>
-        </div>
-        <div class="flex items-center gap-2 text-rose-200/90 text-[11px] font-medium">
-          <span id="activeSpeedDisplay">Tezlik: 1.0x</span>
-          <i class="fa-solid fa-chevron-up text-[9px] ml-1"></i>
-        </div>
-      </button>
-
-      <!-- ROW 3: [ Audio File Upload / Text ] [ Big Microphone Button ] -->
-      <div class="flex items-center gap-2.5">
-        
-        <!-- Left: Audio File Upload Button with small text toggle -->
-        <div class="flex-1 flex items-center gap-1.5 h-14 rounded-full bg-[#413f3f] hover:bg-[#4d4b4b] text-white px-4 shadow-sm transition">
-          <input type="file" id="audioFileInput" accept="audio/*" class="hidden">
-          <button id="uploadAudioBtn" class="flex-1 flex items-center justify-center gap-2 text-xs font-semibold h-full" title="Audio faylni yuklab tarjima qilish">
-            <i class="fa-solid fa-arrow-up-from-bracket text-xs text-rose-300"></i>
-            <span>Audio fayl</span>
-          </button>
-          
-          <div class="w-[1px] h-6 bg-gray-500/50"></div>
-          
-          <button id="toggleTextModeBtn" class="p-2 text-gray-300 hover:text-white rounded-lg transition" title="Matn yozish">
-            <i class="fa-regular fa-keyboard text-sm"></i>
-          </button>
-        </div>
-
-        <!-- Right: Big Microphone Button (Exact position from the mockup) -->
-        <div class="relative flex items-center justify-center shrink-0">
-          <div id="micPulseRing" class="absolute inset-0 rounded-full bg-rose-600/40 mic-pulse-ring-anim hidden"></div>
-          <button id="micBtn" class="relative z-10 w-28 sm:w-32 h-14 rounded-full bg-[#242323] hover:bg-[#1a1919] text-white flex items-center justify-center gap-2 shadow-xl transition-all duration-300 transform active:scale-95 focus:outline-none">
-            <i class="fa-solid fa-microphone text-lg" id="micIcon"></i>
-            <span id="micButtonText" class="text-xs font-bold uppercase tracking-wider">Gapirish</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Quick Text Input Drawer (Expands when keyboard icon clicked) -->
-      <div id="textInputDrawer" class="hidden pt-1">
-        <div class="flex items-center gap-2 bg-[#f6f2ea] border border-[#d2cbbe] rounded-2xl p-1.5">
-          <input id="manualTextInput" type="text" placeholder="Tarjima uchun matn kiriting..." class="flex-1 bg-transparent border-0 text-xs text-[#1a1919] placeholder-gray-500 px-3 py-1 focus:outline-none font-medium">
-          <button id="sendTextBtn" class="w-8 h-8 rounded-xl bg-[#885151] hover:bg-[#995c5c] text-white flex items-center justify-center text-xs transition">
-            <i class="fa-solid fa-arrow-up"></i>
-          </button>
-        </div>
-      </div>
-
     </div>
 
   </div>
 
-  <!-- LANGUAGE SELECTION MODAL -->
-  <div id="langModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-[#1c1b1b] border border-gray-800 w-full max-w-sm rounded-t-[36px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-blur-card">
+  <!-- LANGUAGE SELECTION SHEET (APPLE FROSTED MODAL) -->
+  <div id="langModal" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="apple-glass-card w-full max-w-sm rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-apple-reveal">
       
-      <div class="flex items-center justify-between pb-3 border-b border-gray-800">
-        <h3 id="langModalTitle" class="font-bold text-sm text-white">Tilni tanlang</h3>
-        <button id="closeLangModalBtn" class="text-gray-400 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-base"></i>
+      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
+        <h3 id="langModalTitle" class="font-bold text-sm text-[#1d1d1f]">Tilni tanlang</h3>
+        <button id="closeLangModalBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
+          <i class="fa-solid fa-xmark text-sm"></i>
         </button>
       </div>
 
       <div class="flex flex-col gap-2">
-        <button data-lang="uz" class="lang-opt-btn w-full p-3.5 rounded-2xl bg-[#252424] hover:bg-[#302e2e] flex items-center justify-between text-left transition text-white">
+        <button data-lang="uz" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🇺🇿</span>
+            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 500 250"><rect width="500" height="83.3" fill="#1eb53a"/><rect y="83.3" width="500" height="83.3" fill="#ffffff"/><rect y="166.7" width="500" height="83.3" fill="#0099b5"/><rect y="80.5" width="500" height="5.5" fill="#d52b1e"/><rect y="164" width="500" height="5.5" fill="#d52b1e"/><circle cx="70" cy="42" r="28" fill="#ffffff"/><circle cx="80" cy="42" r="28" fill="#0099b5"/></svg></span>
             <div>
-              <p class="text-xs font-bold">O'zbekcha</p>
-              <p class="text-[10px] text-gray-400">Uzbek</p>
+              <p class="text-xs font-bold text-[#1d1d1f]">O'zbekcha</p>
+              <p class="text-[10px] text-[#86868b]">Uzbek</p>
             </div>
           </div>
-          <i class="fa-solid fa-check text-rose-400 text-sm check-icon hidden"></i>
+          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
         </button>
 
-        <button data-lang="tr" class="lang-opt-btn w-full p-3.5 rounded-2xl bg-[#252424] hover:bg-[#302e2e] flex items-center justify-between text-left transition text-white">
+        <button data-lang="tr" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🇹🇷</span>
+            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="#e30a17"/><circle cx="425" cy="400" r="200" fill="#ffffff"/><circle cx="475" cy="400" r="160" fill="#e30a17"/><polygon points="583,400 663,426 613,358 613,442 663,374" fill="#ffffff"/></svg></span>
             <div>
-              <p class="text-xs font-bold">Türkçe</p>
-              <p class="text-[10px] text-gray-400">Turkish</p>
+              <p class="text-xs font-bold text-[#1d1d1f]">Türkçe</p>
+              <p class="text-[10px] text-[#86868b]">Turkish</p>
             </div>
           </div>
-          <i class="fa-solid fa-check text-rose-400 text-sm check-icon hidden"></i>
+          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
         </button>
 
-        <button data-lang="ru" class="lang-opt-btn w-full p-3.5 rounded-2xl bg-[#252424] hover:bg-[#302e2e] flex items-center justify-between text-left transition text-white">
+        <button data-lang="ru" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🇷🇺</span>
+            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 900 600"><rect width="900" height="600" fill="#ffffff"/><rect y="200" width="900" height="400" fill="#0039a6"/><rect y="400" width="900" height="200" fill="#d52b1e"/></svg></span>
             <div>
-              <p class="text-xs font-bold">Русский</p>
-              <p class="text-[10px] text-gray-400">Russian</p>
+              <p class="text-xs font-bold text-[#1d1d1f]">Русский</p>
+              <p class="text-[10px] text-[#86868b]">Russian</p>
             </div>
           </div>
-          <i class="fa-solid fa-check text-rose-400 text-sm check-icon hidden"></i>
+          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
         </button>
 
-        <button data-lang="en" class="lang-opt-btn w-full p-3.5 rounded-2xl bg-[#252424] hover:bg-[#302e2e] flex items-center justify-between text-left transition text-white">
+        <button data-lang="en" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🇬🇧</span>
+            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 60 30"><clipPath id="m_s1"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="m_t1"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#m_s1)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#m_t1)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg></span>
             <div>
-              <p class="text-xs font-bold">English</p>
-              <p class="text-[10px] text-gray-400">Inglizcha</p>
+              <p class="text-xs font-bold text-[#1d1d1f]">English</p>
+              <p class="text-[10px] text-[#86868b]">Inglizcha</p>
             </div>
           </div>
-          <i class="fa-solid fa-check text-rose-400 text-sm check-icon hidden"></i>
+          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
         </button>
 
-        <button data-lang="zh" class="lang-opt-btn w-full p-3.5 rounded-2xl bg-[#252424] hover:bg-[#302e2e] flex items-center justify-between text-left transition text-white">
+        <button data-lang="zh" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
           <div class="flex items-center gap-3">
-            <span class="text-xl">🇨🇳</span>
+            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 900 600"><rect width="900" height="600" fill="#de2910"/><polygon points="150,120 185,228 95,161 205,161 115,228" fill="#ffde00"/></svg></span>
             <div>
-              <p class="text-xs font-bold">中文</p>
-              <p class="text-[10px] text-gray-400">Chinese</p>
+              <p class="text-xs font-bold text-[#1d1d1f]">中文</p>
+              <p class="text-[10px] text-[#86868b]">Mandarin Chinese</p>
             </div>
           </div>
-          <i class="fa-solid fa-check text-rose-400 text-sm check-icon hidden"></i>
+          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- VOICE & SPEED DRAWER -->
-  <div id="voiceModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="bg-[#1c1b1b] border border-gray-800 w-full max-w-sm rounded-t-[36px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-blur-card">
+  <!-- VOICE & SPEED SETTINGS SHEET -->
+  <div id="voiceModal" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="apple-glass-card w-full max-w-sm rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-apple-reveal">
       
-      <div class="flex items-center justify-between pb-3 border-b border-gray-800">
-        <h3 class="font-bold text-sm text-[#e9a6a6] flex items-center gap-2">
-          <i class="fa-solid fa-headphones-simple"></i>
-          <span>Tarjimon ovozi & tezligi</span>
+      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
+        <h3 class="font-bold text-sm text-[#1d1d1f] flex items-center gap-2">
+          <i class="fa-solid fa-headphones-simple text-blue-600"></i>
+          <span>Neyron Ovoz & Sozlamalar</span>
         </h3>
-        <button id="closeVoiceModalBtn" class="text-gray-400 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-base"></i>
+        <button id="closeVoiceModalBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
+          <i class="fa-solid fa-xmark text-sm"></i>
         </button>
       </div>
 
-      <!-- Voice Selector -->
+      <!-- Voice Selector Dropdown -->
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1.5">Neyron ovoz:</label>
-        <select id="voiceSelectDropdown" class="w-full bg-[#121212] border border-gray-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#885151]">
+        <label class="block text-xs font-semibold text-[#424245] mb-1.5">Ovoz tanlang:</label>
+        <select id="voiceSelectDropdown" class="w-full bg-white border border-black/[0.1] rounded-2xl px-3.5 py-2.5 text-xs text-[#1d1d1f] focus:outline-none focus:border-blue-500 shadow-sm">
           <optgroup label="🇹🇷 Turkcha Ovozlar">
             <option value="tr-TR-EmelNeural" selected>Emel (Türkçe) — Ayol, tabiiy</option>
             <option value="tr-TR-AhmetNeural">Ahmet (Türkçe) — Erkak</option>
@@ -431,34 +637,95 @@
         </select>
       </div>
 
-      <!-- Speech Rate -->
+      <!-- Speech Speed Buttons -->
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1.5">Gapirish tezligi:</label>
+        <label class="block text-xs font-semibold text-[#424245] mb-1.5">Gapirish tezligi:</label>
         <div class="grid grid-cols-3 gap-2">
-          <button type="button" data-rate="-15%" class="rate-choice-btn py-2 rounded-xl border border-gray-700 bg-[#252424] text-xs font-medium text-gray-300">0.85x</button>
-          <button type="button" data-rate="+0%" class="rate-choice-btn py-2 rounded-xl border border-[#885151] bg-[#885151]/30 text-xs font-semibold text-[#e9a6a6]">1.0x</button>
-          <button type="button" data-rate="+15%" class="rate-choice-btn py-2 rounded-xl border border-gray-700 bg-[#252424] text-xs font-medium text-gray-300">1.15x</button>
+          <button type="button" data-rate="-15%" class="rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition">0.85x</button>
+          <button type="button" data-rate="+0%" class="rate-choice-btn py-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-xs font-semibold text-blue-700 transition">1.0x</button>
+          <button type="button" data-rate="+15%" class="rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition">1.15x</button>
         </div>
       </div>
 
-      <!-- Autoplay -->
-      <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer pt-1 select-none">
-        <input type="checkbox" id="autoPlayCheckbox" checked class="rounded bg-gray-800 border-gray-700 text-[#885151] focus:ring-0">
+      <!-- Autoplay Checkbox -->
+      <label class="flex items-center gap-2 text-xs text-[#424245] cursor-pointer pt-1 select-none">
+        <input type="checkbox" id="autoPlayCheckbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-0">
         <span>Tarjimani avtomatik ovozlashtirish</span>
       </label>
 
-      <button id="saveVoiceSettingsBtn" class="w-full mt-2 py-2.5 rounded-xl bg-[#885151] hover:bg-[#995c5c] text-white text-xs font-bold tracking-wide transition shadow-md shadow-[#885151]/30">
+      <button id="saveVoiceSettingsBtn" class="w-full mt-2 py-3 rounded-2xl apple-primary-btn text-xs font-semibold tracking-wide">
         Saqlash
       </button>
 
     </div>
   </div>
 
+  <!-- CONVERSATION HISTORY SHEET -->
+  <div id="historyDrawer" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="apple-glass-card w-full max-w-md rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-3 max-h-[85vh] animate-apple-reveal">
+      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
+        <h3 class="font-bold text-sm text-[#1d1d1f] flex items-center gap-2">
+          <i class="fa-solid fa-clock-rotate-left text-blue-600"></i>
+          <span>Suhbatlar tarixi</span>
+        </h3>
+        <button id="closeHistoryDrawerBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div id="historyFeedList" class="flex-1 overflow-y-auto space-y-3 pr-1 min-h-[220px]">
+        <div id="emptyHistoryNotice" class="text-center py-12 text-[#86868b] text-xs">
+          Hozircha suhbatlar tarixi bo'sh
+        </div>
+      </div>
+
+      <button id="clearAllHistoryBtn" class="w-full py-2.5 rounded-xl apple-pill-btn text-xs font-medium text-rose-600 hover:text-rose-700 transition">
+        Jurnalni tozalash
+      </button>
+    </div>
+  </div>
+
   <!-- Audio Element for Playback -->
   <audio id="globalAudio" class="hidden" preload="auto"></audio>
 
-  <!-- CLIENT SCRIPTS -->
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT: LOGIC + WEBGL LIVING ORB       -->
+  <!-- ========================================== -->
   <script>
+    // Country Flag SVGs for Crisp High-DPI Rendering (Aspect 5:3)
+    const FLAG_SVGS = {
+      uz: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="20" fill="#0099b5"/><rect y="19.5" width="100" height="1.5" fill="#d52b1e"/><rect y="21" width="100" height="18" fill="#ffffff"/><rect y="39" width="100" height="1.5" fill="#d52b1e"/><rect y="40.5" width="100" height="19.5" fill="#1eb53a"/><circle cx="15" cy="10" r="6" fill="#ffffff"/><circle cx="17.5" cy="10" r="5" fill="#0099b5"/><circle cx="26" cy="6" r="1.1" fill="#ffffff"/><circle cx="31" cy="6" r="1.1" fill="#ffffff"/><circle cx="36" cy="6" r="1.1" fill="#ffffff"/><circle cx="26" cy="10" r="1.1" fill="#ffffff"/><circle cx="31" cy="10" r="1.1" fill="#ffffff"/><circle cx="26" cy="14" r="1.1" fill="#ffffff"/></svg>`,
+      tr: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="60" fill="#e30a17"/><circle cx="36" cy="30" r="16" fill="#ffffff"/><circle cx="41" cy="30" r="13" fill="#e30a17"/><polygon points="50,30 62,34 54,23 54,37 62,26" fill="#ffffff"/></svg>`,
+      ru: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="20" fill="#ffffff"/><rect y="20" width="100" height="20" fill="#0039a6"/><rect y="40" width="100" height="20" fill="#d52b1e"/></svg>`,
+      en: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><clipPath id="uk_c1"><rect width="100" height="60"/></clipPath><g clip-path="url(#uk_c1)"><rect width="100" height="60" fill="#012169"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#ffffff" stroke-width="10"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#c8102e" stroke-width="6"/><path d="M50,0 V60 M0,30 H100" stroke="#ffffff" stroke-width="16"/><path d="M50,0 V60 M0,30 H100" stroke="#c8102e" stroke-width="10"/></g></svg>`,
+      zh: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="60" fill="#de2910"/><polygon points="16,8 19,17 10,12 22,12 13,17" fill="#ffde00"/><circle cx="28" cy="7" r="2" fill="#ffde00"/><circle cx="34" cy="12" r="2" fill="#ffde00"/><circle cx="34" cy="20" r="2" fill="#ffde00"/><circle cx="28" cy="26" r="2" fill="#ffde00"/></svg>`
+    };
+
+    // Gender Voices for Each Supported Language
+    const GENDER_VOICES = {
+      tr: {
+        female: { id: "tr-TR-EmelNeural", name: "Emel" },
+        male: { id: "tr-TR-AhmetNeural", name: "Ahmet" }
+      },
+      uz: {
+        female: { id: "uz-UZ-MadinaNeural", name: "Madina" },
+        male: { id: "uz-UZ-SardorNeural", name: "Sardor" }
+      },
+      ru: {
+        female: { id: "ru-RU-SvetlanaNeural", name: "Светлана" },
+        male: { id: "ru-RU-DmitryNeural", name: "Дмитрий" }
+      },
+      en: {
+        female: { id: "en-US-AvaNeural", name: "Ava" },
+        male: { id: "en-US-AndrewNeural", name: "Andrew" }
+      },
+      zh: {
+        female: { id: "zh-CN-XiaoxiaoNeural", name: "Xiaoxiao" },
+        male: { id: "zh-CN-YunxiNeural", name: "Yunxi" }
+      }
+    };
+
+    // Supported Languages Config
     const LANG_DATA = {
       uz: { name: "O'zbekcha", flag: "🇺🇿", defaultVoice: "uz-UZ-MadinaNeural" },
       tr: { name: "Türkçe", flag: "🇹🇷", defaultVoice: "tr-TR-EmelNeural" },
@@ -471,6 +738,9 @@
       sourceLang: 'uz',
       targetLang: 'tr',
       selectedVoice: 'tr-TR-EmelNeural',
+      selectedGender: 'female',
+      audioCache: {},
+      playbackSpeed: 1.0,
       selectedRate: '+0%',
       isRecording: false,
       autoPlay: true,
@@ -482,102 +752,222 @@
       currentAudioBase64: null,
       recStartTime: 0,
       recTimerInterval: null,
-      activeModalType: 'src',
+      activeModalTarget: 'src',
 
       // VAD
       hasSpoken: false,
       lastVoiceTime: 0,
-      silenceThresholdMs: 1400,
+      silenceThresholdMs: 1500,
       voiceRmsThreshold: 0.007,
-      currentRms: 0,
+
+      // Visuals
+      audioLevel: 0.0,
+      orbMode: 0, // 0: idle, 1: recording, 2: processing, 3: speaking
     };
 
     // DOM Elements
-    const srcPillText = document.getElementById('srcPillText');
-    const tgtPillText = document.getElementById('tgtPillText');
-    const swapLangsBtn = document.getElementById('swapLangsBtn');
+    const sphere1Flag = document.getElementById('sphere1Flag');
+    const sphere1Name = document.getElementById('sphere1Name');
+    const sphere2Flag = document.getElementById('sphere2Flag');
+    const sphere2Name = document.getElementById('sphere2Name');
+    const sphere3Name = document.getElementById('sphere3Name');
+
     const openSrcModalBtn = document.getElementById('openSrcModalBtn');
     const openTgtModalBtn = document.getElementById('openTgtModalBtn');
-    const langModal = document.getElementById('langModal');
-    const langModalTitle = document.getElementById('langModalTitle');
-    const closeLangModalBtn = document.getElementById('closeLangModalBtn');
-
     const openVoiceModalBtn = document.getElementById('openVoiceModalBtn');
-    const closeVoiceModalBtn = document.getElementById('closeVoiceModalBtn');
-    const voiceModal = document.getElementById('voiceModal');
-    const voiceSelectDropdown = document.getElementById('voiceSelectDropdown');
-    const saveVoiceSettingsBtn = document.getElementById('saveVoiceSettingsBtn');
-    const activeVoiceDisplay = document.getElementById('activeVoiceDisplay');
-    const activeSpeedDisplay = document.getElementById('activeSpeedDisplay');
-    const autoPlayCheckbox = document.getElementById('autoPlayCheckbox');
+    const swapLangsBtn = document.getElementById('swapLangsBtn');
+
+    const orbClickTarget = document.getElementById('orbClickTarget');
+    const orbShadow = document.getElementById('orbShadow');
+    const orbStateText = document.getElementById('orbStateText');
+    const orbStateBadge = document.getElementById('orbStateBadge');
+    const badgeDot = document.getElementById('badgeDot');
+    const soundwaveContainer = document.getElementById('soundwaveContainer');
+
+    const idleSuggestions = document.getElementById('idleSuggestions');
+    const activeTranslationView = document.getElementById('activeTranslationView');
+    const displaySrcText = document.getElementById('displaySrcText');
+    const displayTgtText = document.getElementById('displayTgtText');
+    const transSrcFlag = document.getElementById('transSrcFlag');
+    const transSrcName = document.getElementById('transSrcName');
+    const transTgtFlag = document.getElementById('transTgtFlag');
+    const transTgtName = document.getElementById('transTgtName');
+    const copySrcTextBtn = document.getElementById('copySrcTextBtn');
+    const copyTgtTextBtn = document.getElementById('copyTgtTextBtn');
+
+    const replaySpeechBtn = document.getElementById('replaySpeechBtn');
+    const replayIcon = document.getElementById('replayIcon');
+    const downloadMp3Btn = document.getElementById('downloadMp3Btn');
+    const metricLatency = document.getElementById('metricLatency');
+
+    const micBtn = document.getElementById('micBtn');
+    const micIcon = document.getElementById('micIcon');
+    const micButtonText = document.getElementById('micButtonText');
+    const recTimer = document.getElementById('recTimer');
+    const uploadAudioBtn = document.getElementById('uploadAudioBtn');
+    const audioFileInput = document.getElementById('audioFileInput');
+    const resetSessionBtn = document.getElementById('resetSessionBtn');
 
     const toggleTextModeBtn = document.getElementById('toggleTextModeBtn');
     const textInputDrawer = document.getElementById('textInputDrawer');
     const manualTextInput = document.getElementById('manualTextInput');
     const sendTextBtn = document.getElementById('sendTextBtn');
 
-    const micBtn = document.getElementById('micBtn');
-    const micIcon = document.getElementById('micIcon');
-    const micPulseRing = document.getElementById('micPulseRing');
-    const micButtonText = document.getElementById('micButtonText');
-    const audioFileInput = document.getElementById('audioFileInput');
-    const uploadAudioBtn = document.getElementById('uploadAudioBtn');
+    const statusDot = document.getElementById('statusDot');
+    const statusLabel = document.getElementById('statusLabel');
 
-    const mainOrganicOrb = document.getElementById('mainOrganicOrb');
-    const luminousPearl = document.getElementById('luminousPearl');
-    const orbIdleText = document.getElementById('orbIdleText');
-    const orbLiveTranscription = document.getElementById('orbLiveTranscription');
-    const livePartialText = document.getElementById('livePartialText');
-    const liveTimerText = document.getElementById('liveTimerText');
+    // Modals
+    const langModal = document.getElementById('langModal');
+    const langModalTitle = document.getElementById('langModalTitle');
+    const closeLangModalBtn = document.getElementById('closeLangModalBtn');
+    const voiceModal = document.getElementById('voiceModal');
+    const closeVoiceModalBtn = document.getElementById('closeVoiceModalBtn');
+    const voiceSelectDropdown = document.getElementById('voiceSelectDropdown');
+    const saveVoiceSettingsBtn = document.getElementById('saveVoiceSettingsBtn');
+    const autoPlayCheckbox = document.getElementById('autoPlayCheckbox');
 
-    const statusBadge = document.getElementById('statusBadge');
-    const statusText = document.getElementById('statusText');
-    const labelTop = document.getElementById('labelTop');
-    const labelBottom = document.getElementById('labelBottom');
+    const openHistoryDrawerBtn = document.getElementById('openHistoryDrawerBtn');
+    const closeHistoryDrawerBtn = document.getElementById('closeHistoryDrawerBtn');
+    const historyDrawer = document.getElementById('historyDrawer');
+    const historyFeedList = document.getElementById('historyFeedList');
+    const emptyHistoryNotice = document.getElementById('emptyHistoryNotice');
+    const clearAllHistoryBtn = document.getElementById('clearAllHistoryBtn');
 
-    // Floating Result Card
-    const floatingResultCard = document.getElementById('floatingResultCard');
-    const dismissCardBtn = document.getElementById('dismissCardBtn');
-    const cardDirectionBadge = document.getElementById('cardDirectionBadge');
-    const cardTimestamp = document.getElementById('cardTimestamp');
-    const cardSrcFlag = document.getElementById('cardSrcFlag');
-    const cardSrcName = document.getElementById('cardSrcName');
-    const cardSrcText = document.getElementById('cardSrcText');
-    const copySrcBtn = document.getElementById('copySrcBtn');
-    const cardTgtFlag = document.getElementById('cardTgtFlag');
-    const cardTgtName = document.getElementById('cardTgtName');
-    const cardTgtText = document.getElementById('cardTgtText');
-    const copyTgtBtn = document.getElementById('copyTgtBtn');
-    const cardPlayAudioBtn = document.getElementById('cardPlayAudioBtn');
-    const cardPlayIcon = document.getElementById('cardPlayIcon');
-    const cardDownloadAudioBtn = document.getElementById('cardDownloadAudioBtn');
-    const cardLatencyText = document.getElementById('cardLatencyText');
     const globalAudio = document.getElementById('globalAudio');
 
-    // Update UI Elements
-    function updateLanguageUI() {
-      const src = LANG_DATA[state.sourceLang] || LANG_DATA.uz;
-      const tgt = LANG_DATA[state.targetLang] || LANG_DATA.tr;
+    // Build 20 Soundwave Bars
+    for (let i = 0; i < 20; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'soundbar';
+      bar.style.height = '4px';
+      soundwaveContainer.appendChild(bar);
+    }
+    const soundBars = soundwaveContainer.querySelectorAll('.soundbar');
 
-      srcPillText.innerHTML = `<span>${src.flag}</span> <span class="truncate">${src.name}</span>`;
-      tgtPillText.innerHTML = `<span>${tgt.flag}</span> <span class="truncate">${tgt.name}</span>`;
+    // Dynamic App Status Badge
+    function setAppStatus(mode, customText) {
+      const dotClassMap = {
+        ready: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse",
+        recording: "w-2 h-2 rounded-full bg-rose-500 animate-ping",
+        processing: "w-2 h-2 rounded-full bg-amber-500 animate-spin",
+        speaking: "w-2 h-2 rounded-full bg-blue-500 animate-pulse",
+        done: "w-2 h-2 rounded-full bg-emerald-500",
+        reconnect: "w-2 h-2 rounded-full bg-amber-400"
+      };
 
-      labelTop.textContent = `NUTQ TILI (${state.sourceLang.toUpperCase()})`;
-      labelBottom.textContent = `TARJIMA TILI (${state.targetLang.toUpperCase()})`;
+      const textMap = {
+        ready: "Tinglashga tayyor",
+        recording: "Nutq eshitilmoqda...",
+        processing: "AI tarjima qilmoqda...",
+        speaking: "Ovozlashtirilmoqda...",
+        done: "Tarjima tayyor",
+        reconnect: "Aloqa tiklanmoqda..."
+      };
 
-      state.selectedVoice = tgt.defaultVoice;
-      voiceSelectDropdown.value = state.selectedVoice;
-      const opt = voiceSelectDropdown.options[voiceSelectDropdown.selectedIndex];
-      if (opt) activeVoiceDisplay.textContent = opt.text.split('—')[0].trim();
+      const labelText = customText || textMap[mode] || "Tinglashga tayyor";
+      const dotClass = dotClassMap[mode] || dotClassMap.ready;
+
+      if (statusLabel) statusLabel.textContent = labelText;
+      if (statusDot) statusDot.className = dotClass;
+      
+      const mLabel = document.getElementById('statusLabelMobile');
+      const mDot = document.getElementById('statusDotMobile');
+      if (mLabel) mLabel.textContent = labelText;
+      if (mDot) mDot.className = (mode === 'ready' || mode === 'done') ? "w-1.5 h-1.5 rounded-full bg-emerald-500" : (mode === 'recording' ? "w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" : (mode === 'processing' ? "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin" : "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"));
     }
 
-    // Modal Language Selection
+    // Gender Switcher UI
+    function updateGenderUI() {
+      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
+      const fLabel = document.getElementById('femaleVoiceLabel');
+      const mLabel = document.getElementById('maleVoiceLabel');
+      if (fLabel) fLabel.textContent = `Ayol (${pair.female.name})`;
+      if (mLabel) mLabel.textContent = `Erkak (${pair.male.name})`;
+
+      const fBtn = document.getElementById('voiceGenderFemaleBtn');
+      const mBtn = document.getElementById('voiceGenderMaleBtn');
+      if (fBtn && mBtn) {
+        if (state.selectedGender === 'female') {
+          fBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5";
+          mBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5";
+        } else {
+          mBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5";
+          fBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5";
+        }
+      }
+    }
+
+    async function switchVoiceGender(gender) {
+      state.selectedGender = gender;
+      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
+      state.selectedVoice = pair[gender].id;
+      updateGenderUI();
+
+      const tgtText = displayTgtText.textContent.trim();
+      if (!tgtText || tgtText === '...' || tgtText.includes('kutilmoqda')) return;
+
+      const cacheKey = `${state.selectedVoice}_${tgtText}`;
+      if (state.audioCache[cacheKey]) {
+        playAudioFromSrc(state.audioCache[cacheKey]);
+      } else {
+        try {
+          replayIcon.className = "fa-solid fa-circle-notch fa-spin text-xs";
+          setAppStatus('processing', `${pair[gender].name} ovozi yuklanmoqda...`);
+          const resp = await fetch(`/api/v1/tts?text=${encodeURIComponent(tgtText)}&voice=${encodeURIComponent(state.selectedVoice)}&rate=${encodeURIComponent(state.selectedRate)}`);
+          if (!resp.ok) throw new Error("TTS xatosi");
+          const blob = await resp.blob();
+          const audioUrl = URL.createObjectURL(blob);
+          state.audioCache[cacheKey] = audioUrl;
+          setAppStatus('done', "Tarjima tayyor");
+          playAudioFromSrc(audioUrl);
+        } catch (err) {
+          console.error(err);
+          replayIcon.className = "fa-solid fa-play text-xs";
+          setAppStatus('ready', "Tinglashga tayyor");
+        }
+      }
+    }
+
+    function playAudioFromSrc(src) {
+      if (!src) return;
+      globalAudio.src = src;
+      globalAudio.playbackRate = state.playbackSpeed;
+      globalAudio.currentTime = 0;
+      globalAudio.play().then(() => {
+        replayIcon.className = "fa-solid fa-pause text-xs";
+        state.orbMode = 3;
+        setAppStatus('speaking', "Ovozlashtirilmoqda...");
+      }).catch(err => {
+        console.warn(err);
+        replayIcon.className = "fa-solid fa-play text-xs";
+        state.orbMode = 0;
+        setAppStatus('ready', "Tinglashga tayyor");
+      });
+    }
+
+    // Update Language UI
+    function updateLanguageUI() {
+      const s = LANG_DATA[state.sourceLang] || LANG_DATA.uz;
+      const t = LANG_DATA[state.targetLang] || LANG_DATA.tr;
+
+      sphere1Flag.innerHTML = FLAG_SVGS[state.sourceLang] || s.flag;
+      sphere1Name.textContent = s.name;
+
+      sphere2Flag.innerHTML = FLAG_SVGS[state.targetLang] || t.flag;
+      sphere2Name.textContent = t.name;
+
+      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
+      state.selectedVoice = pair[state.selectedGender].id;
+      updateGenderUI();
+    }
+
+    // Language Modal Logic
     openSrcModalBtn.addEventListener('click', () => openLangModal('src'));
     openTgtModalBtn.addEventListener('click', () => openLangModal('tgt'));
     closeLangModalBtn.addEventListener('click', () => langModal.classList.add('hidden'));
 
     function openLangModal(mode) {
-      state.activeModalType = mode;
+      state.activeModalTarget = mode;
       langModalTitle.textContent = mode === 'src' ? "1. Nutq tilini tanlang:" : "2. Tarjima tilini tanlang:";
       
       const currentSelected = mode === 'src' ? state.sourceLang : state.targetLang;
@@ -585,10 +975,10 @@
         const lang = btn.getAttribute('data-lang');
         const check = btn.querySelector('.check-icon');
         if (lang === currentSelected) {
-          btn.classList.add('border-[#885151]', 'bg-[#885151]/20');
+          btn.classList.add('border-blue-600', 'bg-blue-50');
           check.classList.remove('hidden');
         } else {
-          btn.classList.remove('border-[#885151]', 'bg-[#885151]/20');
+          btn.classList.remove('border-blue-600', 'bg-blue-50');
           check.classList.add('hidden');
         }
       });
@@ -598,7 +988,7 @@
     document.querySelectorAll('.lang-opt-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const chosen = btn.getAttribute('data-lang');
-        if (state.activeModalType === 'src') {
+        if (state.activeModalTarget === 'src') {
           state.sourceLang = chosen;
           if (state.sourceLang === state.targetLang) {
             state.targetLang = ['tr', 'uz', 'ru', 'en', 'zh'].find(l => l !== chosen);
@@ -612,54 +1002,102 @@
         langModal.classList.add('hidden');
         updateLanguageUI();
 
-        // If card is currently shown, re-translate instantly
-        if (!floatingResultCard.classList.contains('hidden')) {
-          const srcText = cardSrcText.textContent.trim();
-          if (srcText && srcText !== '...') {
-            await runTextTranslation(srcText);
-          }
+        if (!activeTranslationView.classList.contains('hidden') && displaySrcText.textContent.trim()) {
+          await runTextTranslation(displaySrcText.textContent.trim());
         }
       });
     });
 
-    // Swap Languages Button
+    // Swap Languages
     swapLangsBtn.addEventListener('click', async () => {
+      swapLangsBtn.style.transform = 'rotate(180deg)';
+      setTimeout(() => swapLangsBtn.style.transform = '', 300);
+
       const prevSrc = state.sourceLang;
       state.sourceLang = state.targetLang;
       state.targetLang = prevSrc;
       updateLanguageUI();
 
-      if (!floatingResultCard.classList.contains('hidden')) {
-        const tgtText = cardTgtText.textContent.trim();
-        if (tgtText && tgtText !== '...') {
-          await runTextTranslation(tgtText);
-        }
+      if (!activeTranslationView.classList.contains('hidden') && displayTgtText.textContent.trim()) {
+        await runTextTranslation(displayTgtText.textContent.trim());
       }
     });
 
-    // Voice & Speed Modal
-    openVoiceModalBtn.addEventListener('click', () => voiceModal.classList.remove('hidden'));
-    closeVoiceModalBtn.addEventListener('click', () => voiceModal.classList.add('hidden'));
-    saveVoiceSettingsBtn.addEventListener('click', () => {
-      state.selectedVoice = voiceSelectDropdown.value;
-      const opt = voiceSelectDropdown.options[voiceSelectDropdown.selectedIndex];
-      if (opt) activeVoiceDisplay.textContent = opt.text.split('—')[0].trim();
-      voiceModal.classList.add('hidden');
+    // Voice Gender Switchers (Ayol / Erkak)
+    const fGenderBtn = document.getElementById('voiceGenderFemaleBtn');
+    const mGenderBtn = document.getElementById('voiceGenderMaleBtn');
+    if (fGenderBtn) fGenderBtn.addEventListener('click', () => switchVoiceGender('female'));
+    if (mGenderBtn) mGenderBtn.addEventListener('click', () => switchVoiceGender('male'));
+
+    // Speed Pills on Translation Card
+    document.querySelectorAll('.speed-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.speed-pill').forEach(b => {
+          b.className = 'speed-pill px-2.5 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]';
+        });
+        btn.className = 'speed-pill px-2.5 py-0.5 rounded-full bg-white text-blue-600 font-bold shadow-xs';
+        const speedVal = parseFloat(btn.getAttribute('data-speed')) || 1.0;
+        state.playbackSpeed = speedVal;
+        globalAudio.playbackRate = speedVal;
+        state.selectedRate = speedVal === 0.85 ? "-15%" : (speedVal === 1.15 ? "+15%" : "+0%");
+      });
     });
+
+    // Voice Modal Logic (if accessed via options)
+    if (openVoiceModalBtn) openVoiceModalBtn.addEventListener('click', () => voiceModal.classList.remove('hidden'));
+    if (closeVoiceModalBtn) closeVoiceModalBtn.addEventListener('click', () => voiceModal.classList.add('hidden'));
+    if (saveVoiceSettingsBtn) {
+      saveVoiceSettingsBtn.addEventListener('click', () => {
+        state.selectedVoice = voiceSelectDropdown.value;
+        const opt = voiceSelectDropdown.options[voiceSelectDropdown.selectedIndex];
+        if (opt && sphere3Name) {
+          sphere3Name.textContent = opt.text.split('(')[0].trim();
+        }
+        voiceModal.classList.add('hidden');
+      });
+    }
 
     document.querySelectorAll('.rate-choice-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.rate-choice-btn').forEach(b => {
-          b.className = 'rate-choice-btn py-2 rounded-xl border border-gray-700 bg-[#252424] text-xs font-medium text-gray-300';
+          b.className = 'rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition';
         });
-        btn.className = 'rate-choice-btn py-2 rounded-xl border border-[#885151] bg-[#885151]/30 text-xs font-semibold text-[#e9a6a6]';
+        btn.className = 'rate-choice-btn py-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-xs font-semibold text-blue-700 transition';
         state.selectedRate = btn.getAttribute('data-rate');
-        activeSpeedDisplay.textContent = `Tezlik: ${btn.textContent}`;
       });
     });
 
     autoPlayCheckbox.addEventListener('change', (e) => {
       state.autoPlay = e.target.checked;
+    });
+
+    // History Drawer
+    openHistoryDrawerBtn.addEventListener('click', () => historyDrawer.classList.remove('hidden'));
+    const openHistoryDrawerBtnMobile = document.getElementById('openHistoryDrawerBtnMobile');
+    if (openHistoryDrawerBtnMobile) {
+      openHistoryDrawerBtnMobile.addEventListener('click', () => historyDrawer.classList.remove('hidden'));
+    }
+    closeHistoryDrawerBtn.addEventListener('click', () => historyDrawer.classList.add('hidden'));
+    clearAllHistoryBtn.addEventListener('click', () => {
+      historyFeedList.innerHTML = '<div id="emptyHistoryNotice" class="text-center py-12 text-[#86868b] text-xs">Hozircha suhbatlar tarixi bo\'sh</div>';
+    });
+
+    // Reset Session
+    resetSessionBtn.addEventListener('click', () => {
+      activeTranslationView.classList.add('hidden');
+      idleSuggestions.classList.remove('hidden');
+      state.orbMode = 0;
+      orbStateText.textContent = "Gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing";
+      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse";
+      setAppStatus('ready', "Tinglashga tayyor");
+    });
+
+    // Quick phrases
+    document.querySelectorAll('.quick-phrase-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const txt = chip.textContent.replace(/["']/g, '').trim();
+        runTextTranslation(txt);
+      });
     });
 
     // Text Input Mode
@@ -683,11 +1121,17 @@
       await runTextTranslation(val);
     }
 
-    // Direct Text Translation
+    // Direct Text Translation API
     async function runTextTranslation(text) {
       if (!text) return;
       primeAudioPlayback();
-      showListeningUI("Tarjima qilinmoqda...");
+      showActiveCardUI("Tarjima qilinmoqda...");
+      displaySrcText.textContent = text;
+      displayTgtText.textContent = "AI tarjima tayyorlamoqda...";
+      state.orbMode = 2; // Processing
+      orbStateText.textContent = "Tarjima qilinmoqda...";
+      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
+      setAppStatus('processing', "AI tarjima qilmoqda...");
 
       try {
         const resp = await fetch('/api/v1/translate-text', {
@@ -703,16 +1147,16 @@
           })
         });
         const data = await resp.json();
-        hideListeningUI();
-        renderResultCard(data);
+        renderResult(data);
       } catch (err) {
         console.error(err);
-        hideListeningUI();
         alert('Tarjima xatosi: ' + err.message);
+        state.orbMode = 0;
+        orbStateText.textContent = "Xatolik yuz berdi";
       }
     }
 
-    // Priming Audio Autoplay (Unlocks browser autoplay policies)
+    // Audio Playback Unlock
     function primeAudioPlayback() {
       try {
         globalAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
@@ -723,27 +1167,26 @@
       } catch (_) {}
     }
 
-    // WebSocket Setup
+    // WebSocket Connection
     function connectWebSocket() {
       const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
       const wsUrl = `${protocol}//${location.host}/ws/translator`;
       state.ws = new WebSocket(wsUrl);
 
       state.ws.onopen = () => {
-        statusText.textContent = 'Tayyor';
-        statusBadge.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e2e22] border border-[#22c55e]/40 shadow-sm shadow-[#22c55e]/20';
+        setAppStatus('ready', "Tinglashga tayyor");
       };
 
       state.ws.onmessage = (event) => {
         try {
           const msg = JSON.parse(event.data);
           if (msg.type === 'stage') {
-            statusText.textContent = msg.stage;
+            const stageText = msg.stage === 'stt' ? "Nutq tanilmoqda..." : (msg.stage === 'translate' ? "AI tarjima qilmoqda..." : "Ovoz yaratilmoqda...");
+            setAppStatus('processing', stageText);
           } else if (msg.type === 'transcript') {
-            livePartialText.textContent = msg.source_text || 'Nutq aniqlandi...';
+            displaySrcText.textContent = msg.source_text || 'Nutq aniqlandi...';
           } else if (msg.type === 'result' && msg.payload) {
-            hideListeningUI();
-            renderResultCard(msg.payload);
+            renderResult(msg.payload);
           } else if (msg.type === 'error') {
             alert(msg.message || 'Xatolik');
             stopRecording();
@@ -754,27 +1197,32 @@
       };
 
       state.ws.onclose = () => {
-        statusText.textContent = 'Uzildi';
-        statusBadge.className = 'flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#381e1e] border border-rose-500/40 text-rose-300';
+        setAppStatus('reconnect', "Aloqa tiklanmoqda...");
         setTimeout(connectWebSocket, 3000);
       };
     }
     connectWebSocket();
 
-    // Click on Orb also toggles Recording
-    mainOrganicOrb.addEventListener('click', () => {
-      micBtn.click();
+    // Click Orb or Mic Button to Record
+    orbClickTarget.addEventListener('click', toggleRecording);
+    micBtn.addEventListener('click', toggleRecording);
+
+    // Spacebar to Record Shortcut
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target === document.body && !manualTextInput.matches(':focus')) {
+        e.preventDefault();
+        toggleRecording();
+      }
     });
 
-    // Microphone & VAD Controls
-    micBtn.addEventListener('click', () => {
+    function toggleRecording() {
       primeAudioPlayback();
       if (!state.isRecording) {
         startRecording();
       } else {
         stopRecording();
       }
-    });
+    }
 
     async function startRecording() {
       try {
@@ -828,15 +1276,14 @@
             pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
           }
           const rms = Math.sqrt(sumSquares / inputData.length);
-          state.currentRms = rms;
+          state.audioLevel = Math.min(1.0, rms * 8.0); // Boosted for visual reactivity
 
           const now = Date.now();
           if (rms > state.voiceRmsThreshold) {
             state.hasSpoken = true;
             state.lastVoiceTime = now;
-            statusText.textContent = "Eshitilmoqda";
+            setAppStatus('recording', "Nutq eshitilmoqda...");
           } else if (state.hasSpoken && (now - state.lastVoiceTime > state.silenceThresholdMs)) {
-            // Auto-stop recording on natural pause
             stopRecording();
             return;
           }
@@ -847,19 +1294,30 @@
         };
 
         state.isRecording = true;
-        micBtn.classList.replace('bg-[#242323]', 'bg-[#885151]');
-        micIcon.className = 'fa-solid fa-square text-base';
-        micButtonText.textContent = "To'xtatish";
-        micPulseRing.classList.remove('hidden');
-
-        showListeningUI("Nutq eshitilmoqda...");
+        state.orbMode = 1; // Recording
         state.recStartTime = Date.now();
+        recTimer.classList.remove('hidden');
+        recTimer.textContent = "00:00";
         state.recTimerInterval = setInterval(() => {
           const sec = Math.floor((Date.now() - state.recStartTime) / 1000);
           const m = String(Math.floor(sec / 60)).padStart(2, '0');
           const s = String(sec % 60).padStart(2, '0');
-          liveTimerText.textContent = `${m}:${s}`;
-        }, 500);
+          recTimer.textContent = `${m}:${s}`;
+        }, 1000);
+
+        micBtn.classList.remove('apple-primary-btn');
+        micBtn.classList.add('apple-rec-btn');
+        micIcon.className = 'fa-solid fa-square text-base';
+        micButtonText.textContent = "To'xtatish";
+        orbShadow.classList.add('recording');
+
+        orbStateText.textContent = "Eshitilmoqda... Gapiring, tugatgach to'xtating";
+        badgeDot.className = "w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping";
+        setAppStatus('recording', "Nutq eshitilmoqda...");
+
+        showActiveCardUI("Nutq eshitilmoqda...");
+        displaySrcText.textContent = "Gapiring... Tugatishingiz bilan tarjima qilinadi.";
+        displayTgtText.textContent = "...";
 
       } catch (err) {
         console.error(err);
@@ -870,13 +1328,21 @@
     function stopRecording() {
       if (!state.isRecording) return;
       state.isRecording = false;
+      state.orbMode = 2; // Processing
+      state.audioLevel = 0.0;
 
       clearInterval(state.recTimerInterval);
-      micBtn.classList.replace('bg-[#885151]', 'bg-[#242323]');
-      micIcon.className = 'fa-solid fa-microphone text-lg';
+      recTimer.classList.add('hidden');
+
+      micBtn.classList.remove('apple-rec-btn');
+      micBtn.classList.add('apple-primary-btn');
+      micIcon.className = 'fa-solid fa-microphone text-base';
       micButtonText.textContent = "Gapirish";
-      micPulseRing.classList.add('hidden');
-      statusText.textContent = "Tarjimada...";
+      orbShadow.classList.remove('recording');
+
+      orbStateText.textContent = "Tarjima tayyorlanmoqda...";
+      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
+      setAppStatus('processing', "AI tarjima qilmoqda...");
 
       if (state.scriptProcessor) {
         state.scriptProcessor.disconnect();
@@ -891,7 +1357,6 @@
         state.audioCtx = null;
       }
 
-      state.currentRms = 0;
       if (state.ws && state.ws.readyState === WebSocket.OPEN) {
         state.ws.send(JSON.stringify({
           type: 'end_utterance',
@@ -903,133 +1368,114 @@
       }
     }
 
-    // Dynamic Pearl movement inside the orb responding to voice volume
-    // Orb o'zi katta bo'lmaydi, oq shakl uning ichida erkin aylanib, qimirlab yuradi!
-    let pearlAngle = 0.8;
-    let curPearlX = 52;
-    let curPearlY = -52;
-
-    function updatePearlPhysics() {
-      requestAnimationFrame(updatePearlPhysics);
-
-      if (state.isRecording) {
-        // Gapirilayotganda oq shakl orb ichida erkin qimirlab, aylanib yuradi
-        const rms = state.currentRms || 0;
-        const speed = 0.04 + Math.min(0.24, rms * 2.2);
-        pearlAngle += speed;
-
-        // Orb ichki chegarasida to'lqinlanuvchi radius
-        const r = 46 + Math.sin(pearlAngle * 2.1) * (14 + Math.min(24, rms * 70));
-        const targetX = Math.cos(pearlAngle) * r;
-        const targetY = Math.sin(pearlAngle * 0.85) * (r * 0.85);
-
-        // Silliq harakat interpolyatsiyasi
-        curPearlX += (targetX - curPearlX) * 0.16;
-        curPearlY += (targetY - curPearlY) * 0.16;
-
-        const pulseScale = 1.0 + Math.min(0.25, rms * 2.2);
-        luminousPearl.style.transform = `translate(${curPearlX.toFixed(1)}px, ${curPearlY.toFixed(1)}px) scale(${pulseScale.toFixed(2)})`;
-      } else {
-        // Gapirilmayotganda boshlang'ich burchakka (tepa o'ng) asta qaytib, mayin tebranib turadi
-        const idleWobbleX = 52 + Math.sin(Date.now() * 0.002) * 4;
-        const idleWobbleY = -52 + Math.cos(Date.now() * 0.002) * 3;
-        curPearlX += (idleWobbleX - curPearlX) * 0.08;
-        curPearlY += (idleWobbleY - curPearlY) * 0.08;
-        luminousPearl.style.transform = `translate(${curPearlX.toFixed(1)}px, ${curPearlY.toFixed(1)}px) scale(1)`;
-      }
-    }
-    requestAnimationFrame(updatePearlPhysics);
-
-    function showListeningUI(statusMsg) {
-      floatingResultCard.classList.add('hidden');
-      mainOrganicOrb.classList.add('recording');
-      orbIdleText.classList.add('hidden');
-      orbLiveTranscription.classList.remove('hidden');
-      livePartialText.textContent = statusMsg;
+    function showActiveCardUI(stageMsg) {
+      idleSuggestions.classList.add('hidden');
+      activeTranslationView.classList.remove('hidden');
     }
 
-    function hideListeningUI() {
-      mainOrganicOrb.classList.remove('recording');
-      orbIdleText.classList.remove('hidden');
-      orbLiveTranscription.classList.add('hidden');
-      statusText.textContent = "Tayyor";
-    }
+    // Render Translation Result
+    function renderResult(result) {
+      showActiveCardUI("Tarjima tayyor");
+      setAppStatus('done', "Tarjima tayyor");
 
-    // RENDER THE BLUR RESULT CARD
-    function renderResultCard(result) {
+      orbStateText.textContent = "Tarjima tayyor";
+      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-emerald-500";
+
       const s = LANG_DATA[result.source_lang] || LANG_DATA.uz;
       const t = LANG_DATA[result.target_lang] || LANG_DATA.tr;
 
-      cardDirectionBadge.textContent = `${result.source_lang.toUpperCase()} ➔ ${result.target_lang.toUpperCase()}`;
-      cardTimestamp.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      transSrcFlag.innerHTML = FLAG_SVGS[result.source_lang] || s.flag;
+      transSrcName.textContent = s.name;
+      displaySrcText.textContent = result.source_text || '';
 
-      cardSrcFlag.textContent = s.flag;
-      cardSrcName.textContent = `${s.name} (Asl nutq)`;
-      cardSrcText.textContent = result.source_text || '';
+      transTgtFlag.innerHTML = FLAG_SVGS[result.target_lang] || t.flag;
+      transTgtName.textContent = t.name;
+      displayTgtText.textContent = result.translated_text || '';
 
-      cardTgtFlag.textContent = t.flag;
-      cardTgtName.textContent = `${t.name} (Tarjima)`;
-      cardTgtText.textContent = result.translated_text || '';
+      metricLatency.textContent = result.latency ? `⚡ ${Math.round(result.latency.total_ms)} ms` : '';
 
-      cardLatencyText.textContent = result.latency ? `${result.latency.total_ms} ms` : '';
+      updateGenderUI();
 
-      // Audio handling
+      // Audio setup
       if (result.audio_base64) {
         state.currentAudioBase64 = result.audio_base64;
         const audioSrc = `data:${result.audio_mime || 'audio/mpeg'};base64,${result.audio_base64}`;
+        state.audioCache[`${state.selectedVoice}_${result.translated_text}`] = audioSrc;
         globalAudio.src = audioSrc;
 
-        cardPlayAudioBtn.onclick = () => {
+        replaySpeechBtn.onclick = () => {
           if (globalAudio.paused) {
-            globalAudio.currentTime = 0;
-            globalAudio.play().then(() => {
-              cardPlayIcon.className = 'fa-solid fa-pause text-xs';
-            });
+            playAudioFromSrc(globalAudio.src);
           } else {
             globalAudio.pause();
-            cardPlayIcon.className = 'fa-solid fa-play text-xs';
+            replayIcon.className = 'fa-solid fa-play text-xs';
+            state.orbMode = 0;
+            setAppStatus('ready', "Tinglashga tayyor");
           }
         };
 
         globalAudio.onended = () => {
-          cardPlayIcon.className = 'fa-solid fa-play text-xs';
+          replayIcon.className = 'fa-solid fa-play text-xs';
+          state.orbMode = 0;
+          setAppStatus('ready', "Tinglashga tayyor");
+          orbStateText.textContent = "Yana gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing";
+          badgeDot.className = "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse";
         };
 
-        cardDownloadAudioBtn.onclick = () => {
+        downloadMp3Btn.onclick = () => {
           const a = document.createElement('a');
-          a.href = audioSrc;
-          a.download = `tarjima_${result.source_lang}_${result.target_lang}_${Date.now()}.mp3`;
+          a.href = globalAudio.src || audioSrc;
+          a.download = `tarjima_${result.source_lang}_${result.target_lang}_${state.selectedGender}_${Date.now()}.mp3`;
           a.click();
         };
 
-        // Autoplay if enabled
+        // Auto-play if enabled
         if (state.autoPlay) {
-          globalAudio.play().then(() => {
-            cardPlayIcon.className = 'fa-solid fa-pause text-xs';
-          }).catch(e => console.warn(e));
+          playAudioFromSrc(audioSrc);
+        } else {
+          state.orbMode = 0;
         }
+      } else {
+        state.orbMode = 0;
       }
 
-      floatingResultCard.classList.remove('hidden');
+      addToHistory(result);
     }
 
-    dismissCardBtn.addEventListener('click', () => {
-      floatingResultCard.classList.add('hidden');
+    // Copy Buttons
+    copySrcTextBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(displaySrcText.textContent);
+      copySrcTextBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i>';
+      setTimeout(() => copySrcTextBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
     });
 
-    copySrcBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(cardSrcText.textContent);
-      copySrcBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i>';
-      setTimeout(() => copySrcBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
+    copyTgtTextBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(displayTgtText.textContent);
+      copyTgtTextBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i>';
+      setTimeout(() => copyTgtTextBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
     });
 
-    copyTgtBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(cardTgtText.textContent);
-      copyTgtBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i>';
-      setTimeout(() => copyTgtBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
-    });
+    // History Feed Item
+    function addToHistory(item) {
+      const empty = document.getElementById('emptyHistoryNotice');
+      if (empty) empty.remove();
 
-    // File Upload
+      const card = document.createElement('div');
+      card.className = 'p-3.5 rounded-2xl bg-white border border-black/[0.06] text-xs space-y-1.5 shadow-sm';
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      card.innerHTML = `
+        <div class="flex items-center justify-between text-[#86868b] text-[10px]">
+          <span class="font-bold text-blue-600 font-mono">${(item.source_lang || '').toUpperCase()} ➔ ${(item.target_lang || '').toUpperCase()}</span>
+          <span>${timeStr}</span>
+        </div>
+        <p class="text-[#1d1d1f] font-normal">${escapeHtml(item.source_text || '')}</p>
+        <p class="text-blue-600 font-semibold">${escapeHtml(item.translated_text || '')}</p>
+      `;
+      historyFeedList.prepend(card);
+    }
+
+    // Audio File Upload
     uploadAudioBtn.addEventListener('click', () => {
       primeAudioPlayback();
       audioFileInput.click();
@@ -1039,7 +1485,13 @@
       const file = e.target.files[0];
       if (!file) return;
 
-      showListeningUI(file.name);
+      showActiveCardUI("Fayl yuklanmoqda...");
+      displaySrcText.textContent = file.name;
+      displayTgtText.textContent = "AI audio faylni tahlil qilmoqda...";
+      state.orbMode = 2; // Processing
+      orbStateText.textContent = "Audio fayl tahlil qilinmoqda...";
+      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
+
       const formData = new FormData();
       formData.append('file', file);
       formData.append('source_lang', state.sourceLang);
@@ -1053,16 +1505,422 @@
           body: formData
         });
         const data = await resp.json();
-        hideListeningUI();
-        renderResultCard(data);
+        renderResult(data);
       } catch (err) {
-        hideListeningUI();
-        alert('Audio faylni tarjima qilishda xatolik: ' + err.message);
+        alert('Audio fayl xatosi: ' + err.message);
+        state.orbMode = 0;
       }
       audioFileInput.value = '';
     });
 
-    // Initialize Language UI
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ============================================================
+    // THE LIVING APPLE INTELLIGENCE ORB (HIGH-PERFORMANCE WEBGL)
+    // ============================================================
+    const canvas = document.getElementById('orbCanvas');
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+
+    if (!gl) {
+      console.warn("WebGL not supported, falling back to 2D canvas");
+      setupCanvas2DFallback();
+    } else {
+      setupWebGLOrb();
+    }
+
+    function setupWebGLOrb() {
+      // Vertex Shader: full quad
+      const vsSource = `
+        attribute vec2 a_pos;
+        varying vec2 v_uv;
+        void main() {
+          v_uv = a_pos * 0.5 + 0.5;
+          gl_Position = vec4(a_pos, 0.0, 1.0);
+        }
+      `;
+
+      // Fragment Shader: Frosted Milky Glass Orb with 3 Dancing Internal Spheres (Green, Blue, Orange)
+      const fsSource = `
+        precision highp float;
+        varying vec2 v_uv;
+        uniform vec2 u_resolution;
+        uniform float u_time;
+        uniform float u_audio;
+        uniform float u_mode;
+
+        // 3D Simplex noise approximation
+        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+        vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+        float snoise(vec3 v) {
+          const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+          const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+          vec3 i  = floor(v + dot(v, C.yyy));
+          vec3 x0 = v - i + dot(i, C.xxx);
+          vec3 g = step(x0.yzx, x0.xyz);
+          vec3 l = 1.0 - g;
+          vec3 i1 = min(g.xyz, l.zxy);
+          vec3 i2 = max(g.xyz, l.zxy);
+          vec3 x1 = x0 - i1 + C.xxx;
+          vec3 x2 = x0 - i2 + C.yyy;
+          vec3 x3 = x0 - D.yyy;
+          i = mod289(i);
+          vec4 p = permute(permute(permute(
+                    i.z + vec4(0.0, i1.z, i2.z, 1.0))
+                  + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+                  + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+          float n_ = 0.142857142857;
+          vec3  ns = n_ * D.wyz - D.xzx;
+          vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+          vec4 x_ = floor(j * ns.z);
+          vec4 y_ = floor(j - 7.0 * x_);
+          vec4 x = x_ *ns.x + ns.yyyy;
+          vec4 y = y_ *ns.x + ns.yyyy;
+          vec4 h = 1.0 - abs(x) - abs(y);
+          vec4 b0 = vec4(x.xy, y.xy);
+          vec4 b1 = vec4(x.zw, y.zw);
+          vec4 s0 = floor(b0)*2.0 + 1.0;
+          vec4 s1 = floor(b1)*2.0 + 1.0;
+          vec4 sh = -step(h, vec4(0.0));
+          vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+          vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+          vec3 p0 = vec3(a0.xy, h.x);
+          vec3 p1 = vec3(a0.zw, h.y);
+          vec3 p2 = vec3(a1.xy, h.z);
+          vec3 p3 = vec3(a1.zw, h.w);
+          vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+          p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+          vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+          m = m * m;
+          return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+        }
+
+        void main() {
+          vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution) / min(u_resolution.x, u_resolution.y);
+          float dist = length(p);
+          // Subtle organic breathing expansion when speaking
+          float radius = 0.38 + u_audio * 0.012;
+
+          // Continuous smooth time phase integrated in JS (zero angular velocity jumps)
+          float t = u_time;
+
+          // Soft frosted outer aura around glass sphere
+          float outerGlow = exp(-max(0.0, dist - radius) * 20.0) * (0.28 + u_audio * 0.25);
+          vec3 auraColor = vec3(0.93, 0.95, 0.98);
+
+          if (dist > radius) {
+            float edgeFade = smoothstep(radius + 0.10, radius, dist);
+            gl_FragColor = vec4(auraColor, outerGlow * edgeFade);
+            return;
+          }
+
+          // 3D Sphere Surface Coordinates & Normal
+          float z = sqrt(max(0.0, radius * radius - dist * dist));
+          vec3 normal = normalize(vec3(p.x, p.y, z));
+
+          // 3 Internal Dancing Spheres: Green (top), Blue (right), Orange (bottom-left)
+          // Smooth harmonic Lissajous orbits that expand organically with speech volume
+
+          // 1. Fresh Lime Green Sphere (upper region)
+          vec3 posGreen = vec3(
+            sin(t * 0.75) * (0.08 + u_audio * 0.04) - 0.02,
+            0.12 + cos(t * 0.85) * (0.07 + u_audio * 0.04),
+            sin(t * 0.55) * 0.12
+          );
+          float radGreen = 0.16 + u_audio * 0.035;
+          vec3 colGreen = vec3(0.48, 0.86, 0.06);
+
+          // 2. Pure Azure / Royal Blue Sphere (right side)
+          vec3 posBlue = vec3(
+            0.15 + cos(t * 0.8 + 2.09) * (0.08 + u_audio * 0.04),
+            -0.02 + sin(t * 0.75 + 1.2) * (0.07 + u_audio * 0.04),
+            cos(t * 0.6 + 1.5) * 0.12
+          );
+          float radBlue = 0.15 + u_audio * 0.035;
+          vec3 colBlue = vec3(0.09, 0.48, 0.96);
+
+          // 3. Radiant Tangerine Orange Sphere (bottom-left)
+          vec3 posOrange = vec3(
+            -0.12 + cos(t * 0.7 + 4.19) * (0.08 + u_audio * 0.04),
+            -0.12 + sin(t * 0.8 + 3.4) * (0.07 + u_audio * 0.04),
+            sin(t * 0.75 + 2.8) * 0.12
+          );
+          float radOrange = 0.165 + u_audio * 0.035;
+          vec3 colOrange = vec3(0.96, 0.42, 0.04);
+
+          // Organic 3D Simplex noise drift for fluid dispersion
+          vec3 noiseCoord = vec3(p * 2.6, t * 0.2);
+          float fluidNoise = snoise(noiseCoord) * (0.025 + u_audio * 0.015);
+
+          // 2D distance to each dancing sphere center (with fluid perturbation)
+          float dGreen  = length(p - posGreen.xy) + fluidNoise;
+          float dBlue   = length(p - posBlue.xy) + fluidNoise;
+          float dOrange = length(p - posOrange.xy) + fluidNoise;
+
+          // Frosted glass subsurface diffusion: exponential gaussian falloff
+          // 3D z-depth makes forward spheres punchier, deeper ones more blurred
+          float zGreen  = 1.0 + posGreen.z * 1.2;
+          float zBlue   = 1.0 + posBlue.z * 1.2;
+          float zOrange = 1.0 + posOrange.z * 1.2;
+
+          float intGreen  = exp(-pow(max(0.0, dGreen) / radGreen, 2.0) * 2.0) * zGreen;
+          float intBlue   = exp(-pow(max(0.0, dBlue) / radBlue, 2.0) * 2.2) * zBlue;
+          float intOrange = exp(-pow(max(0.0, dOrange) / radOrange, 2.0) * 1.9) * zOrange;
+
+          // Weighted chromatic blending:
+          // Green + Orange overlap yields warm yellow transition
+          // Green + Blue overlap yields vibrant cyan transition
+          float wG = pow(intGreen, 1.35);
+          float wB = pow(intBlue, 1.35);
+          float wO = pow(intOrange, 1.35);
+          float totalW = wG + wB + wO + 0.0001;
+
+          vec3 blendedColor = (colGreen * wG + colBlue * wB + colOrange * wO) / totalW;
+
+          // Milky frosted glass background
+          vec3 frostedGlass = vec3(0.965, 0.975, 0.985);
+
+          // Subsurface scattering density
+          float maxInt = max(intGreen, max(intBlue, intOrange));
+          float density = clamp(pow(maxInt * 1.22, 1.1), 0.0, 0.96);
+
+          // Mix inner color with frosted milky glass medium
+          vec3 sphereColor = mix(frostedGlass, blendedColor, density);
+
+          // Soft internal ambient glow
+          float innerAmbient = (intGreen + intBlue + intOrange) * 0.15;
+          sphereColor += blendedColor * innerAmbient;
+
+          // Subsurface Fresnel Rim Light (Translucent glass edge)
+          float fresnel = pow(1.0 - normal.z, 2.6);
+          sphereColor = mix(sphereColor, vec3(0.99, 0.995, 1.0), fresnel * 0.48);
+
+          // Top-Left Soft Specular Sheen (Milky glass studio reflection)
+          vec3 lightDir = normalize(vec3(-0.42, 0.58, 0.7));
+          vec3 viewDir = vec3(0.0, 0.0, 1.0);
+          vec3 halfDir = normalize(lightDir + viewDir);
+          float spec = pow(max(0.0, dot(normal, halfDir)), 32.0);
+          sphereColor += vec3(1.0, 1.0, 1.0) * spec * 0.42;
+
+          // Secondary subtle soft fill highlight
+          vec3 spec2Dir = normalize(vec3(0.4, -0.35, 0.8));
+          float spec2 = pow(max(0.0, dot(normal, normalize(spec2Dir + viewDir))), 18.0);
+          sphereColor += vec3(0.95, 0.97, 1.0) * spec2 * 0.18;
+
+          // Antialiased glass sphere boundary
+          float edgeAlpha = smoothstep(radius, radius - 0.005, dist);
+
+          gl_FragColor = vec4(sphereColor, edgeAlpha);
+        }
+      `;
+
+      function compileShader(src, type) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(s));
+          gl.deleteShader(s);
+          return null;
+        }
+        return s;
+      }
+
+      const vs = compileShader(vsSource, gl.VERTEX_SHADER);
+      const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+
+      gl.useProgram(program);
+
+      // Full quad vertices
+      const vertices = new Float32Array([
+        -1.0, -1.0,
+         1.0, -1.0,
+        -1.0,  1.0,
+        -1.0,  1.0,
+         1.0, -1.0,
+         1.0,  1.0
+      ]);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+      const aPos = gl.getAttribLocation(program, 'a_pos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uRes = gl.getUniformLocation(program, 'u_resolution');
+      const uTime = gl.getUniformLocation(program, 'u_time');
+      const uAudio = gl.getUniformLocation(program, 'u_audio');
+      const uMode = gl.getUniformLocation(program, 'u_mode');
+
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+      let lastFrameTime = performance.now();
+      let currentPhase = 0.0;
+      let smoothedAudio = 0.0;
+
+      function renderFrame(now) {
+        const dt = Math.min(0.04, (now - lastFrameTime) * 0.001);
+        lastFrameTime = now;
+
+        // Smooth audio energy with organic attack & decay
+        let targetAudio = state.audioLevel;
+        if (state.orbMode === 3 && !globalAudio.paused) {
+          targetAudio = 0.35 + Math.sin(now * 0.008) * 0.2;
+        } else if (state.orbMode === 2) {
+          targetAudio = 0.22;
+        }
+
+        // Asymmetric attack/decay filter: fast to react to speech, smooth release
+        const attackDecay = targetAudio > smoothedAudio ? 12.0 : 5.0;
+        smoothedAudio += (targetAudio - smoothedAudio) * Math.min(1.0, dt * attackDecay);
+
+        // Smooth continuous angular velocity (zero phase jumps when speaking)
+        let speed = 0.85;
+        if (state.orbMode === 1) { // Recording/Speaking
+          speed = 1.05 + smoothedAudio * 1.35;
+        } else if (state.orbMode === 2) { // Processing
+          speed = 2.2;
+        } else if (state.orbMode === 3) { // Speaking TTS
+          speed = 1.15 + smoothedAudio * 1.1;
+        }
+        currentPhase += dt * speed;
+
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.uniform1f(uTime, currentPhase);
+        gl.uniform1f(uAudio, smoothedAudio);
+        gl.uniform1f(uMode, state.orbMode);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        // Update sound wave bars smoothly
+        updateSoundwaveDisplay(smoothedAudio, currentPhase);
+
+        requestAnimationFrame(renderFrame);
+      }
+      requestAnimationFrame(renderFrame);
+    }
+
+    // 2D Canvas Fallback (Frosted Milky Glass Orb with 3 Dancing Internal Spheres)
+    function setupCanvas2DFallback() {
+      const ctx = canvas.getContext('2d');
+      let angle = 0;
+      let smoothedAudio2D = 0;
+      let lastTime2D = performance.now();
+
+      function render2D(now) {
+        const dt = Math.min(0.04, (now - lastTime2D) * 0.001);
+        lastTime2D = now;
+
+        let targetAudio = state.audioLevel;
+        if (state.orbMode === 3 && !globalAudio.paused) targetAudio = 0.35;
+        smoothedAudio2D += (targetAudio - smoothedAudio2D) * Math.min(1.0, dt * 8.0);
+
+        let speed = 0.85;
+        if (state.orbMode === 1) speed = 1.05 + smoothedAudio2D * 1.35;
+        else if (state.orbMode === 2) speed = 2.2;
+        angle += dt * speed;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const r = canvas.width * (0.38 + smoothedAudio2D * 0.012);
+
+        // Base milky frosted sphere
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = '#f6f8fb';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+        ctx.shadowBlur = 25;
+        ctx.shadowOffsetY = 10;
+        ctx.fill();
+        ctx.clip();
+
+        // 1. Green internal ball (top)
+        const gx = cx + Math.sin(angle * 0.75) * (r * (0.2 + smoothedAudio2D * 0.08));
+        const gy = cy - r * 0.3 + Math.cos(angle * 0.85) * (r * (0.16 + smoothedAudio2D * 0.08));
+        const gradG = ctx.createRadialGradient(gx, gy, 0, gx, gy, r * 0.55);
+        gradG.addColorStop(0, 'rgba(120, 218, 16, 0.85)');
+        gradG.addColorStop(0.5, 'rgba(120, 218, 16, 0.4)');
+        gradG.addColorStop(1, 'rgba(120, 218, 16, 0)');
+        ctx.beginPath();
+        ctx.arc(gx, gy, r * 0.55, 0, Math.PI * 2);
+        ctx.fillStyle = gradG;
+        ctx.fill();
+
+        // 2. Blue internal ball (right)
+        const bx = cx + r * 0.35 + Math.cos(angle * 0.8 + 2.09) * (r * (0.18 + smoothedAudio2D * 0.08));
+        const by = cy + Math.sin(angle * 0.75 + 1.2) * (r * (0.18 + smoothedAudio2D * 0.08));
+        const gradB = ctx.createRadialGradient(bx, by, 0, bx, by, r * 0.52);
+        gradB.addColorStop(0, 'rgba(20, 120, 245, 0.85)');
+        gradB.addColorStop(0.5, 'rgba(20, 120, 245, 0.4)');
+        gradB.addColorStop(1, 'rgba(20, 120, 245, 0)');
+        ctx.beginPath();
+        ctx.arc(bx, by, r * 0.52, 0, Math.PI * 2);
+        ctx.fillStyle = gradB;
+        ctx.fill();
+
+        // 3. Orange internal ball (bottom-left)
+        const ox = cx - r * 0.3 + Math.cos(angle * 0.7 + 4.19) * (r * (0.18 + smoothedAudio2D * 0.08));
+        const oy = cy + r * 0.3 + Math.sin(angle * 0.8 + 3.4) * (r * (0.16 + smoothedAudio2D * 0.08));
+        const gradO = ctx.createRadialGradient(ox, oy, 0, ox, oy, r * 0.58);
+        gradO.addColorStop(0, 'rgba(245, 105, 10, 0.88)');
+        gradO.addColorStop(0.5, 'rgba(245, 105, 10, 0.45)');
+        gradO.addColorStop(1, 'rgba(245, 105, 10, 0)');
+        ctx.beginPath();
+        ctx.arc(ox, oy, r * 0.58, 0, Math.PI * 2);
+        ctx.fillStyle = gradO;
+        ctx.fill();
+
+        // Top-left specular sheen on glass
+        const gradSpec = ctx.createRadialGradient(cx - r * 0.4, cy - r * 0.4, 2, cx - r * 0.4, cy - r * 0.4, r * 0.4);
+        gradSpec.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+        gradSpec.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.beginPath();
+        ctx.arc(cx - r * 0.4, cy - r * 0.4, r * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = gradSpec;
+        ctx.fill();
+
+        ctx.restore();
+
+        requestAnimationFrame(render2D);
+      }
+      requestAnimationFrame(render2D);
+    }
+
+    // Update Soundwave Bars
+    function updateSoundwaveDisplay(audioEnergy, time) {
+      soundBars.forEach((bar, idx) => {
+        let h = 4;
+        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
+          const wave = Math.sin(time * 12.0 + idx * 0.4) * 0.5 + 0.5;
+          h = 4 + (audioEnergy * 20.0 + wave * 8.0);
+        } else if (state.orbMode === 2) {
+          // Processing wave
+          const wave = Math.sin(time * 8.0 + idx * 0.3) * 0.5 + 0.5;
+          h = 4 + wave * 10;
+        }
+        bar.style.height = `${Math.min(22, Math.max(4, h))}px`;
+      });
+    }
+
+    // Initialize UI
     updateLanguageUI();
 
   </script>
