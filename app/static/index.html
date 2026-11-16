@@ -156,7 +156,7 @@
       width: 55%;
       height: 26px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.10) 0%, rgba(234, 88, 12, 0.07) 35%, rgba(0, 0, 0, 0) 70%);
+      background: radial-gradient(ellipse at center, rgba(60, 70, 170, 0.12) 0%, rgba(99, 102, 241, 0.06) 40%, rgba(0, 0, 0, 0) 70%);
       filter: blur(14px);
       pointer-events: none;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -168,13 +168,9 @@
       filter: blur(18px);
     }
 
-    /* Apple Siri Soundwave Bars */
-    .soundbar {
-      width: 3.5px;
-      border-radius: 9999px;
-      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
-      transition: height 0.08s ease;
-      min-height: 4px;
+    /* Living Orb Canvas */
+    #orbCanvas {
+      will-change: transform;
     }
 
     /* Apple Spring Blur Reveal */
@@ -356,7 +352,7 @@
         <div class="orb-stage-wrapper" id="orbClickTarget" title="Gapirish uchun bosing yoki Space tugmasini bosing">
           
           <!-- WebGL Living Orb Canvas -->
-          <canvas id="orbCanvas" width="560" height="560" class="w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] rounded-full drop-shadow-xl transition-transform duration-300"></canvas>
+          <canvas id="orbCanvas" width="560" height="560" class="w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] rounded-full drop-shadow-xl"></canvas>
           
           <!-- Soft Colored Floor Shadow -->
           <div class="orb-surface-shadow" id="orbShadow"></div>
@@ -367,11 +363,6 @@
           <div id="orbStateBadge" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-black/[0.06] text-xs font-medium text-[#424245] shadow-sm">
             <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" id="badgeDot"></span>
             <span id="orbStateText">Gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing</span>
-          </div>
-
-          <!-- Realtime Soundwave Spectrum (Visualizer) -->
-          <div id="soundwaveContainer" class="flex items-center gap-[3px] h-6 mt-3 px-3 py-1 rounded-full bg-white/50 border border-black/[0.04]">
-            <!-- 20 Sound wave bars generated via JS -->
           </div>
         </div>
 
@@ -782,7 +773,6 @@
     const orbStateText = document.getElementById('orbStateText');
     const orbStateBadge = document.getElementById('orbStateBadge');
     const badgeDot = document.getElementById('badgeDot');
-    const soundwaveContainer = document.getElementById('soundwaveContainer');
 
     const idleSuggestions = document.getElementById('idleSuggestions');
     const activeTranslationView = document.getElementById('activeTranslationView');
@@ -835,14 +825,7 @@
 
     const globalAudio = document.getElementById('globalAudio');
 
-    // Build 20 Soundwave Bars
-    for (let i = 0; i < 20; i++) {
-      const bar = document.createElement('div');
-      bar.className = 'soundbar';
-      bar.style.height = '4px';
-      soundwaveContainer.appendChild(bar);
-    }
-    const soundBars = soundwaveContainer.querySelectorAll('.soundbar');
+
 
     // Dynamic App Status Badge
     function setAppStatus(mode, customText) {
@@ -1543,7 +1526,7 @@
         }
       `;
 
-      // Fragment Shader: Frosted Milky Glass Orb with 3 Dancing Internal Spheres (Green, Blue, Orange)
+      // Fragment Shader: 3D Crystal Orb with Swirling Lavender, Azure Blue & Radiant Cyan Silk Ribbon
       const fsSource = `
         precision highp float;
         varying vec2 v_uv;
@@ -1604,18 +1587,17 @@
         void main() {
           vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution) / min(u_resolution.x, u_resolution.y);
           float dist = length(p);
-          // Subtle organic breathing expansion when speaking
           float radius = 0.38 + u_audio * 0.012;
 
-          // Continuous smooth time phase integrated in JS (zero angular velocity jumps)
+          // Continuous smooth time phase directly from JS integrator
           float t = u_time;
 
-          // Soft frosted outer aura around glass sphere
-          float outerGlow = exp(-max(0.0, dist - radius) * 20.0) * (0.28 + u_audio * 0.25);
-          vec3 auraColor = vec3(0.93, 0.95, 0.98);
+          // Soft ethereal outer aura with periwinkle/lavender bloom
+          float outerGlow = exp(-max(0.0, dist - radius) * 22.0) * (0.30 + u_audio * 0.28);
+          vec3 auraColor = mix(vec3(0.88, 0.89, 0.98), vec3(0.82, 0.80, 0.96), sin(t * 0.4) * 0.5 + 0.5);
 
           if (dist > radius) {
-            float edgeFade = smoothstep(radius + 0.10, radius, dist);
+            float edgeFade = smoothstep(radius + 0.12, radius, dist);
             gl_FragColor = vec4(auraColor, outerGlow * edgeFade);
             return;
           }
@@ -1624,94 +1606,102 @@
           float z = sqrt(max(0.0, radius * radius - dist * dist));
           vec3 normal = normalize(vec3(p.x, p.y, z));
 
-          // 3 Internal Dancing Spheres: Green (top), Blue (right), Orange (bottom-left)
-          // Smooth harmonic Lissajous orbits that expand organically with speech volume
+          // Glass shell thickness: inner refraction boundary ring (visible crystal wall)
+          float innerRadius = radius * 0.86;
+          float glassThicknessRing = smoothstep(innerRadius - 0.018, innerRadius, dist) * smoothstep(radius, innerRadius + 0.015, dist);
 
-          // 1. Fresh Lime Green Sphere (upper region)
-          vec3 posGreen = vec3(
-            sin(t * 0.75) * (0.08 + u_audio * 0.04) - 0.02,
-            0.12 + cos(t * 0.85) * (0.07 + u_audio * 0.04),
-            sin(t * 0.55) * 0.12
-          );
-          float radGreen = 0.16 + u_audio * 0.035;
-          vec3 colGreen = vec3(0.48, 0.86, 0.06);
+          // Refracted internal ray coordinates based on surface curvature
+          vec2 refP = p - normal.xy * (0.048 * (1.0 - normal.z));
 
-          // 2. Pure Azure / Royal Blue Sphere (right side)
-          vec3 posBlue = vec3(
-            0.15 + cos(t * 0.8 + 2.09) * (0.08 + u_audio * 0.04),
-            -0.02 + sin(t * 0.75 + 1.2) * (0.07 + u_audio * 0.04),
-            cos(t * 0.6 + 1.5) * 0.12
-          );
-          float radBlue = 0.15 + u_audio * 0.035;
-          vec3 colBlue = vec3(0.09, 0.48, 0.96);
+          // Multi-layer domain warped 3D fluid noise for silk ribbon motion
+          vec3 noiseCoord = vec3(refP * 3.0, t * 0.28);
+          float n1 = snoise(noiseCoord);
+          float n2 = snoise(noiseCoord * 1.8 + vec3(n1 * 0.9, -n1 * 0.6, t * 0.2));
+          float n3 = snoise(vec3(refP * 5.2 + vec2(n2 * 0.4), t * 0.35));
 
-          // 3. Radiant Tangerine Orange Sphere (bottom-left)
-          vec3 posOrange = vec3(
-            -0.12 + cos(t * 0.7 + 4.19) * (0.08 + u_audio * 0.04),
-            -0.12 + sin(t * 0.8 + 3.4) * (0.07 + u_audio * 0.04),
-            sin(t * 0.75 + 2.8) * 0.12
-          );
-          float radOrange = 0.165 + u_audio * 0.035;
-          vec3 colOrange = vec3(0.96, 0.42, 0.04);
+          // Fluid S-curve fold: sweeps from top-center down towards bottom
+          // fold matches the beautiful curved wave crest in the reference image
+          float foldCurve = sin(refP.y * 3.4 - 0.2 + sin(t * 0.4) * 0.12) * 0.14
+                          + cos(refP.y * 1.8 + t * 0.3) * 0.04
+                          + (n1 * 0.10 + n2 * 0.05);
 
-          // Organic 3D Simplex noise drift for fluid dispersion
-          vec3 noiseCoord = vec3(p * 2.6, t * 0.2);
-          float fluidNoise = snoise(noiseCoord) * (0.025 + u_audio * 0.015);
+          float ribbonCoord = (refP.x - foldCurve);
 
-          // 2D distance to each dancing sphere center (with fluid perturbation)
-          float dGreen  = length(p - posGreen.xy) + fluidNoise;
-          float dBlue   = length(p - posBlue.xy) + fluidNoise;
-          float dOrange = length(p - posOrange.xy) + fluidNoise;
+          // Left vs Right hemisphere gradient split:
+          // Left: Dreamy Lavender / Lilac mist
+          // Right: Deep Luminous Sapphire / Royal Blue
+          float sideBlend = smoothstep(-0.16, 0.14, ribbonCoord);
 
-          // Frosted glass subsurface diffusion: exponential gaussian falloff
-          // 3D z-depth makes forward spheres punchier, deeper ones more blurred
-          float zGreen  = 1.0 + posGreen.z * 1.2;
-          float zBlue   = 1.0 + posBlue.z * 1.2;
-          float zOrange = 1.0 + posOrange.z * 1.2;
+          // 1. Ethereal Lavender / Periwinkle Palette (Left hemisphere)
+          vec3 colLavenderLight = vec3(0.82, 0.80, 0.97); // #d1ccf7
+          vec3 colLavenderMid   = vec3(0.68, 0.63, 0.94); // #ada1f0
+          vec3 colLavenderDeep  = vec3(0.55, 0.48, 0.86); // #8c7adb
+          vec3 leftColor = mix(colLavenderMid, colLavenderLight, smoothstep(-0.25, 0.1, -refP.x + n1 * 0.15));
+          leftColor = mix(leftColor, colLavenderDeep, smoothstep(0.05, -0.35, refP.y + n2 * 0.12) * 0.4);
 
-          float intGreen  = exp(-pow(max(0.0, dGreen) / radGreen, 2.0) * 2.0) * zGreen;
-          float intBlue   = exp(-pow(max(0.0, dBlue) / radBlue, 2.0) * 2.2) * zBlue;
-          float intOrange = exp(-pow(max(0.0, dOrange) / radOrange, 2.0) * 1.9) * zOrange;
+          // 2. Luminous Sapphire / Royal Blue Palette (Right hemisphere)
+          vec3 colBlueDeep   = vec3(0.24, 0.46, 0.95); // #3d75f2
+          vec3 colBlueMid    = vec3(0.36, 0.62, 0.98); // #5c9efa
+          vec3 colBlueLight  = vec3(0.52, 0.77, 1.0);  // #85c4ff
+          vec3 rightColor = mix(colBlueDeep, colBlueMid, smoothstep(-0.06, 0.28, refP.x + n2 * 0.15));
+          rightColor = mix(rightColor, colBlueLight, smoothstep(0.32, -0.18, refP.y) * 0.32);
 
-          // Weighted chromatic blending:
-          // Green + Orange overlap yields warm yellow transition
-          // Green + Blue overlap yields vibrant cyan transition
-          float wG = pow(intGreen, 1.35);
-          float wB = pow(intBlue, 1.35);
-          float wO = pow(intOrange, 1.35);
-          float totalW = wG + wB + wO + 0.0001;
+          // Base fluid blend between lavender and azure
+          vec3 baseFluid = mix(leftColor, rightColor, sideBlend);
 
-          vec3 blendedColor = (colGreen * wG + colBlue * wB + colOrange * wO) / totalW;
+          // 3. Radiant Glowing Cyan / Ice-Blue Wave Crest (Silk Ribbon)
+          // Smooth gaussian core along the fold
+          float ribbonDist = abs(ribbonCoord);
+          float ribbonGlow = exp(-ribbonDist * ribbonDist * 70.0);
 
-          // Milky frosted glass background
-          vec3 frostedGlass = vec3(0.965, 0.975, 0.985);
+          // Soft 3D silk ridge specular fold (seen clearly in reference image)
+          float ridgeOffset = ribbonCoord - 0.03;
+          float ridgeSpecular = pow(max(0.0, 1.0 - abs(ridgeOffset) * 8.0), 3.0);
+          float verticalWeight = smoothstep(-0.25, 0.20, refP.y + 0.10 + n3 * 0.06);
+          ridgeSpecular *= verticalWeight;
 
-          // Subsurface scattering density
-          float maxInt = max(intGreen, max(intBlue, intOrange));
-          float density = clamp(pow(maxInt * 1.22, 1.1), 0.0, 0.96);
+          // Glowing electric cyan palette
+          vec3 colCyanCore  = vec3(0.72, 0.96, 1.0);  // Radiant white-cyan
+          vec3 colCyanGlow  = vec3(0.35, 0.86, 0.99); // Electric cyan
+          vec3 colCyanEdge  = vec3(0.26, 0.65, 0.96); // Cyan-azure edge
 
-          // Mix inner color with frosted milky glass medium
-          vec3 sphereColor = mix(frostedGlass, blendedColor, density);
+          vec3 ribbonColor = mix(colCyanEdge, colCyanGlow, ribbonGlow);
+          ribbonColor = mix(ribbonColor, colCyanCore, ridgeSpecular * 0.90);
 
-          // Soft internal ambient glow
-          float innerAmbient = (intGreen + intBlue + intOrange) * 0.15;
-          sphereColor += blendedColor * innerAmbient;
+          // Combine ribbon over fluid base with voice audio boost
+          float audioIntensity = 1.0 + u_audio * 0.75;
+          float ribbonFactor = (ribbonGlow * 0.82 + ridgeSpecular * 1.05) * audioIntensity;
+          vec3 internalColor = mix(baseFluid, ribbonColor, clamp(ribbonFactor, 0.0, 1.0));
 
-          // Subsurface Fresnel Rim Light (Translucent glass edge)
+          // Soft caustics / secondary internal ambient light
+          float caustic = pow(max(0.0, n2 * 0.5 + n3 * 0.5), 2.5) * (0.28 + u_audio * 0.3);
+          internalColor += vec3(0.42, 0.80, 1.0) * caustic * smoothstep(-0.1, 0.30, refP.x);
+
+          // Translucent milky/crystal glass base
+          vec3 glassBase = vec3(0.92, 0.93, 0.98);
+          float fluidOpacity = smoothstep(radius * 0.96, radius * 0.35, dist);
+          vec3 sphereColor = mix(glassBase, internalColor, 0.82 + fluidOpacity * 0.16);
+
+          // Refractive glass shell ring (concentric crystal wall)
+          vec3 rimGlowColor = mix(vec3(0.82, 0.85, 1.0), vec3(0.86, 0.80, 0.98), normal.y * 0.5 + 0.5);
+          sphereColor = mix(sphereColor, rimGlowColor * 0.95, glassThicknessRing * 0.38);
+
+          // Glass Fresnel Rim Reflection (smooth pearlescent sheen)
           float fresnel = pow(1.0 - normal.z, 2.6);
-          sphereColor = mix(sphereColor, vec3(0.99, 0.995, 1.0), fresnel * 0.48);
+          sphereColor = mix(sphereColor, vec3(0.94, 0.95, 0.99), fresnel * 0.55);
+          sphereColor += rimGlowColor * (fresnel * 0.28);
 
-          // Top-Left Soft Specular Sheen (Milky glass studio reflection)
-          vec3 lightDir = normalize(vec3(-0.42, 0.58, 0.7));
+          // Diffused soft studio specular sheen (no blown-out white circles)
+          vec3 lightDir = normalize(vec3(-0.35, 0.52, 0.78));
           vec3 viewDir = vec3(0.0, 0.0, 1.0);
           vec3 halfDir = normalize(lightDir + viewDir);
-          float spec = pow(max(0.0, dot(normal, halfDir)), 32.0);
-          sphereColor += vec3(1.0, 1.0, 1.0) * spec * 0.42;
+          float spec = pow(max(0.0, dot(normal, halfDir)), 22.0);
+          sphereColor += vec3(0.92, 0.95, 1.0) * spec * 0.18;
 
           // Secondary subtle soft fill highlight
-          vec3 spec2Dir = normalize(vec3(0.4, -0.35, 0.8));
-          float spec2 = pow(max(0.0, dot(normal, normalize(spec2Dir + viewDir))), 18.0);
-          sphereColor += vec3(0.95, 0.97, 1.0) * spec2 * 0.18;
+          vec3 spec2Dir = normalize(vec3(0.36, -0.34, 0.85));
+          float spec2 = pow(max(0.0, dot(normal, normalize(spec2Dir + viewDir))), 14.0);
+          sphereColor += vec3(0.72, 0.85, 1.0) * spec2 * 0.14;
 
           // Antialiased glass sphere boundary
           float edgeAlpha = smoothstep(radius, radius - 0.005, dist);
@@ -1808,15 +1798,48 @@
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-        // Update sound wave bars smoothly
-        updateSoundwaveDisplay(smoothedAudio, currentPhase);
+        // Living dynamic movement of the Orb (especially active when speaking)
+        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
+          // Dynamic voice-reactive float & breathing
+          const floatY = Math.sin(currentPhase * 3.6) * (6.0 + smoothedAudio * 12.0);
+          const floatX = Math.cos(currentPhase * 2.4) * (3.5 + smoothedAudio * 7.0);
+          const voiceScale = 1.0 + smoothedAudio * 0.10 + Math.sin(currentPhase * 4.4) * 0.025;
+          const tiltDeg = Math.sin(currentPhase * 2.8) * (1.8 + smoothedAudio * 3.5);
+
+          canvas.style.transform = `translate3d(${floatX.toFixed(2)}px, ${floatY.toFixed(2)}px, 0) scale(${voiceScale.toFixed(3)}) rotate(${tiltDeg.toFixed(2)}deg)`;
+
+          if (orbShadow) {
+            const shadowScaleX = 1.0 + smoothedAudio * 0.22 - floatY * 0.015;
+            const shadowScaleY = 1.0 + smoothedAudio * 0.16;
+            const shadowOpacity = 0.85 + smoothedAudio * 0.35;
+            orbShadow.style.transform = `translate3d(${(floatX * 0.35).toFixed(2)}px, 0, 0) scale(${shadowScaleX.toFixed(3)}, ${shadowScaleY.toFixed(3)})`;
+            orbShadow.style.opacity = shadowOpacity.toFixed(2);
+          }
+        } else if (state.orbMode === 2) {
+          // Translating/processing hover pulse
+          const floatY = Math.sin(currentPhase * 8.0) * 3.5;
+          const pulseScale = 1.02 + Math.sin(currentPhase * 6.0) * 0.02;
+          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(${pulseScale.toFixed(3)})`;
+          if (orbShadow) {
+            orbShadow.style.transform = 'scale(1.02, 1.02)';
+            orbShadow.style.opacity = '0.9';
+          }
+        } else {
+          // Idle gentle ambient floating
+          const floatY = Math.sin(currentPhase * 1.4) * 3.0;
+          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(1.0)`;
+          if (orbShadow) {
+            orbShadow.style.transform = 'scale(1.0, 1.0)';
+            orbShadow.style.opacity = '1.0';
+          }
+        }
 
         requestAnimationFrame(renderFrame);
       }
       requestAnimationFrame(renderFrame);
     }
 
-    // 2D Canvas Fallback (Frosted Milky Glass Orb with 3 Dancing Internal Spheres)
+    // 2D Canvas Fallback
     function setupCanvas2DFallback() {
       const ctx = canvas.getContext('2d');
       let angle = 0;
@@ -1836,64 +1859,95 @@
         else if (state.orbMode === 2) speed = 2.2;
         angle += dt * speed;
 
+        // Living dynamic movement in 2D fallback
+        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
+          const floatY = Math.sin(angle * 3.6) * (6.0 + smoothedAudio2D * 12.0);
+          const floatX = Math.cos(angle * 2.4) * (3.5 + smoothedAudio2D * 7.0);
+          const voiceScale = 1.0 + smoothedAudio2D * 0.10 + Math.sin(angle * 4.4) * 0.025;
+          const tiltDeg = Math.sin(angle * 2.8) * (1.8 + smoothedAudio2D * 3.5);
+          canvas.style.transform = `translate3d(${floatX.toFixed(2)}px, ${floatY.toFixed(2)}px, 0) scale(${voiceScale.toFixed(3)}) rotate(${tiltDeg.toFixed(2)}deg)`;
+          if (orbShadow) {
+            const shadowScaleX = 1.0 + smoothedAudio2D * 0.22 - floatY * 0.015;
+            const shadowScaleY = 1.0 + smoothedAudio2D * 0.16;
+            const shadowOpacity = 0.85 + smoothedAudio2D * 0.35;
+            orbShadow.style.transform = `translate3d(${(floatX * 0.35).toFixed(2)}px, 0, 0) scale(${shadowScaleX.toFixed(3)}, ${shadowScaleY.toFixed(3)})`;
+            orbShadow.style.opacity = shadowOpacity.toFixed(2);
+          }
+        } else {
+          const floatY = Math.sin(angle * 1.4) * 3.0;
+          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(1.0)`;
+          if (orbShadow) {
+            orbShadow.style.transform = 'scale(1.0, 1.0)';
+            orbShadow.style.opacity = '1.0';
+          }
+        }
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
         const r = canvas.width * (0.38 + smoothedAudio2D * 0.012);
 
-        // Base milky frosted sphere
+        // Base crystal glass sphere with refractive rim
         ctx.save();
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.fillStyle = '#f6f8fb';
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillStyle = '#f0f3fa';
+        ctx.shadowColor = 'rgba(70, 80, 180, 0.12)';
         ctx.shadowBlur = 25;
         ctx.shadowOffsetY = 10;
         ctx.fill();
         ctx.clip();
 
-        // 1. Green internal ball (top)
-        const gx = cx + Math.sin(angle * 0.75) * (r * (0.2 + smoothedAudio2D * 0.08));
-        const gy = cy - r * 0.3 + Math.cos(angle * 0.85) * (r * (0.16 + smoothedAudio2D * 0.08));
-        const gradG = ctx.createRadialGradient(gx, gy, 0, gx, gy, r * 0.55);
-        gradG.addColorStop(0, 'rgba(120, 218, 16, 0.85)');
-        gradG.addColorStop(0.5, 'rgba(120, 218, 16, 0.4)');
-        gradG.addColorStop(1, 'rgba(120, 218, 16, 0)');
+        // Left side: Soft Lavender/Lilac fluid
+        const lx = cx - r * 0.35 + Math.sin(angle * 0.7) * (r * 0.08);
+        const ly = cy + Math.cos(angle * 0.6) * (r * 0.1);
+        const gradL = ctx.createRadialGradient(lx, ly, 0, lx, ly, r * 0.85);
+        gradL.addColorStop(0, 'rgba(196, 185, 248, 0.95)');
+        gradL.addColorStop(0.55, 'rgba(165, 150, 240, 0.75)');
+        gradL.addColorStop(1, 'rgba(165, 150, 240, 0)');
         ctx.beginPath();
-        ctx.arc(gx, gy, r * 0.55, 0, Math.PI * 2);
-        ctx.fillStyle = gradG;
+        ctx.arc(lx, ly, r * 0.85, 0, Math.PI * 2);
+        ctx.fillStyle = gradL;
         ctx.fill();
 
-        // 2. Blue internal ball (right)
-        const bx = cx + r * 0.35 + Math.cos(angle * 0.8 + 2.09) * (r * (0.18 + smoothedAudio2D * 0.08));
-        const by = cy + Math.sin(angle * 0.75 + 1.2) * (r * (0.18 + smoothedAudio2D * 0.08));
-        const gradB = ctx.createRadialGradient(bx, by, 0, bx, by, r * 0.52);
-        gradB.addColorStop(0, 'rgba(20, 120, 245, 0.85)');
-        gradB.addColorStop(0.5, 'rgba(20, 120, 245, 0.4)');
-        gradB.addColorStop(1, 'rgba(20, 120, 245, 0)');
+        // Right side: Deep Sapphire / Azure Blue fluid
+        const rx = cx + r * 0.38 + Math.cos(angle * 0.8) * (r * 0.08);
+        const ry = cy + Math.sin(angle * 0.7) * (r * 0.1);
+        const gradR = ctx.createRadialGradient(rx, ry, 0, rx, ry, r * 0.82);
+        gradR.addColorStop(0, 'rgba(56, 112, 245, 0.95)');
+        gradR.addColorStop(0.6, 'rgba(75, 140, 250, 0.75)');
+        gradR.addColorStop(1, 'rgba(75, 140, 250, 0)');
         ctx.beginPath();
-        ctx.arc(bx, by, r * 0.52, 0, Math.PI * 2);
-        ctx.fillStyle = gradB;
+        ctx.arc(rx, ry, r * 0.82, 0, Math.PI * 2);
+        ctx.fillStyle = gradR;
         ctx.fill();
 
-        // 3. Orange internal ball (bottom-left)
-        const ox = cx - r * 0.3 + Math.cos(angle * 0.7 + 4.19) * (r * (0.18 + smoothedAudio2D * 0.08));
-        const oy = cy + r * 0.3 + Math.sin(angle * 0.8 + 3.4) * (r * (0.16 + smoothedAudio2D * 0.08));
-        const gradO = ctx.createRadialGradient(ox, oy, 0, ox, oy, r * 0.58);
-        gradO.addColorStop(0, 'rgba(245, 105, 10, 0.88)');
-        gradO.addColorStop(0.5, 'rgba(245, 105, 10, 0.45)');
-        gradO.addColorStop(1, 'rgba(245, 105, 10, 0)');
+        // Center Wave Crest: Radiant Cyan / Ice-Blue Luminous Ribbon
+        const cxWave = cx + Math.sin(angle * 0.9) * (r * 0.12);
+        const cyWave = cy - r * 0.1 + Math.cos(angle * 0.75) * (r * 0.14);
+        const gradC = ctx.createRadialGradient(cxWave, cyWave, 0, cxWave, cyWave, r * 0.48);
+        gradC.addColorStop(0, 'rgba(215, 248, 255, 0.95)');
+        gradC.addColorStop(0.35, 'rgba(85, 210, 255, 0.85)');
+        gradC.addColorStop(0.7, 'rgba(45, 160, 250, 0.4)');
+        gradC.addColorStop(1, 'rgba(45, 160, 250, 0)');
         ctx.beginPath();
-        ctx.arc(ox, oy, r * 0.58, 0, Math.PI * 2);
-        ctx.fillStyle = gradO;
+        ctx.arc(cxWave, cyWave, r * 0.48, 0, Math.PI * 2);
+        ctx.fillStyle = gradC;
         ctx.fill();
+
+        // Glass thickness inner rim ring
+        ctx.beginPath();
+        ctx.arc(cx, cy, r * 0.86, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(220, 230, 255, 0.45)';
+        ctx.lineWidth = r * 0.04;
+        ctx.stroke();
 
         // Top-left specular sheen on glass
-        const gradSpec = ctx.createRadialGradient(cx - r * 0.4, cy - r * 0.4, 2, cx - r * 0.4, cy - r * 0.4, r * 0.4);
-        gradSpec.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+        const gradSpec = ctx.createRadialGradient(cx - r * 0.38, cy - r * 0.38, 2, cx - r * 0.38, cy - r * 0.38, r * 0.42);
+        gradSpec.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
         gradSpec.addColorStop(1, 'rgba(255, 255, 255, 0)');
         ctx.beginPath();
-        ctx.arc(cx - r * 0.4, cy - r * 0.4, r * 0.4, 0, Math.PI * 2);
+        ctx.arc(cx - r * 0.38, cy - r * 0.38, r * 0.42, 0, Math.PI * 2);
         ctx.fillStyle = gradSpec;
         ctx.fill();
 
@@ -1902,22 +1956,6 @@
         requestAnimationFrame(render2D);
       }
       requestAnimationFrame(render2D);
-    }
-
-    // Update Soundwave Bars
-    function updateSoundwaveDisplay(audioEnergy, time) {
-      soundBars.forEach((bar, idx) => {
-        let h = 4;
-        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
-          const wave = Math.sin(time * 12.0 + idx * 0.4) * 0.5 + 0.5;
-          h = 4 + (audioEnergy * 20.0 + wave * 8.0);
-        } else if (state.orbMode === 2) {
-          // Processing wave
-          const wave = Math.sin(time * 8.0 + idx * 0.3) * 0.5 + 0.5;
-          h = 4 + wave * 10;
-        }
-        bar.style.height = `${Math.min(22, Math.max(4, h))}px`;
-      });
     }
 
     // Initialize UI
