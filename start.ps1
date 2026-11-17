@@ -36,10 +36,20 @@ if (-not (Test-Path $EnvPath)) {
     }
 }
 
+# Mahalliy Wi-Fi / Tarmoq IP manzilini topish
+$LanIP = "127.0.0.1"
+try {
+    $foundIp = (Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue | Where-Object { 
+        $_.InterfaceAlias -notmatch "Loopback" -and $_.IPAddress -notmatch "^169\.254\." 
+    } | Select-Object -ExpandProperty IPAddress -First 1)
+    if ($foundIp) { $LanIP = $foundIp }
+} catch {}
+
 Write-Host "`n[+] Server ishga tushirilmoqda..." -ForegroundColor Cyan
-Write-Host "    - Web interfeys: http://127.0.0.1:8000" -ForegroundColor White
-Write-Host "    - API Docs:     http://127.0.0.1:8000/docs" -ForegroundColor White
-Write-Host "    - Health check: http://127.0.0.1:8000/health`n" -ForegroundColor White
+Write-Host "    - Web interfeys (Lokal): http://127.0.0.1:8000" -ForegroundColor White
+Write-Host "    - Android / Wi-Fi IP:    http://${LanIP}:8000" -ForegroundColor Yellow
+Write-Host "    - API Docs:              http://127.0.0.1:8000/docs" -ForegroundColor White
+Write-Host "    - Health check:          http://127.0.0.1:8000/health`n" -ForegroundColor White
 
 Set-Location $PSScriptRoot
-& $PythonExe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+& $PythonExe -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload

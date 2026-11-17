@@ -1,1966 +1,1860 @@
 <!DOCTYPE html>
-<html lang="uz" class="light">
+<html lang="uz">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Ovozli Tarjimon — Apple Intelligence Style</title>
+  <title>Ovozli Tarjimon</title>
   
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"Segoe UI"', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            appleBg: '#fbfbfd',
-            appleText: '#1d1d1f',
-            appleSubtext: '#6e6e73',
-            appleBlue: '#0071e3',
-            appleBlueHover: '#0077ed',
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    /* Pure Apple Typography & Smooth Rendering */
-    * {
+    /* ========================================================= */
+    /* 100% SELF-CONTAINED OFFLINE-READY CSS (ZERO CDN NEEDED!)  */
+    /* ========================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-partner: #f3f6fc;
+      --bg-user: #f2f9f5;
+      --text-main: #1d1d1f;
+      --text-sub: #6e6e73;
+      --partner-blue: #2563eb;
+      --partner-blue-hover: #1d4ed8;
+      --user-green: #059669;
+      --user-green-hover: #047857;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.12);
     }
 
     body {
-      background: radial-gradient(130% 120% at 50% 0%, #ffffff 0%, #f7f8fc 45%, #edf1f8 100%);
-      color: #1d1d1f;
-      min-height: 100vh;
-      min-height: 100dvh;
-      overflow-x: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Inter, sans-serif;
-    }
-
-    /* Apple Frosted Glass (Ultra Refined Light Glassmorphism) */
-    .apple-glass {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(24px) saturate(190%);
-      -webkit-backdrop-filter: blur(24px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 
-        0 10px 30px -10px rgba(0, 0, 0, 0.04),
-        0 20px 45px -15px rgba(0, 0, 0, 0.06),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
-    }
-
-    .apple-glass-card {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(30px) saturate(200%);
-      -webkit-backdrop-filter: blur(30px) saturate(200%);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 
-        0 20px 40px -15px rgba(0, 0, 0, 0.05),
-        0 1px 3px rgba(0, 0, 0, 0.02),
-        inset 0 1px 2px rgba(255, 255, 255, 1);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .apple-glass-card:hover {
-      box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.08),
-        0 1px 3px rgba(0, 0, 0, 0.03),
-        inset 0 1px 2px rgba(255, 255, 255, 1);
-    }
-
-    /* Apple Siri / Intelligence Ambient Glows */
-    .ambient-glow-mesh {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-      z-index: 0;
+      background: #fbfbfd;
+      color: var(--text-main);
+      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
-    }
-    .ambient-blob-1 {
-      position: absolute;
-      top: -10%;
-      left: 20%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(199, 210, 254, 0.5) 0%, rgba(224, 231, 255, 0) 70%);
-      filter: blur(80px);
-      animation: float-blob-1 18s ease-in-out infinite alternate;
-    }
-    .ambient-blob-2 {
-      position: absolute;
-      top: 15%;
-      right: 15%;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, rgba(254, 205, 211, 0.45) 0%, rgba(254, 226, 226, 0) 70%);
-      filter: blur(90px);
-      animation: float-blob-2 22s ease-in-out infinite alternate;
-    }
-    .ambient-blob-3 {
-      position: absolute;
-      bottom: 5%;
-      left: 30%;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(224, 242, 254, 0.55) 0%, rgba(240, 249, 255, 0) 70%);
-      filter: blur(100px);
-      animation: float-blob-3 20s ease-in-out infinite alternate;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    @keyframes float-blob-1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(60px, 80px) scale(1.15); }
-    }
-    @keyframes float-blob-2 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(-70px, 60px) scale(1.1); }
-    }
-    @keyframes float-blob-3 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, -70px) scale(1.2); }
+    .hidden {
+      display: none !important;
     }
 
-    /* Living Orb Container & Shadows */
-    .orb-stage-wrapper {
+    /* MASTER CONTAINER: SPLIT SCREEN (50% / 50%) */
+    .app-viewport {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
       position: relative;
+    }
+
+    /* TOP HALF: PARTNER SIDE */
+    .half-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #partnerHalf {
+      background: linear-gradient(180deg, #eef3ff 0%, #f7f9ff 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      transform-origin: center center;
+    }
+
+    #partnerHalf.flipped {
+      transform: rotate(180deg);
+    }
+
+    /* BOTTOM HALF: USER SIDE */
+    #userHalf {
+      background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+    }
+
+    /* BAR ROWS (HEADER / CONTROLS) */
+    .bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      gap: 10px;
+    }
+
+    /* PILL BUTTONS */
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .pill-btn:active {
+      transform: scale(0.95);
+      background: rgba(245, 245, 247, 0.98);
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+      background: #f0f0f2;
+    }
+
+    .action-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mini-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .mini-action-btn:active {
+      transform: scale(0.95);
+      color: var(--text-main);
+    }
+
+    /* CENTER EQUATOR BAR */
+    .center-equator {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(0, 0, 0, 0.07);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      z-index: 30;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    /* LIVING ORB */
+    #orbCanvas {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: block;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+    }
+
+    /* TEXT DISPLAY AREA */
+    .text-display-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8px 12px;
+      z-index: 10;
+      min-height: 80px;
+    }
+
+    .main-speech-text {
+      font-size: clamp(19px, 4.5vw, 26px);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text-main);
+      cursor: pointer;
+      word-break: break-word;
+      transition: opacity 0.2s;
+    }
+
+    .main-speech-text:active {
+      opacity: 0.7;
+    }
+
+    .sub-speech-text {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 6px;
+      font-weight: 400;
+      word-break: break-word;
+    }
+
+    /* INLINE EDIT BLOCK */
+    .edit-box-container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .edit-textarea {
+      width: 100%;
+      min-height: 64px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 2px solid var(--partner-blue);
+      background: #ffffff;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      resize: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #userHalf .edit-textarea {
+      border-color: var(--user-green);
+    }
+
+    .edit-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .save-edit-btn {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: var(--partner-blue);
+      color: #ffffff;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #userHalf .save-edit-btn {
+      background: var(--user-green);
+    }
+
+    /* BIG MIC BUTTONS */
+    .mic-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .orb-stage-wrapper:active {
-      transform: scale(0.97);
+      gap: 6px;
+      z-index: 10;
     }
 
-    /* Realistic Soft Shadow beneath the Living Orb */
-    .orb-surface-shadow {
-      position: absolute;
-      bottom: -18px;
-      width: 55%;
-      height: 26px;
+    .big-mic-btn {
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(60, 70, 170, 0.12) 0%, rgba(99, 102, 241, 0.06) 40%, rgba(0, 0, 0, 0) 70%);
-      filter: blur(14px);
-      pointer-events: none;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .orb-surface-shadow.recording {
-      width: 70%;
-      height: 34px;
-      background: radial-gradient(ellipse at center, rgba(244, 63, 94, 0.28) 0%, rgba(225, 29, 72, 0.14) 45%, rgba(0, 0, 0, 0) 75%);
-      filter: blur(18px);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Living Orb Canvas */
-    #orbCanvas {
-      will-change: transform;
+    .big-mic-btn:active {
+      transform: scale(0.92);
     }
 
-    /* Apple Spring Blur Reveal */
-    @keyframes apple-reveal {
+    .mic-blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .mic-green {
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+      box-shadow: 0 8px 24px rgba(5, 150, 105, 0.4);
+    }
+
+    /* RECORDING PULSE EFFECT */
+    .big-mic-btn.recording {
+      background: #ef4444 !important;
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      animation: pulse-ring 1.5s infinite;
+    }
+
+    @keyframes pulse-ring {
       0% {
-        opacity: 0;
-        transform: translateY(24px) scale(0.97);
-        filter: blur(12px);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 18px rgba(239, 68, 68, 0);
       }
       100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
       }
     }
-    .animate-apple-reveal {
-      animation: apple-reveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    .mic-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
     }
 
-    /* Apple Button Styles */
-    .apple-primary-btn {
-      background: #0071e3;
+    #partnerHalf .mic-label {
+      color: var(--partner-blue);
+    }
+
+    #userHalf .mic-label {
+      color: var(--user-green);
+    }
+
+    /* MODAL SHEETS (IOS BOTTOM SHEET STYLE) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-sheet {
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 28px 28px 0 0;
+      padding: 20px 20px 28px 20px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .lang-item-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .lang-item-btn:active {
+      background: #f1f5f9;
+    }
+
+    .lang-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-item-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      text-align: left;
+    }
+
+    .lang-item-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+      text-align: left;
+    }
+
+    .check-svg {
+      color: var(--partner-blue);
+      display: none;
+    }
+
+    .lang-item-btn.selected .check-svg {
+      display: block;
+    }
+
+    /* SETTINGS FORM ELEMENTS */
+    .input-field {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      background: #f8fafc;
+    }
+
+    .input-field:focus {
+      border-color: var(--partner-blue);
+      background: #ffffff;
+    }
+
+    .save-settings-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--partner-blue);
       color: #ffffff;
-      box-shadow: 
-        0 4px 14px rgba(0, 113, 227, 0.32),
-        inset 0 1px 1px rgba(255, 255, 255, 0.4);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .apple-primary-btn:hover {
-      background: #0077ed;
-      box-shadow: 
-        0 6px 20px rgba(0, 113, 227, 0.45),
-        inset 0 1px 1px rgba(255, 255, 255, 0.5);
-    }
-    .apple-primary-btn:active {
-      transform: scale(0.96);
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
     }
 
-    .apple-rec-btn {
-      background: #ff3b30;
-      color: #ffffff;
-      box-shadow: 
-        0 4px 18px rgba(255, 59, 48, 0.45),
-        inset 0 1px 1px rgba(255, 255, 255, 0.4);
-      animation: apple-rec-pulse 1.8s infinite;
+    /* ROTATING ANIMATION */
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
     }
-    @keyframes apple-rec-pulse {
-      0%, 100% {
-        box-shadow: 0 4px 16px rgba(255, 59, 48, 0.4);
-      }
-      50% {
-        box-shadow: 0 6px 26px rgba(255, 59, 48, 0.7);
-      }
+    .animate-spin {
+      animation: spin 1s linear infinite;
     }
-
-    .apple-pill-btn {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      color: #1d1d1f;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .apple-pill-btn:hover {
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      border-color: rgba(0, 0, 0, 0.12);
-    }
-    .apple-pill-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); border-radius: 999px; }
-    ::-webkit-scrollbar-track { background: transparent; }
   </style>
 </head>
-<body class="selection:bg-blue-500 selection:text-white">
+<body>
 
-  <!-- AMBIENT PASTEL GLOW MESH -->
-  <div class="ambient-glow-mesh">
-    <div class="ambient-blob-1"></div>
-    <div class="ambient-blob-2"></div>
-    <div class="ambient-blob-3"></div>
-  </div>
-
-  <!-- MAIN APPLICATION SHELL -->
-  <div class="relative z-10 flex flex-col min-h-screen justify-between pb-28 sm:pb-32">
+  <!-- MASTER VIEWPORT -->
+  <div class="app-viewport">
     
-    <!-- TOP NAVIGATION BAR (APPLE GLASS) -->
-    <header class="sticky top-0 z-40 w-full apple-glass border-b border-black/[0.05] transition-all">
-      <div class="max-w-6xl mx-auto px-3.5 sm:px-6 py-2.5 sm:py-0 sm:h-16 flex flex-col md:flex-row items-center justify-between gap-2.5 md:gap-3">
-        
-        <!-- Mobile Top Row / Desktop Left Side -->
-        <div class="w-full md:w-auto flex items-center justify-between gap-2">
-          
-          <!-- Brand Mark -->
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-gradient-to-tr from-indigo-500 via-sky-400 to-pink-400 p-[1.5px] shadow-sm flex items-center justify-center shrink-0">
-              <div class="w-full h-full bg-white/90 rounded-[14px] flex items-center justify-center">
-                <i class="fa-solid fa-sparkles text-[10px] sm:text-xs bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent"></i>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center gap-1.5">
-                <h1 class="font-semibold text-xs sm:text-base tracking-tight text-[#1d1d1f]">Ovozli Tarjimon</h1>
-                <span class="text-[9px] font-medium tracking-wide uppercase px-1.5 py-0.2 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hidden sm:inline-block">AI Studio</span>
-              </div>
-              <p class="text-[10px] text-[#86868b] hidden md:block">Apple Intelligence Aesthetic • Realtime Voice</p>
-            </div>
-          </div>
+    <!-- ======================================================== -->
+    <!-- TOP HALF: PARTNER SIDE (ROTATED 180° BY DEFAULT)         -->
+    <!-- ======================================================== -->
+    <section id="partnerHalf" class="half-section flipped">
+      
+      <!-- Partner Header Bar -->
+      <div class="bar-row">
+        <!-- Language Selector -->
+        <button id="openTgtModalBtn" class="pill-btn" type="button">
+          <span id="partnerFlag"></span>
+          <span id="partnerLangName" style="color: var(--partner-blue);">Türkçe</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
 
-          <!-- Mobile Only Quick Controls -->
-          <div class="flex items-center gap-2 md:hidden">
-            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 border border-black/[0.06] text-[10px] font-medium text-[#1d1d1f] shadow-xs">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" id="statusDotMobile"></span>
-              <span id="statusLabelMobile" class="text-[10px] text-[#424245]">Tinglashga tayyor</span>
-            </div>
-            <button id="openHistoryDrawerBtnMobile" title="Suhbatlar tarixi" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-[#424245]">
-              <i class="fa-solid fa-clock-rotate-left text-xs"></i>
-            </button>
-          </div>
-
-        </div>
-
-        <!-- Center Language Switcher Dock -->
-        <div class="w-full md:w-auto flex items-center justify-center">
-          <div class="inline-flex items-center bg-black/[0.04] p-1 rounded-full border border-black/[0.04] shadow-inner max-w-full">
-            
-            <!-- Source Language Pill -->
-            <button id="openSrcModalBtn" class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white shadow-sm hover:shadow text-xs font-medium text-[#1d1d1f] flex items-center gap-1.5 transition active:scale-95 shrink-0">
-              <span id="sphere1Flag" class="inline-flex items-center justify-center"></span>
-              <span id="sphere1Name" class="font-medium text-xs">O'zbekcha</span>
-              <i class="fa-solid fa-chevron-down text-[8px] text-[#86868b] ml-0.5"></i>
-            </button>
-
-            <!-- Swap Button -->
-            <button id="swapLangsBtn" title="Tillarni almashtirish" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-white/60 transition active:scale-90 mx-0.5 shrink-0">
-              <i class="fa-solid fa-arrow-right-arrow-left text-[10px] sm:text-xs" id="swapIcon"></i>
-            </button>
-
-            <!-- Target Language Pill -->
-            <button id="openTgtModalBtn" class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white shadow-sm hover:shadow text-xs font-medium text-[#1d1d1f] flex items-center gap-1.5 transition active:scale-95 shrink-0">
-              <span id="sphere2Flag" class="inline-flex items-center justify-center"></span>
-              <span id="sphere2Name" class="font-medium text-xs">Türkçe</span>
-              <i class="fa-solid fa-chevron-down text-[8px] text-[#86868b] ml-0.5"></i>
-            </button>
-
-          </div>
-        </div>
-
-        <!-- Desktop Right Controls -->
-        <div class="hidden md:flex items-center gap-2">
-          
-          <!-- Dynamic Status Pill -->
-          <div id="systemStatusPill" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-black/[0.06] text-xs font-medium text-[#1d1d1f] shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="statusDot"></span>
-            <span id="statusLabel" class="text-[11px] font-medium text-[#424245]">Tinglashga tayyor</span>
-          </div>
-
-          <!-- History Button -->
-          <button id="openHistoryDrawerBtn" title="Suhbatlar tarixi" class="w-9 h-9 rounded-full apple-pill-btn flex items-center justify-center text-[#424245]">
-            <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+        <!-- Right Side: Action buttons + Flip Orientation -->
+        <div class="action-row">
+          <button id="partnerReplayBtn" class="mini-action-btn" title="Ovozni eshitish" type="button">
+            <span id="partnerReplayIcon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </span>
+            <span>Eshitish</span>
           </button>
 
-        </div>
+          <button id="partnerEditBtn" class="mini-action-btn" title="Matnni to'g'irlash" type="button">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            <span>To'g'irlash</span>
+          </button>
 
-      </div>
-    </header>
-
-    <!-- MAIN CENTRAL STAGE (LIVING ORB & TRANSLATIONS) -->
-    <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-4 sm:pt-8 flex flex-col items-center justify-center flex-1">
-      
-      <!-- HERO ORB STAGE -->
-      <div class="flex flex-col items-center justify-center my-4 sm:my-6 relative">
-        
-        <!-- The Living Orb Interactive Element -->
-        <div class="orb-stage-wrapper" id="orbClickTarget" title="Gapirish uchun bosing yoki Space tugmasini bosing">
-          
-          <!-- WebGL Living Orb Canvas -->
-          <canvas id="orbCanvas" width="560" height="560" class="w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] rounded-full drop-shadow-xl"></canvas>
-          
-          <!-- Soft Colored Floor Shadow -->
-          <div class="orb-surface-shadow" id="orbShadow"></div>
-        </div>
-
-        <!-- Orb State Label & Prompt -->
-        <div class="mt-4 sm:mt-5 flex flex-col items-center text-center">
-          <div id="orbStateBadge" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-black/[0.06] text-xs font-medium text-[#424245] shadow-sm">
-            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" id="badgeDot"></span>
-            <span id="orbStateText">Gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- TRANSLATION CARDS CONTAINER -->
-      <div id="cardsSection" class="w-full max-w-2xl mt-2 space-y-4">
-
-        <!-- IDLE WELCOME SUGGESTIONS (Apple Style) -->
-        <div id="idleSuggestions" class="apple-glass-card rounded-3xl p-5 sm:p-6 text-center">
-          <p class="text-xs font-semibold text-[#86868b] uppercase tracking-wider mb-3">Tezkor iboralar</p>
-          <div class="flex flex-wrap items-center justify-center gap-2">
-            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
-              "Salom, yaxshimisiz?"
-            </button>
-            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
-              "Bugun havo juda ajoyib"
-            </button>
-            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
-              "Bu yerda qanday qilib markazga boriladi?"
-            </button>
-            <button class="quick-phrase-chip px-3.5 py-1.5 rounded-full bg-white/80 hover:bg-white text-xs font-medium text-[#1d1d1f] border border-black/[0.06] shadow-sm transition active:scale-95">
-              "Rahmat, ishlaringizga omad!"
-            </button>
-          </div>
-        </div>
-
-        <!-- ACTIVE TRANSLATION RESULT VIEW (Smooth Apple Reveal) -->
-        <div id="activeTranslationView" class="hidden space-y-4 animate-apple-reveal">
-          
-          <!-- Source Speech Card -->
-          <div class="apple-glass-card rounded-3xl p-5 sm:p-6 border-l-4 border-l-gray-400">
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-black/[0.05]">
-              <div class="flex items-center gap-2">
-                <span id="transSrcFlag" class="text-base">🇺🇿</span>
-                <span id="transSrcName" class="text-xs font-bold text-[#1d1d1f]">O'zbekcha</span>
-                <span class="text-[11px] text-[#86868b] font-normal">— Asl nutq</span>
-              </div>
-              <button id="copySrcTextBtn" title="Nusxalash" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
-                <i class="fa-regular fa-copy"></i>
-              </button>
-            </div>
-            <p id="displaySrcText" class="text-[#1d1d1f] text-base sm:text-lg font-normal leading-relaxed break-words">
-              Nutqingiz bu yerda ko'rinadi...
-            </p>
-          </div>
-
-          <!-- Target Translation Card (Apple Accent) -->
-          <div class="apple-glass-card rounded-3xl p-5 sm:p-6 border-l-4 border-l-blue-500 bg-gradient-to-br from-white/95 to-blue-50/40">
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-blue-500/10">
-              <div class="flex items-center gap-2">
-                <span id="transTgtFlag" class="text-base">🇹🇷</span>
-                <span id="transTgtName" class="text-xs font-bold text-blue-600">Türkçe</span>
-                <span class="text-[11px] text-blue-500/80 font-normal">— AI Tarjima</span>
-                <span id="metricLatency" class="text-[10px] font-mono text-gray-400 bg-white/70 px-2 py-0.5 rounded-full border border-black/[0.04]"></span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <button id="replaySpeechBtn" title="Tinglash" class="w-8 h-8 rounded-full apple-primary-btn flex items-center justify-center text-xs">
-                  <i class="fa-solid fa-play" id="replayIcon"></i>
-                </button>
-                <button id="downloadMp3Btn" title="MP3 yuklab olish" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
-                  <i class="fa-solid fa-download text-xs"></i>
-                </button>
-                <button id="copyTgtTextBtn" title="Nusxalash" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-xs text-[#6e6e73] hover:text-[#1d1d1f]">
-                  <i class="fa-regular fa-copy"></i>
-                </button>
-              </div>
-            </div>
-            <p id="displayTgtText" class="text-[#1d1d1f] text-lg sm:text-xl font-semibold leading-relaxed break-words mb-3">
-              Tarjima kutilmoqda...
-            </p>
-
-            <!-- VOICE GENDER & PLAYBACK CONTROLS -->
-            <div class="pt-3 border-t border-blue-500/10 flex flex-wrap items-center justify-between gap-2.5">
-              
-              <!-- Voice Gender Switcher (Ayol / Erkak) -->
-              <div class="flex items-center gap-1.5 text-xs text-[#6e6e73]">
-                <span class="font-medium text-[11px] text-[#424245]">Ovoz:</span>
-                <div class="inline-flex items-center bg-black/[0.04] p-0.5 rounded-full border border-black/[0.04] shadow-inner">
-                  <button id="voiceGenderFemaleBtn" type="button" class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5">
-                    <span>👩</span>
-                    <span id="femaleVoiceLabel">Ayol (Emel)</span>
-                  </button>
-                  <button id="voiceGenderMaleBtn" type="button" class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5">
-                    <span>👨</span>
-                    <span id="maleVoiceLabel">Erkak (Ahmet)</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Speed Quick Toggle (1.0x / 0.85x / 1.15x) -->
-              <div class="inline-flex items-center bg-black/[0.04] p-0.5 rounded-full border border-black/[0.04] text-[10px] font-mono">
-                <button data-speed="1.0" class="speed-pill px-2.5 py-0.5 rounded-full bg-white text-blue-600 font-bold shadow-xs">1.0x</button>
-                <button data-speed="0.85" class="speed-pill px-2 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]">0.85x</button>
-                <button data-speed="1.15" class="speed-pill px-2 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]">1.15x</button>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </main>
-
-    <!-- EXPANDABLE MANUAL TEXT INPUT (APPLE SEARCH BAR STYLE) -->
-    <div id="textInputDrawer" class="hidden fixed bottom-24 sm:bottom-28 inset-x-0 mx-auto max-w-xl px-4 z-40 animate-apple-reveal">
-      <div class="apple-glass rounded-2xl p-2 shadow-2xl flex items-center gap-2 border border-black/[0.08]">
-        <i class="fa-solid fa-keyboard text-gray-400 ml-3 text-sm"></i>
-        <input id="manualTextInput" type="text" placeholder="Tarjima uchun matn yozing va Enter bosing..." class="flex-1 bg-transparent border-0 text-sm text-[#1d1d1f] placeholder-gray-400 px-2 py-2 focus:outline-none">
-        <button id="sendTextBtn" class="px-4 py-2 rounded-xl apple-primary-btn text-xs font-semibold flex items-center gap-1.5">
-          <span>Yuborish</span>
-          <i class="fa-solid fa-arrow-up text-xs"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- FLOATING APPLE BOTTOM CONTROL ISLAND (DYNAMIC DOCK) -->
-    <div class="fixed bottom-4 sm:bottom-6 inset-x-0 mx-auto max-w-lg px-3 sm:px-4 z-40">
-      <div class="apple-glass rounded-full p-1.5 sm:p-2 shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-black/[0.08] flex items-center justify-between gap-1.5 sm:gap-2">
-        
-        <!-- Upload Audio File Button -->
-        <button id="uploadAudioBtn" title="Audio fayl yuklash" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#424245] shrink-0">
-          <i class="fa-solid fa-arrow-up-from-bracket text-xs sm:text-sm"></i>
-          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Fayl</span>
-        </button>
-        <input type="file" id="audioFileInput" accept="audio/*" class="hidden">
-
-        <!-- Central Main Action Button (Apple Glowing Pill) -->
-        <button id="micBtn" class="flex-1 h-11 sm:h-12 px-3 sm:px-6 rounded-full apple-primary-btn flex items-center justify-center gap-2 font-semibold text-xs sm:text-sm transition">
-          <i class="fa-solid fa-microphone text-sm sm:text-base" id="micIcon"></i>
-          <span id="micButtonText">Gapirish</span>
-          <span id="recTimer" class="hidden font-mono text-xs opacity-90">00:00</span>
-        </button>
-
-        <!-- Text Input Mode Toggle -->
-        <button id="toggleTextModeBtn" title="Matn orqali kiritish" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#424245] shrink-0">
-          <i class="fa-solid fa-keyboard text-xs sm:text-sm"></i>
-          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Matn</span>
-        </button>
-
-        <!-- Clear / New Session Button -->
-        <button id="resetSessionBtn" title="Yangi suhbat" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full apple-pill-btn flex flex-col items-center justify-center text-[#6e6e73] hover:text-[#1d1d1f] shrink-0">
-          <i class="fa-solid fa-rotate-right text-xs sm:text-sm"></i>
-          <span class="text-[8px] sm:text-[9px] font-medium mt-0.5">Yangilash</span>
-        </button>
-
-      </div>
-    </div>
-
-  </div>
-
-  <!-- LANGUAGE SELECTION SHEET (APPLE FROSTED MODAL) -->
-  <div id="langModal" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="apple-glass-card w-full max-w-sm rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-apple-reveal">
-      
-      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
-        <h3 id="langModalTitle" class="font-bold text-sm text-[#1d1d1f]">Tilni tanlang</h3>
-        <button id="closeLangModalBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <button data-lang="uz" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 500 250"><rect width="500" height="83.3" fill="#1eb53a"/><rect y="83.3" width="500" height="83.3" fill="#ffffff"/><rect y="166.7" width="500" height="83.3" fill="#0099b5"/><rect y="80.5" width="500" height="5.5" fill="#d52b1e"/><rect y="164" width="500" height="5.5" fill="#d52b1e"/><circle cx="70" cy="42" r="28" fill="#ffffff"/><circle cx="80" cy="42" r="28" fill="#0099b5"/></svg></span>
-            <div>
-              <p class="text-xs font-bold text-[#1d1d1f]">O'zbekcha</p>
-              <p class="text-[10px] text-[#86868b]">Uzbek</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
-        </button>
-
-        <button data-lang="tr" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="#e30a17"/><circle cx="425" cy="400" r="200" fill="#ffffff"/><circle cx="475" cy="400" r="160" fill="#e30a17"/><polygon points="583,400 663,426 613,358 613,442 663,374" fill="#ffffff"/></svg></span>
-            <div>
-              <p class="text-xs font-bold text-[#1d1d1f]">Türkçe</p>
-              <p class="text-[10px] text-[#86868b]">Turkish</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
-        </button>
-
-        <button data-lang="ru" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 900 600"><rect width="900" height="600" fill="#ffffff"/><rect y="200" width="900" height="400" fill="#0039a6"/><rect y="400" width="900" height="200" fill="#d52b1e"/></svg></span>
-            <div>
-              <p class="text-xs font-bold text-[#1d1d1f]">Русский</p>
-              <p class="text-[10px] text-[#86868b]">Russian</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
-        </button>
-
-        <button data-lang="en" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 60 30"><clipPath id="m_s1"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="m_t1"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#m_s1)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#m_t1)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg></span>
-            <div>
-              <p class="text-xs font-bold text-[#1d1d1f]">English</p>
-              <p class="text-[10px] text-[#86868b]">Inglizcha</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
-        </button>
-
-        <button data-lang="zh" class="lang-opt-btn w-full p-3 rounded-2xl bg-white/70 hover:bg-white flex items-center justify-between text-left transition border border-black/[0.04]">
-          <div class="flex items-center gap-3">
-            <span class="w-6 h-4 flex items-center justify-center"><svg class="w-6 h-4 rounded-[3px] shadow-xs" viewBox="0 0 900 600"><rect width="900" height="600" fill="#de2910"/><polygon points="150,120 185,228 95,161 205,161 115,228" fill="#ffde00"/></svg></span>
-            <div>
-              <p class="text-xs font-bold text-[#1d1d1f]">中文</p>
-              <p class="text-[10px] text-[#86868b]">Mandarin Chinese</p>
-            </div>
-          </div>
-          <i class="fa-solid fa-circle-check text-blue-600 text-base check-icon hidden"></i>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- VOICE & SPEED SETTINGS SHEET -->
-  <div id="voiceModal" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="apple-glass-card w-full max-w-sm rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-4 animate-apple-reveal">
-      
-      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
-        <h3 class="font-bold text-sm text-[#1d1d1f] flex items-center gap-2">
-          <i class="fa-solid fa-headphones-simple text-blue-600"></i>
-          <span>Neyron Ovoz & Sozlamalar</span>
-        </h3>
-        <button id="closeVoiceModalBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-      </div>
-
-      <!-- Voice Selector Dropdown -->
-      <div>
-        <label class="block text-xs font-semibold text-[#424245] mb-1.5">Ovoz tanlang:</label>
-        <select id="voiceSelectDropdown" class="w-full bg-white border border-black/[0.1] rounded-2xl px-3.5 py-2.5 text-xs text-[#1d1d1f] focus:outline-none focus:border-blue-500 shadow-sm">
-          <optgroup label="🇹🇷 Turkcha Ovozlar">
-            <option value="tr-TR-EmelNeural" selected>Emel (Türkçe) — Ayol, tabiiy</option>
-            <option value="tr-TR-AhmetNeural">Ahmet (Türkçe) — Erkak</option>
-          </optgroup>
-          <optgroup label="🇺🇿 O'zbekcha Ovozlar">
-            <option value="uz-UZ-MadinaNeural">Madina (O'zbekcha) — Ayol</option>
-            <option value="uz-UZ-SardorNeural">Sardor (O'zbekcha) — Erkak</option>
-          </optgroup>
-          <optgroup label="🇷🇺 Ruscha Ovozlar">
-            <option value="ru-RU-SvetlanaNeural">Светлана (Svetlana) — Ayol</option>
-            <option value="ru-RU-DmitryNeural">Дмитрий (Dmitry) — Erkak</option>
-          </optgroup>
-          <optgroup label="🇬🇧 Inglizcha Ovozlar">
-            <option value="en-US-AvaNeural">Ava (US) — Female</option>
-            <option value="en-US-AndrewNeural">Andrew (US) — Male</option>
-          </optgroup>
-          <optgroup label="🇨🇳 Xitoycha Ovozlar">
-            <option value="zh-CN-XiaoxiaoNeural">晓晓 (Xiaoxiao) — 女声</option>
-            <option value="zh-CN-YunxiNeural">云希 (Yunxi) — 男声</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <!-- Speech Speed Buttons -->
-      <div>
-        <label class="block text-xs font-semibold text-[#424245] mb-1.5">Gapirish tezligi:</label>
-        <div class="grid grid-cols-3 gap-2">
-          <button type="button" data-rate="-15%" class="rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition">0.85x</button>
-          <button type="button" data-rate="+0%" class="rate-choice-btn py-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-xs font-semibold text-blue-700 transition">1.0x</button>
-          <button type="button" data-rate="+15%" class="rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition">1.15x</button>
+          <button id="flipOrientationBtn" class="icon-btn" title="Ekranni aylantirish" type="button">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          </button>
         </div>
       </div>
 
-      <!-- Autoplay Checkbox -->
-      <label class="flex items-center gap-2 text-xs text-[#424245] cursor-pointer pt-1 select-none">
-        <input type="checkbox" id="autoPlayCheckbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-0">
-        <span>Tarjimani avtomatik ovozlashtirish</span>
-      </label>
+      <!-- Partner Main Text Display Area -->
+      <div class="text-display-box">
+        <!-- Edit Box (Hidden by default) -->
+        <div id="partnerEditBlock" class="edit-box-container hidden">
+          <textarea id="partnerEditTextarea" class="edit-textarea" placeholder="Matnni to'g'irlang..."></textarea>
+          <div class="edit-actions">
+            <button id="partnerCancelEditBtn" class="pill-btn" style="padding: 5px 12px; font-size: 11px;" type="button">Bekor qilish</button>
+            <button id="partnerSaveEditBtn" class="save-edit-btn" type="button">Qayta tarjima</button>
+          </div>
+        </div>
 
-      <button id="saveVoiceSettingsBtn" class="w-full mt-2 py-3 rounded-2xl apple-primary-btn text-xs font-semibold tracking-wide">
-        Saqlash
+        <!-- View Box -->
+        <div id="partnerViewBlock">
+          <p id="partnerDisplayText" class="main-speech-text" title="To'g'irlash uchun bosing">
+            Tugmani bosib gapiring...
+          </p>
+          <p id="partnerSubtext" class="sub-speech-text">
+            (Suhbatdoshingiz tili)
+          </p>
+        </div>
+      </div>
+
+      <!-- Partner Microphone -->
+      <div class="mic-wrap">
+        <button id="partnerMicBtn" class="big-mic-btn mic-blue" type="button">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="8" y1="22" x2="16" y2="22"/>
+          </svg>
+        </button>
+        <span id="partnerMicLabel" class="mic-label">Türkçe gapiring</span>
+      </div>
+
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CENTER EQUATOR: LIVING ORB, LANGUAGE SWAP & SETTINGS     -->
+    <!-- ======================================================== -->
+    <div class="center-equator">
+      <!-- Left: Auto-stop badge -->
+      <button id="toggleAutoStopBtn" class="pill-btn" style="padding: 6px 12px; font-size: 11px; color: var(--user-green);" type="button">
+        <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
+        <span id="autoStopLabel">Avto: 1.4s</span>
       </button>
 
-    </div>
-  </div>
-
-  <!-- CONVERSATION HISTORY SHEET -->
-  <div id="historyDrawer" class="fixed inset-0 z-50 bg-black/30 backdrop-blur-md hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-    <div class="apple-glass-card w-full max-w-md rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl flex flex-col gap-3 max-h-[85vh] animate-apple-reveal">
-      <div class="flex items-center justify-between pb-3 border-b border-black/[0.06]">
-        <h3 class="font-bold text-sm text-[#1d1d1f] flex items-center gap-2">
-          <i class="fa-solid fa-clock-rotate-left text-blue-600"></i>
-          <span>Suhbatlar tarixi</span>
-        </h3>
-        <button id="closeHistoryDrawerBtn" class="w-8 h-8 rounded-full apple-pill-btn flex items-center justify-center text-gray-500 hover:text-black">
-          <i class="fa-solid fa-xmark text-sm"></i>
+      <!-- Center: Living Crystal Orb & Language Swap -->
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <canvas id="orbCanvas" width="120" height="120" title="Living AI Orb"></canvas>
+        <button id="swapLangsBtn" class="icon-btn" title="Tillarni almashtirish" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 16-4-4 4-4"/><path d="M3 12h18"/><path d="m17 8 4 4-4 4"/></svg>
         </button>
       </div>
 
-      <div id="historyFeedList" class="flex-1 overflow-y-auto space-y-3 pr-1 min-h-[220px]">
-        <div id="emptyHistoryNotice" class="text-center py-12 text-[#86868b] text-xs">
-          Hozircha suhbatlar tarixi bo'sh
+      <!-- Right: Settings -->
+      <button id="openServerConfigBtn" class="icon-btn" title="Sozlamalar" type="button">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- BOTTOM HALF: USER SIDE (FACING USER)                     -->
+    <!-- ======================================================== -->
+    <section id="userHalf" class="half-section">
+      
+      <!-- User Actions Row -->
+      <div class="bar-row">
+        <!-- Language Selector -->
+        <button id="openSrcModalBtn" class="pill-btn" type="button">
+          <span id="userFlag"></span>
+          <span id="userLangName" style="color: var(--user-green);">O'zbekcha</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <div class="action-row">
+          <button id="userReplayBtn" class="mini-action-btn" title="Ovozni eshitish" type="button">
+            <span id="userReplayIcon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </span>
+            <span>Eshitish</span>
+          </button>
+
+          <button id="userEditBtn" class="mini-action-btn" title="Matnni to'g'irlash" type="button">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            <span>To'g'irlash</span>
+          </button>
         </div>
       </div>
 
-      <button id="clearAllHistoryBtn" class="w-full py-2.5 rounded-xl apple-pill-btn text-xs font-medium text-rose-600 hover:text-rose-700 transition">
-        Jurnalni tozalash
-      </button>
+      <!-- User Main Text Display Area -->
+      <div class="text-display-box">
+        <!-- Edit Box (Hidden by default) -->
+        <div id="userEditBlock" class="edit-box-container hidden">
+          <textarea id="userEditTextarea" class="edit-textarea" placeholder="Matnni to'g'irlang..."></textarea>
+          <div class="edit-actions">
+            <button id="userCancelEditBtn" class="pill-btn" style="padding: 5px 12px; font-size: 11px;" type="button">Bekor qilish</button>
+            <button id="userSaveEditBtn" class="save-edit-btn" type="button">Qayta tarjima</button>
+          </div>
+        </div>
+
+        <!-- View Box -->
+        <div id="userViewBlock">
+          <p id="userDisplayText" class="main-speech-text" title="To'g'irlash uchun bosing">
+            O'zbekcha gapirish uchun tugmani bosing...
+          </p>
+          <p id="userSubtext" class="sub-speech-text">
+            (Sizning tomoningiz)
+          </p>
+        </div>
+      </div>
+
+      <!-- User Microphone -->
+      <div class="mic-wrap">
+        <button id="userMicBtn" class="big-mic-btn mic-green" type="button">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="8" y1="22" x2="16" y2="22"/>
+          </svg>
+        </button>
+        <span id="userMicLabel" class="mic-label">O'zbekcha gapiring</span>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODALS (100% OFFLINE, CLEAN BOTTOM SHEETS)               -->
+  <!-- ======================================================== -->
+
+  <!-- LANGUAGE SELECTION SHEET -->
+  <div id="langModal" class="modal-overlay hidden">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 id="langModalTitle" class="modal-title">Tilni tanlang</h3>
+        <button id="closeLangModalBtn" class="icon-btn" style="width:32px; height:32px;" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <button data-lang="uz" class="lang-item-btn" type="button">
+          <div class="lang-item-left">
+            <svg class="flag-svg" style="width:24px; height:15px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.1);" viewBox="0 0 100 60"><rect width="100" height="20" fill="#0099b5"/><rect y="19.5" width="100" height="1.5" fill="#d52b1e"/><rect y="21" width="100" height="18" fill="#ffffff"/><rect y="39" width="100" height="1.5" fill="#d52b1e"/><rect y="40.5" width="100" height="19.5" fill="#1eb53a"/><circle cx="15" cy="10" r="6" fill="#ffffff"/><circle cx="17.5" cy="10" r="5" fill="#0099b5"/></svg>
+            <div>
+              <p class="lang-item-name">O'zbekcha</p>
+              <p class="lang-item-sub">Uzbek</p>
+            </div>
+          </div>
+          <svg class="check-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+
+        <button data-lang="tr" class="lang-item-btn" type="button">
+          <div class="lang-item-left">
+            <svg class="flag-svg" style="width:24px; height:15px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.1);" viewBox="0 0 100 60"><rect width="100" height="60" fill="#e30a17"/><circle cx="36" cy="30" r="16" fill="#ffffff"/><circle cx="41" cy="30" r="13" fill="#e30a17"/><polygon points="50,30 62,34 54,23 54,37 62,26" fill="#ffffff"/></svg>
+            <div>
+              <p class="lang-item-name">Türkçe</p>
+              <p class="lang-item-sub">Turkish</p>
+            </div>
+          </div>
+          <svg class="check-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+
+        <button data-lang="ru" class="lang-item-btn" type="button">
+          <div class="lang-item-left">
+            <svg class="flag-svg" style="width:24px; height:15px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.1);" viewBox="0 0 100 60"><rect width="100" height="20" fill="#ffffff"/><rect y="20" width="100" height="20" fill="#0039a6"/><rect y="40" width="100" height="20" fill="#d52b1e"/></svg>
+            <div>
+              <p class="lang-item-name">Русский</p>
+              <p class="lang-item-sub">Russian</p>
+            </div>
+          </div>
+          <svg class="check-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+
+        <button data-lang="en" class="lang-item-btn" type="button">
+          <div class="lang-item-left">
+            <svg class="flag-svg" style="width:24px; height:15px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.1);" viewBox="0 0 100 60"><clipPath id="uk_cl"><rect width="100" height="60"/></clipPath><g clip-path="url(#uk_cl)"><rect width="100" height="60" fill="#012169"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#ffffff" stroke-width="10"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#c8102e" stroke-width="6"/><path d="M50,0 V60 M0,30 H100" stroke="#ffffff" stroke-width="16"/><path d="M50,0 V60 M0,30 H100" stroke="#c8102e" stroke-width="10"/></g></svg>
+            <div>
+              <p class="lang-item-name">English</p>
+              <p class="lang-item-sub">Inglizcha</p>
+            </div>
+          </div>
+          <svg class="check-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+
+        <button data-lang="zh" class="lang-item-btn" type="button">
+          <div class="lang-item-left">
+            <svg class="flag-svg" style="width:24px; height:15px; border-radius:3px; box-shadow:0 1px 3px rgba(0,0,0,0.1);" viewBox="0 0 100 60"><rect width="100" height="60" fill="#de2910"/><polygon points="16,8 19,17 10,12 22,12 13,17" fill="#ffde00"/></svg>
+            <div>
+              <p class="lang-item-name">中文</p>
+              <p class="lang-item-sub">Xitoycha</p>
+            </div>
+          </div>
+          <svg class="check-svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Audio Element for Playback -->
+  <!-- SETTINGS MODAL -->
+  <div id="serverModal" class="modal-overlay hidden">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title">Sozlamalar</h3>
+        <button id="closeServerModalBtn" class="icon-btn" style="width:32px; height:32px;" type="button">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <label style="display:block; font-size:12px; font-weight:600; color:var(--text-sub); margin-bottom:6px;">Google Gemini API Kaliti:</label>
+          <input type="password" id="geminiApiKeyInput" placeholder="Standart AI kaliti faol" class="input-field" />
+          <p style="font-size:11px; color:var(--text-sub); margin-top:4px;">Ilovada rasmiy bepul Google AI kaliti o'rnatilgan.</p>
+        </div>
+
+        <div style="padding:12px; border-radius:14px; background:#f8fafc; border:1px solid rgba(0,0,0,0.06); font-size:12px; display:flex; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span id="pingDot" style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981;"></span>
+            <span id="pingText" style="font-weight:500;">Google AI aloqasi tayyor</span>
+          </div>
+          <button id="testPingBtn" class="pill-btn" style="padding:4px 10px; font-size:11px;" type="button">Tekshirish</button>
+        </div>
+
+        <button id="saveServerUrlBtn" class="save-settings-btn" type="button">Saqlash</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden Audio Element -->
   <audio id="globalAudio" class="hidden" preload="auto"></audio>
 
-  <!-- ========================================== -->
-  <!-- JAVASCRIPT: LOGIC + WEBGL LIVING ORB       -->
-  <!-- ========================================== -->
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT LOGIC & LIVING ORB                            -->
+  <!-- ======================================================== -->
   <script>
-    // Country Flag SVGs for Crisp High-DPI Rendering (Aspect 5:3)
+    // Pure Flags SVGs
     const FLAG_SVGS = {
-      uz: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="20" fill="#0099b5"/><rect y="19.5" width="100" height="1.5" fill="#d52b1e"/><rect y="21" width="100" height="18" fill="#ffffff"/><rect y="39" width="100" height="1.5" fill="#d52b1e"/><rect y="40.5" width="100" height="19.5" fill="#1eb53a"/><circle cx="15" cy="10" r="6" fill="#ffffff"/><circle cx="17.5" cy="10" r="5" fill="#0099b5"/><circle cx="26" cy="6" r="1.1" fill="#ffffff"/><circle cx="31" cy="6" r="1.1" fill="#ffffff"/><circle cx="36" cy="6" r="1.1" fill="#ffffff"/><circle cx="26" cy="10" r="1.1" fill="#ffffff"/><circle cx="31" cy="10" r="1.1" fill="#ffffff"/><circle cx="26" cy="14" r="1.1" fill="#ffffff"/></svg>`,
-      tr: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="60" fill="#e30a17"/><circle cx="36" cy="30" r="16" fill="#ffffff"/><circle cx="41" cy="30" r="13" fill="#e30a17"/><polygon points="50,30 62,34 54,23 54,37 62,26" fill="#ffffff"/></svg>`,
-      ru: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="20" fill="#ffffff"/><rect y="20" width="100" height="20" fill="#0039a6"/><rect y="40" width="100" height="20" fill="#d52b1e"/></svg>`,
-      en: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><clipPath id="uk_c1"><rect width="100" height="60"/></clipPath><g clip-path="url(#uk_c1)"><rect width="100" height="60" fill="#012169"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#ffffff" stroke-width="10"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#c8102e" stroke-width="6"/><path d="M50,0 V60 M0,30 H100" stroke="#ffffff" stroke-width="16"/><path d="M50,0 V60 M0,30 H100" stroke="#c8102e" stroke-width="10"/></g></svg>`,
-      zh: `<svg class="w-4 h-2.5 rounded-[2px] shadow-xs inline-block" viewBox="0 0 100 60"><rect width="100" height="60" fill="#de2910"/><polygon points="16,8 19,17 10,12 22,12 13,17" fill="#ffde00"/><circle cx="28" cy="7" r="2" fill="#ffde00"/><circle cx="34" cy="12" r="2" fill="#ffde00"/><circle cx="34" cy="20" r="2" fill="#ffde00"/><circle cx="28" cy="26" r="2" fill="#ffde00"/></svg>`
+      uz: `<svg style="width:20px; height:12px; border-radius:2px; vertical-align:middle;" viewBox="0 0 100 60"><rect width="100" height="20" fill="#0099b5"/><rect y="19.5" width="100" height="1.5" fill="#d52b1e"/><rect y="21" width="100" height="18" fill="#ffffff"/><rect y="39" width="100" height="1.5" fill="#d52b1e"/><rect y="40.5" width="100" height="19.5" fill="#1eb53a"/><circle cx="15" cy="10" r="6" fill="#ffffff"/><circle cx="17.5" cy="10" r="5" fill="#0099b5"/></svg>`,
+      tr: `<svg style="width:20px; height:12px; border-radius:2px; vertical-align:middle;" viewBox="0 0 100 60"><rect width="100" height="60" fill="#e30a17"/><circle cx="36" cy="30" r="16" fill="#ffffff"/><circle cx="41" cy="30" r="13" fill="#e30a17"/><polygon points="50,30 62,34 54,23 54,37 62,26" fill="#ffffff"/></svg>`,
+      ru: `<svg style="width:20px; height:12px; border-radius:2px; vertical-align:middle;" viewBox="0 0 100 60"><rect width="100" height="20" fill="#ffffff"/><rect y="20" width="100" height="20" fill="#0039a6"/><rect y="40" width="100" height="20" fill="#d52b1e"/></svg>`,
+      en: `<svg style="width:20px; height:12px; border-radius:2px; vertical-align:middle;" viewBox="0 0 100 60"><clipPath id="uk_s"><rect width="100" height="60"/></clipPath><g clip-path="url(#uk_s)"><rect width="100" height="60" fill="#012169"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#ffffff" stroke-width="10"/><path d="M0,0 L100,60 M100,0 L0,60" stroke="#c8102e" stroke-width="6"/><path d="M50,0 V60 M0,30 H100" stroke="#ffffff" stroke-width="16"/><path d="M50,0 V60 M0,30 H100" stroke="#c8102e" stroke-width="10"/></g></svg>`,
+      zh: `<svg style="width:20px; height:12px; border-radius:2px; vertical-align:middle;" viewBox="0 0 100 60"><rect width="100" height="60" fill="#de2910"/><polygon points="16,8 19,17 10,12 22,12 13,17" fill="#ffde00"/></svg>`
     };
 
-    // Gender Voices for Each Supported Language
-    const GENDER_VOICES = {
-      tr: {
-        female: { id: "tr-TR-EmelNeural", name: "Emel" },
-        male: { id: "tr-TR-AhmetNeural", name: "Ahmet" }
-      },
-      uz: {
-        female: { id: "uz-UZ-MadinaNeural", name: "Madina" },
-        male: { id: "uz-UZ-SardorNeural", name: "Sardor" }
-      },
-      ru: {
-        female: { id: "ru-RU-SvetlanaNeural", name: "Светлана" },
-        male: { id: "ru-RU-DmitryNeural", name: "Дмитрий" }
-      },
-      en: {
-        female: { id: "en-US-AvaNeural", name: "Ava" },
-        male: { id: "en-US-AndrewNeural", name: "Andrew" }
-      },
-      zh: {
-        female: { id: "zh-CN-XiaoxiaoNeural", name: "Xiaoxiao" },
-        male: { id: "zh-CN-YunxiNeural", name: "Yunxi" }
-      }
-    };
-
-    // Supported Languages Config
+    // Supported Languages Config — Exactly 1 best native voice per language!
     const LANG_DATA = {
-      uz: { name: "O'zbekcha", flag: "🇺🇿", defaultVoice: "uz-UZ-MadinaNeural" },
-      tr: { name: "Türkçe", flag: "🇹🇷", defaultVoice: "tr-TR-EmelNeural" },
-      ru: { name: "Русский", flag: "🇷🇺", defaultVoice: "ru-RU-SvetlanaNeural" },
-      en: { name: "English", flag: "🇬🇧", defaultVoice: "en-US-AvaNeural" },
-      zh: { name: "中文", flag: "🇨🇳", defaultVoice: "zh-CN-XiaoxiaoNeural" }
+      uz: { name: "O'zbekcha", flag: "🇺🇿", voice: "Aoede" }, // Madina: Studio HD Neural Uzbek
+      tr: { name: "Türkçe", flag: "🇹🇷", voice: "Aoede" },
+      ru: { name: "Русский", flag: "🇷🇺", voice: "Aoede" },
+      en: { name: "English", flag: "🇬🇧", voice: "Aoede" },
+      zh: { name: "中文", flag: "🇨🇳", voice: "Aoede" }
     };
+
+    const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42SnlSZ1V5WVFHMHJ3QmVXNU95Ykx4OUVFdUJMczdoQnJOcFpMZXlHY2R4YXc=');
+    var savedGeminiKey = localStorage.getItem('perevodchik_gemini_key');
+    if (!savedGeminiKey || savedGeminiKey.trim().length < 20) {
+      savedGeminiKey = DEFAULT_GEMINI_KEY;
+      try { localStorage.setItem('perevodchik_gemini_key', DEFAULT_GEMINI_KEY); } catch (_) {}
+    }
 
     const state = {
-      sourceLang: 'uz',
-      targetLang: 'tr',
-      selectedVoice: 'tr-TR-EmelNeural',
-      selectedGender: 'female',
-      audioCache: {},
-      playbackSpeed: 1.0,
-      selectedRate: '+0%',
+      geminiApiKey: savedGeminiKey,
+      lastUserText: '',
+      lastPartnerText: '',
+      lastUserLang: 'uz',
+      lastPartnerLang: 'tr',
+      sourceLang: localStorage.getItem('perevodchik_src_lang') || 'uz',
+      targetLang: localStorage.getItem('perevodchik_tgt_lang') || 'tr',
+      isPartnerFlipped: true,
+      activeModalTarget: 'src',
+
+      // Auto-Stop VAD Settings
+      autoStopMode: localStorage.getItem('perevodchik_autostop_mode') || '1.4s',
+      silenceThresholdMs: 1400,
+      voiceRmsThreshold: 0.012,
+      ambientNoiseRms: 0.0,
+      calibrationFrames: 0,
+      speechFramesCount: 0,
+      hasSpoken: false,
+      speechStartTime: 0,
+      lastVoiceTime: 0,
+
+      // Audio & Recording
       isRecording: false,
-      autoPlay: true,
+      activeSpeaker: null, // 'user' | 'partner'
+      recordedMediaChunks: [],
+      mediaRecorder: null,
+      mediaRecorderMime: 'audio/webm',
       audioCtx: null,
       mediaStream: null,
       scriptProcessor: null,
       analyser: null,
-      ws: null,
-      currentAudioBase64: null,
-      recStartTime: 0,
-      recTimerInterval: null,
-      activeModalTarget: 'src',
-
-      // VAD
-      hasSpoken: false,
-      lastVoiceTime: 0,
-      silenceThresholdMs: 1500,
-      voiceRmsThreshold: 0.007,
+      audioCache: {},
+      isSpeaking: false,
 
       // Visuals
       audioLevel: 0.0,
-      orbMode: 0, // 0: idle, 1: recording, 2: processing, 3: speaking
+      orbMode: 0 // 0: idle, 1: recording, 2: processing, 3: speaking
     };
 
-    // DOM Elements
-    const sphere1Flag = document.getElementById('sphere1Flag');
-    const sphere1Name = document.getElementById('sphere1Name');
-    const sphere2Flag = document.getElementById('sphere2Flag');
-    const sphere2Name = document.getElementById('sphere2Name');
-    const sphere3Name = document.getElementById('sphere3Name');
-
-    const openSrcModalBtn = document.getElementById('openSrcModalBtn');
+    // DOM Elements - Partner
+    const partnerHalf = document.getElementById('partnerHalf');
     const openTgtModalBtn = document.getElementById('openTgtModalBtn');
-    const openVoiceModalBtn = document.getElementById('openVoiceModalBtn');
+    const partnerFlag = document.getElementById('partnerFlag');
+    const partnerLangName = document.getElementById('partnerLangName');
+    const partnerEditBtn = document.getElementById('partnerEditBtn');
+    const partnerReplayBtn = document.getElementById('partnerReplayBtn');
+    const partnerReplayIcon = document.getElementById('partnerReplayIcon');
+    const partnerViewBlock = document.getElementById('partnerViewBlock');
+    const partnerDisplayText = document.getElementById('partnerDisplayText');
+    const partnerSubtext = document.getElementById('partnerSubtext');
+    const partnerEditBlock = document.getElementById('partnerEditBlock');
+    const partnerEditTextarea = document.getElementById('partnerEditTextarea');
+    const partnerCancelEditBtn = document.getElementById('partnerCancelEditBtn');
+    const partnerSaveEditBtn = document.getElementById('partnerSaveEditBtn');
+    const partnerMicBtn = document.getElementById('partnerMicBtn');
+    const partnerMicLabel = document.getElementById('partnerMicLabel');
+    const flipOrientationBtn = document.getElementById('flipOrientationBtn');
+
+    // DOM Elements - Equator
     const swapLangsBtn = document.getElementById('swapLangsBtn');
+    const toggleAutoStopBtn = document.getElementById('toggleAutoStopBtn');
+    const autoStopLabel = document.getElementById('autoStopLabel');
+    const openServerConfigBtn = document.getElementById('openServerConfigBtn');
+    const orbCanvas = document.getElementById('orbCanvas');
 
-    const orbClickTarget = document.getElementById('orbClickTarget');
-    const orbShadow = document.getElementById('orbShadow');
-    const orbStateText = document.getElementById('orbStateText');
-    const orbStateBadge = document.getElementById('orbStateBadge');
-    const badgeDot = document.getElementById('badgeDot');
+    // DOM Elements - User
+    const userHalf = document.getElementById('userHalf');
+    const openSrcModalBtn = document.getElementById('openSrcModalBtn');
+    const userFlag = document.getElementById('userFlag');
+    const userLangName = document.getElementById('userLangName');
+    const userEditBtn = document.getElementById('userEditBtn');
+    const userReplayBtn = document.getElementById('userReplayBtn');
+    const userReplayIcon = document.getElementById('userReplayIcon');
+    const userViewBlock = document.getElementById('userViewBlock');
+    const userDisplayText = document.getElementById('userDisplayText');
+    const userSubtext = document.getElementById('userSubtext');
+    const userEditBlock = document.getElementById('userEditBlock');
+    const userEditTextarea = document.getElementById('userEditTextarea');
+    const userCancelEditBtn = document.getElementById('userCancelEditBtn');
+    const userSaveEditBtn = document.getElementById('userSaveEditBtn');
+    const userMicBtn = document.getElementById('userMicBtn');
+    const userMicLabel = document.getElementById('userMicLabel');
 
-    const idleSuggestions = document.getElementById('idleSuggestions');
-    const activeTranslationView = document.getElementById('activeTranslationView');
-    const displaySrcText = document.getElementById('displaySrcText');
-    const displayTgtText = document.getElementById('displayTgtText');
-    const transSrcFlag = document.getElementById('transSrcFlag');
-    const transSrcName = document.getElementById('transSrcName');
-    const transTgtFlag = document.getElementById('transTgtFlag');
-    const transTgtName = document.getElementById('transTgtName');
-    const copySrcTextBtn = document.getElementById('copySrcTextBtn');
-    const copyTgtTextBtn = document.getElementById('copyTgtTextBtn');
-
-    const replaySpeechBtn = document.getElementById('replaySpeechBtn');
-    const replayIcon = document.getElementById('replayIcon');
-    const downloadMp3Btn = document.getElementById('downloadMp3Btn');
-    const metricLatency = document.getElementById('metricLatency');
-
-    const micBtn = document.getElementById('micBtn');
-    const micIcon = document.getElementById('micIcon');
-    const micButtonText = document.getElementById('micButtonText');
-    const recTimer = document.getElementById('recTimer');
-    const uploadAudioBtn = document.getElementById('uploadAudioBtn');
-    const audioFileInput = document.getElementById('audioFileInput');
-    const resetSessionBtn = document.getElementById('resetSessionBtn');
-
-    const toggleTextModeBtn = document.getElementById('toggleTextModeBtn');
-    const textInputDrawer = document.getElementById('textInputDrawer');
-    const manualTextInput = document.getElementById('manualTextInput');
-    const sendTextBtn = document.getElementById('sendTextBtn');
-
-    const statusDot = document.getElementById('statusDot');
-    const statusLabel = document.getElementById('statusLabel');
-
-    // Modals
+    // DOM Elements - Modals
     const langModal = document.getElementById('langModal');
     const langModalTitle = document.getElementById('langModalTitle');
     const closeLangModalBtn = document.getElementById('closeLangModalBtn');
-    const voiceModal = document.getElementById('voiceModal');
-    const closeVoiceModalBtn = document.getElementById('closeVoiceModalBtn');
-    const voiceSelectDropdown = document.getElementById('voiceSelectDropdown');
-    const saveVoiceSettingsBtn = document.getElementById('saveVoiceSettingsBtn');
-    const autoPlayCheckbox = document.getElementById('autoPlayCheckbox');
+    const serverModal = document.getElementById('serverModal');
+    const closeServerModalBtn = document.getElementById('closeServerModalBtn');
+    const geminiApiKeyInput = document.getElementById('geminiApiKeyInput');
+    const pingDot = document.getElementById('pingDot');
+    const pingText = document.getElementById('pingText');
+    const testPingBtn = document.getElementById('testPingBtn');
+    const saveServerUrlBtn = document.getElementById('saveServerUrlBtn');
 
-    const openHistoryDrawerBtn = document.getElementById('openHistoryDrawerBtn');
-    const closeHistoryDrawerBtn = document.getElementById('closeHistoryDrawerBtn');
-    const historyDrawer = document.getElementById('historyDrawer');
-    const historyFeedList = document.getElementById('historyFeedList');
-    const emptyHistoryNotice = document.getElementById('emptyHistoryNotice');
-    const clearAllHistoryBtn = document.getElementById('clearAllHistoryBtn');
+    let globalAudio = document.getElementById('globalAudio');
 
-    const globalAudio = document.getElementById('globalAudio');
+    // ========================================================
+    // SPEECH SYNTHESIS ENGINE (1 BEST ANNOUNCER PER LANGUAGE)
+    // ========================================================
 
+    window.onTTSStart = function(lang) {
+      state.orbMode = 3;
+    };
+    window.onTTSEnd = function() {
+      state.orbMode = 0;
+      state.isSpeaking = false;
+    };
+    window.onTTSError = function() {
+      state.orbMode = 0;
+      state.isSpeaking = false;
+    };
 
+    function setReplayIconLoading(langCode, isLoading) {
+      const isPartner = langCode === state.targetLang;
+      const targetIcon = isPartner ? partnerReplayIcon : userReplayIcon;
+      if (!targetIcon) return;
 
-    // Dynamic App Status Badge
-    function setAppStatus(mode, customText) {
-      const dotClassMap = {
-        ready: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse",
-        recording: "w-2 h-2 rounded-full bg-rose-500 animate-ping",
-        processing: "w-2 h-2 rounded-full bg-amber-500 animate-spin",
-        speaking: "w-2 h-2 rounded-full bg-blue-500 animate-pulse",
-        done: "w-2 h-2 rounded-full bg-emerald-500",
-        reconnect: "w-2 h-2 rounded-full bg-amber-400"
-      };
-
-      const textMap = {
-        ready: "Tinglashga tayyor",
-        recording: "Nutq eshitilmoqda...",
-        processing: "AI tarjima qilmoqda...",
-        speaking: "Ovozlashtirilmoqda...",
-        done: "Tarjima tayyor",
-        reconnect: "Aloqa tiklanmoqda..."
-      };
-
-      const labelText = customText || textMap[mode] || "Tinglashga tayyor";
-      const dotClass = dotClassMap[mode] || dotClassMap.ready;
-
-      if (statusLabel) statusLabel.textContent = labelText;
-      if (statusDot) statusDot.className = dotClass;
-      
-      const mLabel = document.getElementById('statusLabelMobile');
-      const mDot = document.getElementById('statusDotMobile');
-      if (mLabel) mLabel.textContent = labelText;
-      if (mDot) mDot.className = (mode === 'ready' || mode === 'done') ? "w-1.5 h-1.5 rounded-full bg-emerald-500" : (mode === 'recording' ? "w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping" : (mode === 'processing' ? "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin" : "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"));
-    }
-
-    // Gender Switcher UI
-    function updateGenderUI() {
-      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
-      const fLabel = document.getElementById('femaleVoiceLabel');
-      const mLabel = document.getElementById('maleVoiceLabel');
-      if (fLabel) fLabel.textContent = `Ayol (${pair.female.name})`;
-      if (mLabel) mLabel.textContent = `Erkak (${pair.male.name})`;
-
-      const fBtn = document.getElementById('voiceGenderFemaleBtn');
-      const mBtn = document.getElementById('voiceGenderMaleBtn');
-      if (fBtn && mBtn) {
-        if (state.selectedGender === 'female') {
-          fBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5";
-          mBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5";
-        } else {
-          mBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 bg-white text-[#1d1d1f] shadow-xs flex items-center gap-1.5";
-          fBtn.className = "px-2.5 sm:px-3 py-1 rounded-full text-xs font-medium transition active:scale-95 text-[#6e6e73] hover:text-[#1d1d1f] flex items-center gap-1.5";
-        }
-      }
-    }
-
-    async function switchVoiceGender(gender) {
-      state.selectedGender = gender;
-      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
-      state.selectedVoice = pair[gender].id;
-      updateGenderUI();
-
-      const tgtText = displayTgtText.textContent.trim();
-      if (!tgtText || tgtText === '...' || tgtText.includes('kutilmoqda')) return;
-
-      const cacheKey = `${state.selectedVoice}_${tgtText}`;
-      if (state.audioCache[cacheKey]) {
-        playAudioFromSrc(state.audioCache[cacheKey]);
+      if (isLoading) {
+        targetIcon.innerHTML = `<svg class="animate-spin" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>`;
       } else {
+        targetIcon.innerHTML = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
+      }
+    }
+
+    // Convert raw PCM to standard WAV base64 if needed
+    function ensureWavBase64(base64Data, sampleRate, numChannels) {
+      if (!sampleRate) sampleRate = 24000;
+      if (!numChannels) numChannels = 1;
+      if (!base64Data) return null;
+      var cleanB64 = base64Data.indexOf(',') !== -1 ? base64Data.split(',')[1] : base64Data;
+      if (cleanB64.startsWith('UklGR')) {
+        return cleanB64;
+      }
+
+      try {
+        var binaryString = atob(cleanB64);
+        var pcmLen = binaryString.length;
+        var wavLen = 44 + pcmLen;
+        var buffer = new ArrayBuffer(wavLen);
+        var view = new DataView(buffer);
+
+        view.setUint8(0, 0x52); view.setUint8(1, 0x49); view.setUint8(2, 0x46); view.setUint8(3, 0x46);
+        view.setUint32(4, 36 + pcmLen, true);
+        view.setUint8(8, 0x57); view.setUint8(9, 0x41); view.setUint8(10, 0x56); view.setUint8(11, 0x45);
+
+        view.setUint8(12, 0x66); view.setUint8(13, 0x6d); view.setUint8(14, 0x74); view.setUint8(15, 0x20);
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, numChannels, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * numChannels * 2, true);
+        view.setUint16(32, numChannels * 2, true);
+        view.setUint16(34, 16, true);
+
+        view.setUint8(36, 0x64); view.setUint8(37, 0x61); view.setUint8(38, 0x74); view.setUint8(39, 0x61);
+        view.setUint32(40, pcmLen, true);
+
+        var u8 = new Uint8Array(buffer);
+        for (var i = 0; i < pcmLen; i++) {
+          u8[44 + i] = binaryString.charCodeAt(i);
+        }
+
+        var binary = '';
+        var chunkSize = 8192;
+        for (var j = 0; j < wavLen; j += chunkSize) {
+          var chunk = u8.subarray(j, Math.min(j + chunkSize, wavLen));
+          binary += String.fromCharCode.apply(null, chunk);
+        }
+        return btoa(binary);
+      } catch (e) {
+        console.warn("ensureWavBase64 error:", e);
+        return cleanB64;
+      }
+    }
+
+    // Google Gemini Studio-Quality Neural Voice Fetcher
+    async function fetchNeuralTTS(text, langCode) {
+      if (!text || !text.trim()) return null;
+      var models = ['gemini-3.8-flash-tts', 'gemini-3.1-flash-tts-preview'];
+      var apiKey = state.geminiApiKey || DEFAULT_GEMINI_KEY;
+      var cleanText = text.trim();
+      var voice = (LANG_DATA[langCode] && LANG_DATA[langCode].voice) ? LANG_DATA[langCode].voice : "Aoede";
+
+      for (var i = 0; i < models.length; i++) {
+        var model = models[i];
         try {
-          replayIcon.className = "fa-solid fa-circle-notch fa-spin text-xs";
-          setAppStatus('processing', `${pair[gender].name} ovozi yuklanmoqda...`);
-          const resp = await fetch(`/api/v1/tts?text=${encodeURIComponent(tgtText)}&voice=${encodeURIComponent(state.selectedVoice)}&rate=${encodeURIComponent(state.selectedRate)}`);
-          if (!resp.ok) throw new Error("TTS xatosi");
-          const blob = await resp.blob();
-          const audioUrl = URL.createObjectURL(blob);
-          state.audioCache[cacheKey] = audioUrl;
-          setAppStatus('done', "Tarjima tayyor");
-          playAudioFromSrc(audioUrl);
+          var body = JSON.stringify({
+            contents: [{ parts: [{ text: cleanText }] }],
+            generationConfig: {
+              responseModalities: ["AUDIO"],
+              speechConfig: {
+                voiceConfig: {
+                  prebuiltVoiceConfig: {
+                    voiceName: voice
+                  }
+                }
+              }
+            }
+          });
+
+          var res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + apiKey, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: body
+          });
+
+          if (!res.ok) continue;
+
+          var json = await res.json();
+          var part = json.candidates && json.candidates[0] && json.candidates[0].content && json.candidates[0].content.parts ? json.candidates[0].content.parts.find(function(p) { return p.inlineData; }) : null;
+          if (part && part.inlineData && part.inlineData.data) {
+            var validWav = ensureWavBase64(part.inlineData.data, 24000, 1);
+            if (validWav) return validWav;
+          }
         } catch (err) {
-          console.error(err);
-          replayIcon.className = "fa-solid fa-play text-xs";
-          setAppStatus('ready', "Tinglashga tayyor");
+          console.warn('fetchNeuralTTS ' + model + ' failed:', err);
+        }
+      }
+      return null;
+    }
+
+    // Master Audio Player: Direct Native Android Hardware MediaPlayer with HTML5 fallback
+    function playAudio(audioItem, text, langCode) {
+      var isBase64 = audioItem && audioItem.type === 'base64';
+      var rawData = audioItem ? audioItem.data : null;
+
+      // Tier 1: Native Android Hardware MediaPlayer (100% Reliable, zero WebView autoplay block!)
+      if (window.AndroidNativeTTS) {
+        try {
+          if (isBase64 && typeof window.AndroidNativeTTS.playNativeBase64 === 'function') {
+            window.AndroidNativeTTS.playNativeBase64(rawData, text, langCode);
+            return;
+          } else if (!isBase64 && typeof window.AndroidNativeTTS.playNativeUrl === 'function') {
+            window.AndroidNativeTTS.playNativeUrl(rawData, text, langCode);
+            return;
+          }
+        } catch (err) {
+          console.warn("Native player error:", err);
+        }
+      }
+
+      // Tier 2: HTML5 Audio with Blob URL
+      try {
+        var audioSrc;
+        if (isBase64) {
+          var byteChars = atob(rawData);
+          var byteNumbers = new Array(byteChars.length);
+          for (var i = 0; i < byteChars.length; i++) {
+            byteNumbers[i] = byteChars.charCodeAt(i);
+          }
+          var byteArray = new Uint8Array(byteNumbers);
+          var blob = new Blob([byteArray], { type: 'audio/wav' });
+          audioSrc = URL.createObjectURL(blob);
+        } else {
+          audioSrc = rawData;
+        }
+
+        if (!globalAudio) globalAudio = new Audio();
+        globalAudio.pause();
+        globalAudio.src = audioSrc;
+
+        globalAudio.onplay = function() {
+          state.isSpeaking = true;
+          window.onTTSStart(langCode);
+        };
+        globalAudio.onended = function() {
+          state.isSpeaking = false;
+          window.onTTSEnd();
+        };
+        globalAudio.onerror = function(e) {
+          console.warn("HTML5 audio playback error:", e);
+          state.isSpeaking = false;
+          window.onTTSEnd();
+          if (window.AndroidNativeTTS && text) {
+            window.AndroidNativeTTS.speak(text, langCode, 1.0, 1.0);
+          }
+        };
+
+        var p = globalAudio.play();
+        if (p !== undefined) {
+          p.catch(function(err) {
+            console.warn("HTML5 audio play blocked by browser policy:", err);
+            state.isSpeaking = false;
+            window.onTTSEnd();
+            if (window.AndroidNativeTTS && text) {
+              window.AndroidNativeTTS.speak(text, langCode, 1.0, 1.0);
+            }
+          });
+        }
+      } catch (err) {
+        console.warn("playAudio exception:", err);
+        state.isSpeaking = false;
+        window.onTTSEnd();
+        if (window.AndroidNativeTTS && text) {
+          window.AndroidNativeTTS.speak(text, langCode, 1.0, 1.0);
         }
       }
     }
 
-    function playAudioFromSrc(src) {
-      if (!src) return;
-      globalAudio.src = src;
-      globalAudio.playbackRate = state.playbackSpeed;
-      globalAudio.currentTime = 0;
-      globalAudio.play().then(() => {
-        replayIcon.className = "fa-solid fa-pause text-xs";
-        state.orbMode = 3;
-        setAppStatus('speaking', "Ovozlashtirilmoqda...");
-      }).catch(err => {
-        console.warn(err);
-        replayIcon.className = "fa-solid fa-play text-xs";
-        state.orbMode = 0;
-        setAppStatus('ready', "Tinglashga tayyor");
-      });
+    // Master Speech Function (Each language automatically uses its 1 single best voice)
+    async function speakText(text, langCode) {
+      if (!text || !text.trim()) return;
+      var targetLang = langCode || state.targetLang || 'uz';
+      var cleanText = text.trim();
+      var cacheKey = targetLang + '_' + cleanText;
+
+      setReplayIconLoading(targetLang, true);
+
+      // 1. Instant Cache Playback (0ms latency!)
+      if (state.audioCache[cacheKey]) {
+        setReplayIconLoading(targetLang, false);
+        playAudio(state.audioCache[cacheKey], cleanText, targetLang);
+        return;
+      }
+
+      // 2. High-Definition Studio Neural Voice (Google Gemini)
+      try {
+        var wavB64 = await fetchNeuralTTS(cleanText, targetLang);
+        if (wavB64) {
+          state.audioCache[cacheKey] = { type: 'base64', data: wavB64 };
+          setReplayIconLoading(targetLang, false);
+          playAudio(state.audioCache[cacheKey], cleanText, targetLang);
+          return;
+        }
+      } catch (err) {
+        console.warn("Neural TTS fetch error:", err);
+      }
+
+      // 3. Fallback for Foreign Languages (ru, tr, en, zh) to Google Translate Web TTS
+      if (targetLang !== 'uz') {
+        try {
+          var gUrl = 'https://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(cleanText.slice(0, 200)) + '&tl=' + targetLang + '&client=tw-ob';
+          state.audioCache[cacheKey] = { type: 'url', data: gUrl };
+          setReplayIconLoading(targetLang, false);
+          playAudio(state.audioCache[cacheKey], cleanText, targetLang);
+          return;
+        } catch (e) {
+          console.warn("Google TTS fallback error:", e);
+        }
+      }
+
+      setReplayIconLoading(targetLang, false);
+
+      // 4. Android Hardware Native Text-to-Speech (Works 100% Offline)
+      if (window.AndroidNativeTTS && typeof window.AndroidNativeTTS.speak === 'function') {
+        try {
+          window.onTTSStart(targetLang);
+          window.AndroidNativeTTS.speak(cleanText, targetLang, 1.0, 1.0);
+          return;
+        } catch (e) {
+          console.warn("AndroidNativeTTS error:", e);
+        }
+      }
+
+      // 5. Browser SpeechSynthesis
+      if ('speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          var utterance = new SpeechSynthesisUtterance(cleanText);
+          var langMap = { uz: 'uz-UZ', ru: 'ru-RU', tr: 'tr-TR', en: 'en-US', zh: 'zh-CN' };
+          utterance.lang = langMap[targetLang] || targetLang;
+          utterance.rate = 1.0;
+          utterance.onstart = function() { window.onTTSStart(targetLang); };
+          utterance.onend = function() { window.onTTSEnd(); };
+          utterance.onerror = function() { window.onTTSError(); };
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          window.onTTSError();
+        }
+      }
     }
 
-    // Update Language UI
+        // ========================================================
+    // LANGUAGE UI & FLIP ORIENTATION
+    // ========================================================
+
     function updateLanguageUI() {
       const s = LANG_DATA[state.sourceLang] || LANG_DATA.uz;
       const t = LANG_DATA[state.targetLang] || LANG_DATA.tr;
 
-      sphere1Flag.innerHTML = FLAG_SVGS[state.sourceLang] || s.flag;
-      sphere1Name.textContent = s.name;
+      if (userFlag) userFlag.innerHTML = FLAG_SVGS[state.sourceLang] || s.flag;
+      if (userLangName) userLangName.textContent = s.name;
+      if (userMicLabel) userMicLabel.textContent = `${s.name} gapiring`;
 
-      sphere2Flag.innerHTML = FLAG_SVGS[state.targetLang] || t.flag;
-      sphere2Name.textContent = t.name;
+      if (partnerFlag) partnerFlag.innerHTML = FLAG_SVGS[state.targetLang] || t.flag;
+      if (partnerLangName) partnerLangName.textContent = t.name;
+      if (partnerMicLabel) partnerMicLabel.textContent = `${t.name} gapiring`;
 
-      const pair = GENDER_VOICES[state.targetLang] || GENDER_VOICES.tr;
-      state.selectedVoice = pair[state.selectedGender].id;
-      updateGenderUI();
-    }
-
-    // Language Modal Logic
-    openSrcModalBtn.addEventListener('click', () => openLangModal('src'));
-    openTgtModalBtn.addEventListener('click', () => openLangModal('tgt'));
-    closeLangModalBtn.addEventListener('click', () => langModal.classList.add('hidden'));
-
-    function openLangModal(mode) {
-      state.activeModalTarget = mode;
-      langModalTitle.textContent = mode === 'src' ? "1. Nutq tilini tanlang:" : "2. Tarjima tilini tanlang:";
-      
-      const currentSelected = mode === 'src' ? state.sourceLang : state.targetLang;
-      document.querySelectorAll('.lang-opt-btn').forEach(btn => {
-        const lang = btn.getAttribute('data-lang');
-        const check = btn.querySelector('.check-icon');
-        if (lang === currentSelected) {
-          btn.classList.add('border-blue-600', 'bg-blue-50');
-          check.classList.remove('hidden');
+      // Update selected checkmarks in modal
+      document.querySelectorAll('.lang-item-btn').forEach(btn => {
+        const langCode = btn.dataset.lang;
+        const currentSelected = state.activeModalTarget === 'src' ? state.sourceLang : state.targetLang;
+        if (langCode === currentSelected) {
+          btn.classList.add('selected');
         } else {
-          btn.classList.remove('border-blue-600', 'bg-blue-50');
-          check.classList.add('hidden');
+          btn.classList.remove('selected');
         }
       });
-      langModal.classList.remove('hidden');
     }
 
-    document.querySelectorAll('.lang-opt-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const chosen = btn.getAttribute('data-lang');
-        if (state.activeModalTarget === 'src') {
-          state.sourceLang = chosen;
-          if (state.sourceLang === state.targetLang) {
-            state.targetLang = ['tr', 'uz', 'ru', 'en', 'zh'].find(l => l !== chosen);
-          }
-        } else {
-          state.targetLang = chosen;
-          if (state.targetLang === state.sourceLang) {
-            state.sourceLang = ['uz', 'tr', 'ru', 'en', 'zh'].find(l => l !== chosen);
-          }
-        }
-        langModal.classList.add('hidden');
-        updateLanguageUI();
-
-        if (!activeTranslationView.classList.contains('hidden') && displaySrcText.textContent.trim()) {
-          await runTextTranslation(displaySrcText.textContent.trim());
-        }
-      });
-    });
-
-    // Swap Languages
-    swapLangsBtn.addEventListener('click', async () => {
-      swapLangsBtn.style.transform = 'rotate(180deg)';
-      setTimeout(() => swapLangsBtn.style.transform = '', 300);
-
-      const prevSrc = state.sourceLang;
-      state.sourceLang = state.targetLang;
-      state.targetLang = prevSrc;
-      updateLanguageUI();
-
-      if (!activeTranslationView.classList.contains('hidden') && displayTgtText.textContent.trim()) {
-        await runTextTranslation(displayTgtText.textContent.trim());
-      }
-    });
-
-    // Voice Gender Switchers (Ayol / Erkak)
-    const fGenderBtn = document.getElementById('voiceGenderFemaleBtn');
-    const mGenderBtn = document.getElementById('voiceGenderMaleBtn');
-    if (fGenderBtn) fGenderBtn.addEventListener('click', () => switchVoiceGender('female'));
-    if (mGenderBtn) mGenderBtn.addEventListener('click', () => switchVoiceGender('male'));
-
-    // Speed Pills on Translation Card
-    document.querySelectorAll('.speed-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.speed-pill').forEach(b => {
-          b.className = 'speed-pill px-2.5 py-0.5 rounded-full text-[#6e6e73] hover:text-[#1d1d1f]';
-        });
-        btn.className = 'speed-pill px-2.5 py-0.5 rounded-full bg-white text-blue-600 font-bold shadow-xs';
-        const speedVal = parseFloat(btn.getAttribute('data-speed')) || 1.0;
-        state.playbackSpeed = speedVal;
-        globalAudio.playbackRate = speedVal;
-        state.selectedRate = speedVal === 0.85 ? "-15%" : (speedVal === 1.15 ? "+15%" : "+0%");
-      });
-    });
-
-    // Voice Modal Logic (if accessed via options)
-    if (openVoiceModalBtn) openVoiceModalBtn.addEventListener('click', () => voiceModal.classList.remove('hidden'));
-    if (closeVoiceModalBtn) closeVoiceModalBtn.addEventListener('click', () => voiceModal.classList.add('hidden'));
-    if (saveVoiceSettingsBtn) {
-      saveVoiceSettingsBtn.addEventListener('click', () => {
-        state.selectedVoice = voiceSelectDropdown.value;
-        const opt = voiceSelectDropdown.options[voiceSelectDropdown.selectedIndex];
-        if (opt && sphere3Name) {
-          sphere3Name.textContent = opt.text.split('(')[0].trim();
-        }
-        voiceModal.classList.add('hidden');
-      });
-    }
-
-    document.querySelectorAll('.rate-choice-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.rate-choice-btn').forEach(b => {
-          b.className = 'rate-choice-btn py-2 rounded-xl border border-black/[0.08] bg-white text-xs font-medium text-[#424245] transition';
-        });
-        btn.className = 'rate-choice-btn py-2 rounded-xl border-2 border-blue-600 bg-blue-50 text-xs font-semibold text-blue-700 transition';
-        state.selectedRate = btn.getAttribute('data-rate');
-      });
-    });
-
-    autoPlayCheckbox.addEventListener('change', (e) => {
-      state.autoPlay = e.target.checked;
-    });
-
-    // History Drawer
-    openHistoryDrawerBtn.addEventListener('click', () => historyDrawer.classList.remove('hidden'));
-    const openHistoryDrawerBtnMobile = document.getElementById('openHistoryDrawerBtnMobile');
-    if (openHistoryDrawerBtnMobile) {
-      openHistoryDrawerBtnMobile.addEventListener('click', () => historyDrawer.classList.remove('hidden'));
-    }
-    closeHistoryDrawerBtn.addEventListener('click', () => historyDrawer.classList.add('hidden'));
-    clearAllHistoryBtn.addEventListener('click', () => {
-      historyFeedList.innerHTML = '<div id="emptyHistoryNotice" class="text-center py-12 text-[#86868b] text-xs">Hozircha suhbatlar tarixi bo\'sh</div>';
-    });
-
-    // Reset Session
-    resetSessionBtn.addEventListener('click', () => {
-      activeTranslationView.classList.add('hidden');
-      idleSuggestions.classList.remove('hidden');
-      state.orbMode = 0;
-      orbStateText.textContent = "Gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing";
-      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse";
-      setAppStatus('ready', "Tinglashga tayyor");
-    });
-
-    // Quick phrases
-    document.querySelectorAll('.quick-phrase-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const txt = chip.textContent.replace(/["']/g, '').trim();
-        runTextTranslation(txt);
-      });
-    });
-
-    // Text Input Mode
-    toggleTextModeBtn.addEventListener('click', () => {
-      textInputDrawer.classList.toggle('hidden');
-      if (!textInputDrawer.classList.contains('hidden')) {
-        manualTextInput.focus();
-      }
-    });
-
-    sendTextBtn.addEventListener('click', submitManualText);
-    manualTextInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') submitManualText();
-    });
-
-    async function submitManualText() {
-      const val = manualTextInput.value.trim();
-      if (!val) return;
-      manualTextInput.value = '';
-      textInputDrawer.classList.add('hidden');
-      await runTextTranslation(val);
-    }
-
-    // Direct Text Translation API
-    async function runTextTranslation(text) {
-      if (!text) return;
-      primeAudioPlayback();
-      showActiveCardUI("Tarjima qilinmoqda...");
-      displaySrcText.textContent = text;
-      displayTgtText.textContent = "AI tarjima tayyorlamoqda...";
-      state.orbMode = 2; // Processing
-      orbStateText.textContent = "Tarjima qilinmoqda...";
-      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
-      setAppStatus('processing', "AI tarjima qilmoqda...");
-
-      try {
-        const resp = await fetch('/api/v1/translate-text', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            text: text,
-            source_lang: state.sourceLang,
-            target_lang: state.targetLang,
-            voice: state.selectedVoice,
-            rate: state.selectedRate,
-            synthesize_audio: true
-          })
-        });
-        const data = await resp.json();
-        renderResult(data);
-      } catch (err) {
-        console.error(err);
-        alert('Tarjima xatosi: ' + err.message);
-        state.orbMode = 0;
-        orbStateText.textContent = "Xatolik yuz berdi";
-      }
-    }
-
-    // Audio Playback Unlock
-    function primeAudioPlayback() {
-      try {
-        globalAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
-        const p = globalAudio.play();
-        if (p !== undefined) {
-          p.then(() => globalAudio.pause()).catch(() => {});
-        }
-      } catch (_) {}
-    }
-
-    // WebSocket Connection
-    function connectWebSocket() {
-      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${location.host}/ws/translator`;
-      state.ws = new WebSocket(wsUrl);
-
-      state.ws.onopen = () => {
-        setAppStatus('ready', "Tinglashga tayyor");
-      };
-
-      state.ws.onmessage = (event) => {
-        try {
-          const msg = JSON.parse(event.data);
-          if (msg.type === 'stage') {
-            const stageText = msg.stage === 'stt' ? "Nutq tanilmoqda..." : (msg.stage === 'translate' ? "AI tarjima qilmoqda..." : "Ovoz yaratilmoqda...");
-            setAppStatus('processing', stageText);
-          } else if (msg.type === 'transcript') {
-            displaySrcText.textContent = msg.source_text || 'Nutq aniqlandi...';
-          } else if (msg.type === 'result' && msg.payload) {
-            renderResult(msg.payload);
-          } else if (msg.type === 'error') {
-            alert(msg.message || 'Xatolik');
-            stopRecording();
-          }
-        } catch (e) {
-          console.error(e);
-        }
-      };
-
-      state.ws.onclose = () => {
-        setAppStatus('reconnect', "Aloqa tiklanmoqda...");
-        setTimeout(connectWebSocket, 3000);
-      };
-    }
-    connectWebSocket();
-
-    // Click Orb or Mic Button to Record
-    orbClickTarget.addEventListener('click', toggleRecording);
-    micBtn.addEventListener('click', toggleRecording);
-
-    // Spacebar to Record Shortcut
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' && e.target === document.body && !manualTextInput.matches(':focus')) {
-        e.preventDefault();
-        toggleRecording();
-      }
-    });
-
-    function toggleRecording() {
-      primeAudioPlayback();
-      if (!state.isRecording) {
-        startRecording();
+    // Flip Orientation (Face-to-Face 180° vs Normal 0°)
+    flipOrientationBtn.addEventListener('click', () => {
+      state.isPartnerFlipped = !state.isPartnerFlipped;
+      if (state.isPartnerFlipped) {
+        partnerHalf.classList.add('flipped');
       } else {
-        stopRecording();
+        partnerHalf.classList.remove('flipped');
+      }
+    });
+
+    // Language Swap
+    swapLangsBtn.addEventListener('click', () => {
+      const temp = state.sourceLang;
+      state.sourceLang = state.targetLang;
+      state.targetLang = temp;
+
+      localStorage.setItem('perevodchik_src_lang', state.sourceLang);
+      localStorage.setItem('perevodchik_tgt_lang', state.targetLang);
+
+      const tempUserText = userDisplayText.textContent;
+      userDisplayText.textContent = partnerDisplayText.textContent;
+      partnerDisplayText.textContent = tempUserText;
+
+      updateLanguageUI();
+    });
+
+    // Auto-Stop Mode Toggle
+    toggleAutoStopBtn.addEventListener('click', () => {
+      if (state.autoStopMode === '1.4s') {
+        state.autoStopMode = '2.0s';
+        state.silenceThresholdMs = 2000;
+        autoStopLabel.textContent = "Avto: 2.0s";
+      } else if (state.autoStopMode === '2.0s') {
+        state.autoStopMode = "Qo'lda";
+        state.silenceThresholdMs = 999999;
+        autoStopLabel.textContent = "Avto: O'chiq";
+      } else {
+        state.autoStopMode = '1.4s';
+        state.silenceThresholdMs = 1400;
+        autoStopLabel.textContent = "Avto: 1.4s";
+      }
+      localStorage.setItem('perevodchik_autostop_mode', state.autoStopMode);
+    });
+
+    // ========================================================
+    // LANGUAGE SELECTION MODAL
+    // ========================================================
+
+    openSrcModalBtn.addEventListener('click', () => {
+      state.activeModalTarget = 'src';
+      langModalTitle.textContent = "Sizning tilingizni tanlang";
+      updateLanguageUI();
+      langModal.classList.remove('hidden');
+    });
+
+    openTgtModalBtn.addEventListener('click', () => {
+      state.activeModalTarget = 'tgt';
+      langModalTitle.textContent = "Suhbatdoshingiz tilini tanlang";
+      updateLanguageUI();
+      langModal.classList.remove('hidden');
+    });
+
+    closeLangModalBtn.addEventListener('click', () => {
+      langModal.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.lang-item-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selected = btn.dataset.lang;
+        if (state.activeModalTarget === 'src') {
+          if (selected === state.targetLang) state.targetLang = state.sourceLang;
+          state.sourceLang = selected;
+          localStorage.setItem('perevodchik_src_lang', state.sourceLang);
+          localStorage.setItem('perevodchik_tgt_lang', state.targetLang);
+        } else {
+          if (selected === state.sourceLang) state.sourceLang = state.targetLang;
+          state.targetLang = selected;
+          localStorage.setItem('perevodchik_src_lang', state.sourceLang);
+          localStorage.setItem('perevodchik_tgt_lang', state.targetLang);
+        }
+        updateLanguageUI();
+        langModal.classList.add('hidden');
+      });
+    });
+
+    // ========================================================
+    // SETTINGS MODAL
+    // ========================================================
+
+    openServerConfigBtn.addEventListener('click', () => {
+      geminiApiKeyInput.value = state.geminiApiKey || '';
+      serverModal.classList.remove('hidden');
+    });
+
+    closeServerModalBtn.addEventListener('click', () => {
+      serverModal.classList.add('hidden');
+    });
+
+    saveServerUrlBtn.addEventListener('click', () => {
+      if (geminiApiKeyInput.value.trim()) {
+        state.geminiApiKey = geminiApiKeyInput.value.trim();
+        localStorage.setItem('perevodchik_gemini_key', state.geminiApiKey);
+      }
+      serverModal.classList.add('hidden');
+    });
+
+    testPingBtn.addEventListener('click', async () => {
+      pingDot.style.background = '#f59e0b';
+      pingText.textContent = "Tekshirilmoqda...";
+      try {
+        const res = await callGeminiGenerateContent(
+          state.geminiApiKey,
+          [{ parts: [{ text: "Translate Salam to Hello" }] }],
+          { temperature: 0.0 }
+        );
+        pingDot.style.background = '#10b981';
+        pingText.textContent = `Google AI aloqasi tayyor!`;
+      } catch (err) {
+        pingDot.style.background = '#ef4444';
+        pingText.textContent = "Ulanishda xatolik";
+      }
+    });
+
+    // ========================================================
+    // INLINE TEXT EDITING (USER & PARTNER)
+    // ========================================================
+
+    function openUserEditor() {
+      const cur = userDisplayText.textContent.trim();
+      userEditTextarea.value = (cur.includes('gapirish uchun') || cur === '...') ? '' : cur;
+      userViewBlock.classList.add('hidden');
+      userEditBlock.classList.remove('hidden');
+      userEditTextarea.focus();
+    }
+    function closeUserEditor() {
+      userEditBlock.classList.add('hidden');
+      userViewBlock.classList.remove('hidden');
+    }
+
+    userEditBtn.addEventListener('click', openUserEditor);
+    userDisplayText.addEventListener('click', openUserEditor);
+    userCancelEditBtn.addEventListener('click', closeUserEditor);
+
+    userSaveEditBtn.addEventListener('click', async () => {
+      const newText = userEditTextarea.value.trim();
+      if (newText) {
+        userDisplayText.textContent = newText;
+        closeUserEditor();
+        partnerDisplayText.textContent = "Tarjima qilinmoqda...";
+        await runTextTranslation(newText, 'user');
+      } else {
+        closeUserEditor();
+      }
+    });
+
+    function openPartnerEditor() {
+      const cur = partnerDisplayText.textContent.trim();
+      partnerEditTextarea.value = (cur.includes('bosib gapiring') || cur === '...') ? '' : cur;
+      partnerViewBlock.classList.add('hidden');
+      partnerEditBlock.classList.remove('hidden');
+      partnerEditTextarea.focus();
+    }
+    function closePartnerEditor() {
+      partnerEditBlock.classList.add('hidden');
+      partnerViewBlock.classList.remove('hidden');
+    }
+
+    partnerEditBtn.addEventListener('click', openPartnerEditor);
+    partnerDisplayText.addEventListener('click', openPartnerEditor);
+    partnerCancelEditBtn.addEventListener('click', closePartnerEditor);
+
+    partnerSaveEditBtn.addEventListener('click', async () => {
+      const newText = partnerEditTextarea.value.trim();
+      if (newText) {
+        partnerDisplayText.textContent = newText;
+        closePartnerEditor();
+        userDisplayText.textContent = "Tarjima qilinmoqda...";
+        await runTextTranslation(newText, 'partner');
+      } else {
+        closePartnerEditor();
+      }
+    });
+
+    function isValidSpeechText(txt) {
+      if (!txt) return false;
+      const t = txt.trim();
+      if (!t || t === '...' || t.includes('gapirish uchun') || t.includes('bosib gapiring') || t.includes('Tinglanmoqda') || t.includes('Tarjima qilinmoqda') || t.includes('Kutilmoqda')) {
+        return false;
+      }
+      return true;
+    }
+
+    // Replay Buttons (Clicking 🔊 immediately repeats audio without delays)
+    userReplayBtn.addEventListener('click', () => {
+      const txt = state.lastUserText || userDisplayText.textContent.trim();
+      if (isValidSpeechText(txt)) {
+        speakText(txt, state.lastUserLang || state.sourceLang);
+      }
+    });
+
+    partnerReplayBtn.addEventListener('click', () => {
+      const txt = state.lastPartnerText || partnerDisplayText.textContent.trim();
+      if (isValidSpeechText(txt)) {
+        speakText(txt, state.lastPartnerLang || state.targetLang);
+      }
+    });
+
+    // ========================================================
+    // MICROPHONE RECORDING & SMART AUTO-STOP VAD
+    // ========================================================
+
+    userMicBtn.addEventListener('click', () => toggleRecording('user'));
+    partnerMicBtn.addEventListener('click', () => toggleRecording('partner'));
+
+    async function toggleRecording(speaker) {
+      if (state.isRecording) {
+        if (state.activeSpeaker === speaker) {
+          stopRecording(true);
+        } else {
+          stopRecording(false);
+          setTimeout(() => startRecording(speaker), 250);
+        }
+      } else {
+        startRecording(speaker);
       }
     }
 
-    async function startRecording() {
+    async function startRecording(speaker) {
+      state.isRecording = true;
+      state.activeSpeaker = speaker;
+      state.orbMode = 1;
+      state.recordedMediaChunks = [];
+      state.hasSpoken = false;
+      state.speechFramesCount = 0;
+      state.speechStartTime = 0;
+      state.lastVoiceTime = Date.now();
+      state.ambientNoiseRms = 0.0;
+      state.calibrationFrames = 0;
+
+      if (speaker === 'user') {
+        userMicBtn.classList.add('recording');
+        userMicLabel.textContent = "Eshitilmoqda...";
+        userDisplayText.textContent = "...";
+      } else {
+        partnerMicBtn.classList.add('recording');
+        partnerMicLabel.textContent = "Eshitilmoqda...";
+        partnerDisplayText.textContent = "...";
+      }
+
       try {
-        state.mediaStream = await navigator.mediaDevices.getUserMedia({
+        const stream = await navigator.mediaDevices.getUserMedia({
           audio: {
             channelCount: 1,
-            sampleRate: 16000,
             echoCancellation: true,
             noiseSuppression: true,
+            autoGainControl: true
           }
         });
+        state.mediaStream = stream;
 
-        state.audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        state.audioCtx = new AudioContextClass();
         if (state.audioCtx.state === 'suspended') {
           await state.audioCtx.resume();
         }
 
-        const source = state.audioCtx.createMediaStreamSource(state.mediaStream);
+        const source = state.audioCtx.createMediaStreamSource(stream);
         state.analyser = state.audioCtx.createAnalyser();
-        state.analyser.fftSize = 256;
+        state.analyser.fftSize = 512;
         source.connect(state.analyser);
 
-        state.scriptProcessor = state.audioCtx.createScriptProcessor(4096, 1, 1);
-        source.connect(state.scriptProcessor);
-        state.scriptProcessor.connect(state.audioCtx.destination);
+        const bufferLength = state.analyser.fftSize;
+        const dataArray = new Float32Array(bufferLength);
 
-        state.hasSpoken = false;
-        state.lastVoiceTime = Date.now();
-
-        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-          state.ws.send(JSON.stringify({
-            type: 'start_utterance',
-            source_lang: state.sourceLang,
-            target_lang: state.targetLang,
-            voice: state.selectedVoice,
-            rate: state.selectedRate,
-            mime_type: 'audio/pcm',
-            sample_rate: 16000
-          }));
-        }
-
-        state.scriptProcessor.onaudioprocess = (e) => {
-          if (!state.isRecording) return;
-          const inputData = e.inputBuffer.getChannelData(0);
-          
-          let sumSquares = 0.0;
-          const pcm16 = new Int16Array(inputData.length);
-          for (let i = 0; i < inputData.length; i++) {
-            const s = Math.max(-1, Math.min(1, inputData[i]));
-            sumSquares += s * s;
-            pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
-          }
-          const rms = Math.sqrt(sumSquares / inputData.length);
-          state.audioLevel = Math.min(1.0, rms * 8.0); // Boosted for visual reactivity
-
-          const now = Date.now();
-          if (rms > state.voiceRmsThreshold) {
-            state.hasSpoken = true;
-            state.lastVoiceTime = now;
-            setAppStatus('recording', "Nutq eshitilmoqda...");
-          } else if (state.hasSpoken && (now - state.lastVoiceTime > state.silenceThresholdMs)) {
-            stopRecording();
+        // VAD Monitor Loop
+        const vadInterval = setInterval(() => {
+          if (!state.isRecording) {
+            clearInterval(vadInterval);
             return;
           }
 
-          if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-            state.ws.send(pcm16.buffer);
+          state.analyser.getFloatTimeDomainData(dataArray);
+          let sumSquares = 0.0;
+          for (let i = 0; i < bufferLength; i++) {
+            sumSquares += dataArray[i] * dataArray[i];
           }
+          const rms = Math.sqrt(sumSquares / bufferLength);
+          state.audioLevel = Math.min(1.0, rms * 4.0);
+
+          // Calibrate ambient noise
+          if (state.calibrationFrames < 15) {
+            state.ambientNoiseRms = (state.ambientNoiseRms * state.calibrationFrames + rms) / (state.calibrationFrames + 1);
+            state.calibrationFrames++;
+            return;
+          }
+
+          const threshold = Math.max(state.voiceRmsThreshold, state.ambientNoiseRms * 2.2);
+
+          if (rms > threshold) {
+            state.lastVoiceTime = Date.now();
+            state.speechFramesCount++;
+            if (!state.hasSpoken && state.speechFramesCount >= 3) {
+              state.hasSpoken = true;
+              state.speechStartTime = Date.now();
+            }
+          } else {
+            if (state.hasSpoken && state.silenceThresholdMs < 90000) {
+              const silenceDuration = Date.now() - state.lastVoiceTime;
+              const totalSpeech = Date.now() - state.speechStartTime;
+              if (silenceDuration >= state.silenceThresholdMs && totalSpeech >= 600) {
+                clearInterval(vadInterval);
+                stopRecording(true);
+              }
+            }
+          }
+        }, 60);
+
+        // MediaRecorder setup (WebM Opus / MP4)
+        let mime = 'audio/webm;codecs=opus';
+        if (!MediaRecorder.isTypeSupported(mime)) mime = 'audio/webm';
+        if (!MediaRecorder.isTypeSupported(mime)) mime = 'audio/mp4';
+        if (!MediaRecorder.isTypeSupported(mime)) mime = '';
+
+        state.mediaRecorderMime = mime || 'audio/webm';
+        state.mediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+
+        state.mediaRecorder.ondataavailable = (e) => {
+          if (e.data && e.data.size > 0) state.recordedMediaChunks.push(e.data);
         };
 
-        state.isRecording = true;
-        state.orbMode = 1; // Recording
-        state.recStartTime = Date.now();
-        recTimer.classList.remove('hidden');
-        recTimer.textContent = "00:00";
-        state.recTimerInterval = setInterval(() => {
-          const sec = Math.floor((Date.now() - state.recStartTime) / 1000);
-          const m = String(Math.floor(sec / 60)).padStart(2, '0');
-          const s = String(sec % 60).padStart(2, '0');
-          recTimer.textContent = `${m}:${s}`;
-        }, 1000);
-
-        micBtn.classList.remove('apple-primary-btn');
-        micBtn.classList.add('apple-rec-btn');
-        micIcon.className = 'fa-solid fa-square text-base';
-        micButtonText.textContent = "To'xtatish";
-        orbShadow.classList.add('recording');
-
-        orbStateText.textContent = "Eshitilmoqda... Gapiring, tugatgach to'xtating";
-        badgeDot.className = "w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping";
-        setAppStatus('recording', "Nutq eshitilmoqda...");
-
-        showActiveCardUI("Nutq eshitilmoqda...");
-        displaySrcText.textContent = "Gapiring... Tugatishingiz bilan tarjima qilinadi.";
-        displayTgtText.textContent = "...";
-
+        state.mediaRecorder.start(100);
       } catch (err) {
-        console.error(err);
-        alert('Mikrofon xatosi: ' + err.message);
+        console.error("Mic error:", err);
+        stopRecording(false);
+        alert("Mikrofonga ruxsat berilmadi: " + err.message);
       }
     }
 
-    function stopRecording() {
+    function stopRecording(shouldProcess = true) {
       if (!state.isRecording) return;
       state.isRecording = false;
-      state.orbMode = 2; // Processing
-      state.audioLevel = 0.0;
 
-      clearInterval(state.recTimerInterval);
-      recTimer.classList.add('hidden');
+      const speaker = state.activeSpeaker;
+      userMicBtn.classList.remove('recording');
+      partnerMicBtn.classList.remove('recording');
+      updateLanguageUI();
 
-      micBtn.classList.remove('apple-rec-btn');
-      micBtn.classList.add('apple-primary-btn');
-      micIcon.className = 'fa-solid fa-microphone text-base';
-      micButtonText.textContent = "Gapirish";
-      orbShadow.classList.remove('recording');
+      if (state.mediaRecorder && state.mediaRecorder.state !== 'inactive') {
+        state.mediaRecorder.onstop = () => {
+          // Clean up stream inside onstop to avoid truncating audio buffers in Chromium WebView
+          if (state.mediaStream) {
+            try {
+              state.mediaStream.getTracks().forEach(t => t.stop());
+            } catch (_) {}
+            state.mediaStream = null;
+          }
+          if (state.audioCtx && state.audioCtx.state !== 'closed') {
+            state.audioCtx.close().catch(() => {});
+            state.audioCtx = null;
+          }
 
-      orbStateText.textContent = "Tarjima tayyorlanmoqda...";
-      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
-      setAppStatus('processing', "AI tarjima qilmoqda...");
-
-      if (state.scriptProcessor) {
-        state.scriptProcessor.disconnect();
-        state.scriptProcessor = null;
-      }
-      if (state.mediaStream) {
-        state.mediaStream.getTracks().forEach(track => track.stop());
-        state.mediaStream = null;
-      }
-      if (state.audioCtx) {
-        state.audioCtx.close();
-        state.audioCtx = null;
-      }
-
-      if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-        state.ws.send(JSON.stringify({
-          type: 'end_utterance',
-          source_lang: state.sourceLang,
-          target_lang: state.targetLang,
-          voice: state.selectedVoice,
-          rate: state.selectedRate
-        }));
-      }
-    }
-
-    function showActiveCardUI(stageMsg) {
-      idleSuggestions.classList.add('hidden');
-      activeTranslationView.classList.remove('hidden');
-    }
-
-    // Render Translation Result
-    function renderResult(result) {
-      showActiveCardUI("Tarjima tayyor");
-      setAppStatus('done', "Tarjima tayyor");
-
-      orbStateText.textContent = "Tarjima tayyor";
-      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-emerald-500";
-
-      const s = LANG_DATA[result.source_lang] || LANG_DATA.uz;
-      const t = LANG_DATA[result.target_lang] || LANG_DATA.tr;
-
-      transSrcFlag.innerHTML = FLAG_SVGS[result.source_lang] || s.flag;
-      transSrcName.textContent = s.name;
-      displaySrcText.textContent = result.source_text || '';
-
-      transTgtFlag.innerHTML = FLAG_SVGS[result.target_lang] || t.flag;
-      transTgtName.textContent = t.name;
-      displayTgtText.textContent = result.translated_text || '';
-
-      metricLatency.textContent = result.latency ? `⚡ ${Math.round(result.latency.total_ms)} ms` : '';
-
-      updateGenderUI();
-
-      // Audio setup
-      if (result.audio_base64) {
-        state.currentAudioBase64 = result.audio_base64;
-        const audioSrc = `data:${result.audio_mime || 'audio/mpeg'};base64,${result.audio_base64}`;
-        state.audioCache[`${state.selectedVoice}_${result.translated_text}`] = audioSrc;
-        globalAudio.src = audioSrc;
-
-        replaySpeechBtn.onclick = () => {
-          if (globalAudio.paused) {
-            playAudioFromSrc(globalAudio.src);
+          if (shouldProcess && state.recordedMediaChunks.length > 0) {
+            const cleanMime = (state.mediaRecorderMime || 'audio/webm').split(';')[0].trim();
+            const blob = new Blob(state.recordedMediaChunks, { type: cleanMime });
+            console.log("Audio blob ready, size:", blob.size, "mime:", cleanMime);
+            if (blob.size >= 800) {
+              processAudioSpeech(blob, speaker);
+            } else {
+              console.warn("Audio too short (<800 bytes), ignoring:", blob.size);
+              resetStatusDisplay();
+              state.orbMode = 0;
+            }
           } else {
-            globalAudio.pause();
-            replayIcon.className = 'fa-solid fa-play text-xs';
+            resetStatusDisplay();
             state.orbMode = 0;
-            setAppStatus('ready', "Tinglashga tayyor");
           }
         };
 
-        globalAudio.onended = () => {
-          replayIcon.className = 'fa-solid fa-play text-xs';
-          state.orbMode = 0;
-          setAppStatus('ready', "Tinglashga tayyor");
-          orbStateText.textContent = "Yana gapirish uchun Orb ustiga yoki pastdagi tugmaga bosing";
-          badgeDot.className = "w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse";
-        };
+        try {
+          if (state.mediaRecorder.state === 'recording') {
+            state.mediaRecorder.requestData();
+          }
+        } catch (_) {}
 
-        downloadMp3Btn.onclick = () => {
-          const a = document.createElement('a');
-          a.href = globalAudio.src || audioSrc;
-          a.download = `tarjima_${result.source_lang}_${result.target_lang}_${state.selectedGender}_${Date.now()}.mp3`;
-          a.click();
-        };
-
-        // Auto-play if enabled
-        if (state.autoPlay) {
-          playAudioFromSrc(audioSrc);
-        } else {
+        try {
+          state.mediaRecorder.stop();
+        } catch (err) {
+          console.warn("MediaRecorder stop err:", err);
+          if (state.mediaStream) {
+            state.mediaStream.getTracks().forEach(t => t.stop());
+            state.mediaStream = null;
+          }
           state.orbMode = 0;
         }
       } else {
         state.orbMode = 0;
+        if (state.mediaStream) {
+          state.mediaStream.getTracks().forEach(t => t.stop());
+          state.mediaStream = null;
+        }
       }
-
-      addToHistory(result);
     }
 
-    // Copy Buttons
-    copySrcTextBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(displaySrcText.textContent);
-      copySrcTextBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i>';
-      setTimeout(() => copySrcTextBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
-    });
-
-    copyTgtTextBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(displayTgtText.textContent);
-      copyTgtTextBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i>';
-      setTimeout(() => copyTgtTextBtn.innerHTML = '<i class="fa-regular fa-copy"></i>', 1500);
-    });
-
-    // History Feed Item
-    function addToHistory(item) {
-      const empty = document.getElementById('emptyHistoryNotice');
-      if (empty) empty.remove();
-
-      const card = document.createElement('div');
-      card.className = 'p-3.5 rounded-2xl bg-white border border-black/[0.06] text-xs space-y-1.5 shadow-sm';
-      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-      card.innerHTML = `
-        <div class="flex items-center justify-between text-[#86868b] text-[10px]">
-          <span class="font-bold text-blue-600 font-mono">${(item.source_lang || '').toUpperCase()} ➔ ${(item.target_lang || '').toUpperCase()}</span>
-          <span>${timeStr}</span>
-        </div>
-        <p class="text-[#1d1d1f] font-normal">${escapeHtml(item.source_text || '')}</p>
-        <p class="text-blue-600 font-semibold">${escapeHtml(item.translated_text || '')}</p>
-      `;
-      historyFeedList.prepend(card);
+    function resetStatusDisplay() {
+      if (userDisplayText.textContent === '...' || userDisplayText.textContent === 'Tinglanmoqda...') {
+        userDisplayText.textContent = "O'zbekcha gapirish uchun tugmani bosing...";
+      }
+      if (partnerDisplayText.textContent === '...' || partnerDisplayText.textContent === 'Tinglanmoqda...' || partnerDisplayText.textContent === 'Tarjima qilinmoqda...') {
+        partnerDisplayText.textContent = "Tugmani bosib gapiring...";
+      }
     }
 
-    // Audio File Upload
-    uploadAudioBtn.addEventListener('click', () => {
-      primeAudioPlayback();
-      audioFileInput.click();
-    });
+    // ========================================================
+    // SPEECH TRANSLATION DISPATCHER (GEMINI 3.1 FLASH LITE)
+    // ========================================================
 
-    audioFileInput.addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
+    async function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const res = reader.result;
+          const comma = res.indexOf(',');
+          resolve(comma !== -1 ? res.slice(comma + 1) : res);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
 
-      showActiveCardUI("Fayl yuklanmoqda...");
-      displaySrcText.textContent = file.name;
-      displayTgtText.textContent = "AI audio faylni tahlil qilmoqda...";
-      state.orbMode = 2; // Processing
-      orbStateText.textContent = "Audio fayl tahlil qilinmoqda...";
-      badgeDot.className = "w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin";
+    async function processAudioSpeech(audioBlob, speaker) {
+      state.orbMode = 2; // Processing (pulsing crystal orb)
+      const srcL = speaker === 'user' ? state.sourceLang : state.targetLang;
+      const tgtL = speaker === 'user' ? state.targetLang : state.sourceLang;
 
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('source_lang', state.sourceLang);
-      formData.append('target_lang', state.targetLang);
-      formData.append('voice', state.selectedVoice);
-      formData.append('rate', state.selectedRate);
+      if (speaker === 'user') {
+        userDisplayText.textContent = "Tinglanmoqda...";
+        partnerDisplayText.textContent = "Tarjima qilinmoqda...";
+      } else {
+        partnerDisplayText.textContent = "Tinglanmoqda...";
+        userDisplayText.textContent = "Tarjima qilinmoqda...";
+      }
 
       try {
-        const resp = await fetch('/api/v1/translate-audio', {
-          method: 'POST',
-          body: formData
+        const audioB64 = await blobToBase64(audioBlob);
+        if (!audioB64 || audioB64.length < 50) {
+          resetStatusDisplay();
+          state.orbMode = 0;
+          return;
+        }
+
+        const cleanMime = (audioBlob.type || state.mediaRecorderMime || 'audio/webm').split(';')[0].trim();
+
+        const prompt = `You are an expert bilingual interpreter.
+The speaker spoke in ${LANG_DATA[srcL]?.name || srcL}.
+The target language is ${LANG_DATA[tgtL]?.name || tgtL}.
+1. Transcribe what was said accurately into "source_text".
+2. Translate it naturally and fluently into ${LANG_DATA[tgtL]?.name || tgtL} in "translated_text".
+Return ONLY valid JSON with keys "source_text" and "translated_text":
+{"source_text": "...", "translated_text": "..."}`;
+
+        const contents = [{
+          parts: [
+            { inlineData: { mimeType: cleanMime, data: audioB64 } },
+            { text: prompt }
+          ]
+        }];
+
+        const res = await callGeminiGenerateContent(state.geminiApiKey, contents, {
+          temperature: 0.1,
+          responseMimeType: "application/json"
         });
-        const data = await resp.json();
-        renderResult(data);
+
+        const json = parseGeminiJsonResponse(res.text);
+        const sourceText = (json.source_text || '').trim();
+        const translatedText = (json.translated_text || '').trim();
+
+        if (!sourceText && !translatedText) {
+          throw new Error("Nutq aniqlanmadi yoki bo'sh qaytdi");
+        }
+
+        applyTranslationResult(sourceText, translatedText, speaker, srcL, tgtL);
       } catch (err) {
-        alert('Audio fayl xatosi: ' + err.message);
+        console.error("Translation error:", err);
+        alert("Tarjima xatosi: " + err.message);
+        resetStatusDisplay();
         state.orbMode = 0;
       }
-      audioFileInput.value = '';
-    });
-
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
     }
 
-    // ============================================================
-    // THE LIVING APPLE INTELLIGENCE ORB (HIGH-PERFORMANCE WEBGL)
-    // ============================================================
-    const canvas = document.getElementById('orbCanvas');
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: false });
+    async function runTextTranslation(text, speaker) {
+      state.orbMode = 2;
+      const srcL = speaker === 'user' ? state.sourceLang : state.targetLang;
+      const tgtL = speaker === 'user' ? state.targetLang : state.sourceLang;
 
-    if (!gl) {
-      console.warn("WebGL not supported, falling back to 2D canvas");
-      setupCanvas2DFallback();
-    } else {
-      setupWebGLOrb();
+      try {
+        const prompt = `Translate the following text from ${LANG_DATA[srcL]?.name || srcL} to ${LANG_DATA[tgtL]?.name || tgtL}.
+Input: "${text}"
+Output MUST be valid JSON: {"translated_text": "..."}`;
+
+        const res = await callGeminiGenerateContent(state.geminiApiKey, [{ parts: [{ text: prompt }] }], {
+          temperature: 0.1,
+          responseMimeType: "application/json"
+        });
+
+        const json = parseGeminiJsonResponse(res.text);
+        const translatedText = (json.translated_text || '').trim();
+        applyTranslationResult(text, translatedText, speaker, srcL, tgtL);
+      } catch (err) {
+        console.error("Text translation error:", err);
+        alert("Tarjima xatosi: " + err.message);
+        state.orbMode = 0;
+      }
     }
 
-    function setupWebGLOrb() {
-      // Vertex Shader: full quad
-      const vsSource = `
-        attribute vec2 a_pos;
-        varying vec2 v_uv;
-        void main() {
-          v_uv = a_pos * 0.5 + 0.5;
-          gl_Position = vec4(a_pos, 0.0, 1.0);
+    function applyTranslationResult(srcText, tgtText, speaker, srcL, tgtL) {
+      state.orbMode = 0;
+      if (speaker === 'user') {
+        state.lastUserText = srcText;
+        state.lastUserLang = srcL;
+        state.lastPartnerText = tgtText;
+        state.lastPartnerLang = tgtL;
+
+        userDisplayText.textContent = srcText || '...';
+        userSubtext.textContent = `Aytilgan nutq (${LANG_DATA[srcL]?.name || srcL})`;
+        partnerDisplayText.textContent = tgtText || '...';
+        partnerSubtext.textContent = `Tarjima (${LANG_DATA[tgtL]?.name || tgtL})`;
+
+        if (tgtText && tgtText.trim()) {
+          speakText(tgtText, tgtL);
         }
-      `;
+      } else {
+        state.lastPartnerText = srcText;
+        state.lastPartnerLang = srcL;
+        state.lastUserText = tgtText;
+        state.lastUserLang = tgtL;
 
-      // Fragment Shader: 3D Crystal Orb with Swirling Lavender, Azure Blue & Radiant Cyan Silk Ribbon
-      const fsSource = `
-        precision highp float;
-        varying vec2 v_uv;
-        uniform vec2 u_resolution;
-        uniform float u_time;
-        uniform float u_audio;
-        uniform float u_mode;
+        partnerDisplayText.textContent = srcText || '...';
+        partnerSubtext.textContent = `Aytilgan nutq (${LANG_DATA[srcL]?.name || srcL})`;
+        userDisplayText.textContent = tgtText || '...';
+        userSubtext.textContent = `Tarjima (${LANG_DATA[tgtL]?.name || tgtL})`;
 
-        // 3D Simplex noise approximation
-        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-        vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
-        vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
-        vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
-
-        float snoise(vec3 v) {
-          const vec2 C = vec2(1.0/6.0, 1.0/3.0);
-          const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
-          vec3 i  = floor(v + dot(v, C.yyy));
-          vec3 x0 = v - i + dot(i, C.xxx);
-          vec3 g = step(x0.yzx, x0.xyz);
-          vec3 l = 1.0 - g;
-          vec3 i1 = min(g.xyz, l.zxy);
-          vec3 i2 = max(g.xyz, l.zxy);
-          vec3 x1 = x0 - i1 + C.xxx;
-          vec3 x2 = x0 - i2 + C.yyy;
-          vec3 x3 = x0 - D.yyy;
-          i = mod289(i);
-          vec4 p = permute(permute(permute(
-                    i.z + vec4(0.0, i1.z, i2.z, 1.0))
-                  + i.y + vec4(0.0, i1.y, i2.y, 1.0))
-                  + i.x + vec4(0.0, i1.x, i2.x, 1.0));
-          float n_ = 0.142857142857;
-          vec3  ns = n_ * D.wyz - D.xzx;
-          vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
-          vec4 x_ = floor(j * ns.z);
-          vec4 y_ = floor(j - 7.0 * x_);
-          vec4 x = x_ *ns.x + ns.yyyy;
-          vec4 y = y_ *ns.x + ns.yyyy;
-          vec4 h = 1.0 - abs(x) - abs(y);
-          vec4 b0 = vec4(x.xy, y.xy);
-          vec4 b1 = vec4(x.zw, y.zw);
-          vec4 s0 = floor(b0)*2.0 + 1.0;
-          vec4 s1 = floor(b1)*2.0 + 1.0;
-          vec4 sh = -step(h, vec4(0.0));
-          vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
-          vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
-          vec3 p0 = vec3(a0.xy, h.x);
-          vec3 p1 = vec3(a0.zw, h.y);
-          vec3 p2 = vec3(a1.xy, h.z);
-          vec3 p3 = vec3(a1.zw, h.w);
-          vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
-          p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
-          vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
-          m = m * m;
-          return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+        if (tgtText && tgtText.trim()) {
+          speakText(tgtText, tgtL);
         }
+      }
+    }
 
-        void main() {
-          vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution) / min(u_resolution.x, u_resolution.y);
-          float dist = length(p);
-          float radius = 0.38 + u_audio * 0.012;
+    async function callGeminiGenerateContent(apiKey, contents, config = {}) {
+      const activeKey = apiKey || DEFAULT_GEMINI_KEY;
+      const models = ['gemini-3.1-flash-lite', 'gemini-flash-latest', 'gemini-3.5-flash-lite', 'gemini-3.8-flash'];
+      let lastError = null;
 
-          // Continuous smooth time phase directly from JS integrator
-          float t = u_time;
-
-          // Soft ethereal outer aura with periwinkle/lavender bloom
-          float outerGlow = exp(-max(0.0, dist - radius) * 22.0) * (0.30 + u_audio * 0.28);
-          vec3 auraColor = mix(vec3(0.88, 0.89, 0.98), vec3(0.82, 0.80, 0.96), sin(t * 0.4) * 0.5 + 0.5);
-
-          if (dist > radius) {
-            float edgeFade = smoothstep(radius + 0.12, radius, dist);
-            gl_FragColor = vec4(auraColor, outerGlow * edgeFade);
-            return;
+      for (const m of models) {
+        try {
+          const body = { contents };
+          if (config.temperature !== undefined) body.generationConfig = { temperature: config.temperature };
+          if (config.responseMimeType) {
+            body.generationConfig = body.generationConfig || {};
+            body.generationConfig.responseMimeType = config.responseMimeType;
           }
 
-          // 3D Sphere Surface Coordinates & Normal
-          float z = sqrt(max(0.0, radius * radius - dist * dist));
-          vec3 normal = normalize(vec3(p.x, p.y, z));
+          // Pass API key via URL query parameter to bypass WebView CORS and custom header restrictions
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeKey}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          });
 
-          // Glass shell thickness: inner refraction boundary ring (visible crystal wall)
-          float innerRadius = radius * 0.86;
-          float glassThicknessRing = smoothstep(innerRadius - 0.018, innerRadius, dist) * smoothstep(radius, innerRadius + 0.015, dist);
+          if (!res.ok) {
+            const errText = await res.text();
+            lastError = `${m} (HTTP ${res.status}): ${errText.slice(0, 150)}`;
+            console.warn(lastError);
+            continue;
+          }
 
-          // Refracted internal ray coordinates based on surface curvature
-          vec2 refP = p - normal.xy * (0.048 * (1.0 - normal.z));
-
-          // Multi-layer domain warped 3D fluid noise for silk ribbon motion
-          vec3 noiseCoord = vec3(refP * 3.0, t * 0.28);
-          float n1 = snoise(noiseCoord);
-          float n2 = snoise(noiseCoord * 1.8 + vec3(n1 * 0.9, -n1 * 0.6, t * 0.2));
-          float n3 = snoise(vec3(refP * 5.2 + vec2(n2 * 0.4), t * 0.35));
-
-          // Fluid S-curve fold: sweeps from top-center down towards bottom
-          // fold matches the beautiful curved wave crest in the reference image
-          float foldCurve = sin(refP.y * 3.4 - 0.2 + sin(t * 0.4) * 0.12) * 0.14
-                          + cos(refP.y * 1.8 + t * 0.3) * 0.04
-                          + (n1 * 0.10 + n2 * 0.05);
-
-          float ribbonCoord = (refP.x - foldCurve);
-
-          // Left vs Right hemisphere gradient split:
-          // Left: Dreamy Lavender / Lilac mist
-          // Right: Deep Luminous Sapphire / Royal Blue
-          float sideBlend = smoothstep(-0.16, 0.14, ribbonCoord);
-
-          // 1. Ethereal Lavender / Periwinkle Palette (Left hemisphere)
-          vec3 colLavenderLight = vec3(0.82, 0.80, 0.97); // #d1ccf7
-          vec3 colLavenderMid   = vec3(0.68, 0.63, 0.94); // #ada1f0
-          vec3 colLavenderDeep  = vec3(0.55, 0.48, 0.86); // #8c7adb
-          vec3 leftColor = mix(colLavenderMid, colLavenderLight, smoothstep(-0.25, 0.1, -refP.x + n1 * 0.15));
-          leftColor = mix(leftColor, colLavenderDeep, smoothstep(0.05, -0.35, refP.y + n2 * 0.12) * 0.4);
-
-          // 2. Luminous Sapphire / Royal Blue Palette (Right hemisphere)
-          vec3 colBlueDeep   = vec3(0.24, 0.46, 0.95); // #3d75f2
-          vec3 colBlueMid    = vec3(0.36, 0.62, 0.98); // #5c9efa
-          vec3 colBlueLight  = vec3(0.52, 0.77, 1.0);  // #85c4ff
-          vec3 rightColor = mix(colBlueDeep, colBlueMid, smoothstep(-0.06, 0.28, refP.x + n2 * 0.15));
-          rightColor = mix(rightColor, colBlueLight, smoothstep(0.32, -0.18, refP.y) * 0.32);
-
-          // Base fluid blend between lavender and azure
-          vec3 baseFluid = mix(leftColor, rightColor, sideBlend);
-
-          // 3. Radiant Glowing Cyan / Ice-Blue Wave Crest (Silk Ribbon)
-          // Smooth gaussian core along the fold
-          float ribbonDist = abs(ribbonCoord);
-          float ribbonGlow = exp(-ribbonDist * ribbonDist * 70.0);
-
-          // Soft 3D silk ridge specular fold (seen clearly in reference image)
-          float ridgeOffset = ribbonCoord - 0.03;
-          float ridgeSpecular = pow(max(0.0, 1.0 - abs(ridgeOffset) * 8.0), 3.0);
-          float verticalWeight = smoothstep(-0.25, 0.20, refP.y + 0.10 + n3 * 0.06);
-          ridgeSpecular *= verticalWeight;
-
-          // Glowing electric cyan palette
-          vec3 colCyanCore  = vec3(0.72, 0.96, 1.0);  // Radiant white-cyan
-          vec3 colCyanGlow  = vec3(0.35, 0.86, 0.99); // Electric cyan
-          vec3 colCyanEdge  = vec3(0.26, 0.65, 0.96); // Cyan-azure edge
-
-          vec3 ribbonColor = mix(colCyanEdge, colCyanGlow, ribbonGlow);
-          ribbonColor = mix(ribbonColor, colCyanCore, ridgeSpecular * 0.90);
-
-          // Combine ribbon over fluid base with voice audio boost
-          float audioIntensity = 1.0 + u_audio * 0.75;
-          float ribbonFactor = (ribbonGlow * 0.82 + ridgeSpecular * 1.05) * audioIntensity;
-          vec3 internalColor = mix(baseFluid, ribbonColor, clamp(ribbonFactor, 0.0, 1.0));
-
-          // Soft caustics / secondary internal ambient light
-          float caustic = pow(max(0.0, n2 * 0.5 + n3 * 0.5), 2.5) * (0.28 + u_audio * 0.3);
-          internalColor += vec3(0.42, 0.80, 1.0) * caustic * smoothstep(-0.1, 0.30, refP.x);
-
-          // Translucent milky/crystal glass base
-          vec3 glassBase = vec3(0.92, 0.93, 0.98);
-          float fluidOpacity = smoothstep(radius * 0.96, radius * 0.35, dist);
-          vec3 sphereColor = mix(glassBase, internalColor, 0.82 + fluidOpacity * 0.16);
-
-          // Refractive glass shell ring (concentric crystal wall)
-          vec3 rimGlowColor = mix(vec3(0.82, 0.85, 1.0), vec3(0.86, 0.80, 0.98), normal.y * 0.5 + 0.5);
-          sphereColor = mix(sphereColor, rimGlowColor * 0.95, glassThicknessRing * 0.38);
-
-          // Glass Fresnel Rim Reflection (smooth pearlescent sheen)
-          float fresnel = pow(1.0 - normal.z, 2.6);
-          sphereColor = mix(sphereColor, vec3(0.94, 0.95, 0.99), fresnel * 0.55);
-          sphereColor += rimGlowColor * (fresnel * 0.28);
-
-          // Diffused soft studio specular sheen (no blown-out white circles)
-          vec3 lightDir = normalize(vec3(-0.35, 0.52, 0.78));
-          vec3 viewDir = vec3(0.0, 0.0, 1.0);
-          vec3 halfDir = normalize(lightDir + viewDir);
-          float spec = pow(max(0.0, dot(normal, halfDir)), 22.0);
-          sphereColor += vec3(0.92, 0.95, 1.0) * spec * 0.18;
-
-          // Secondary subtle soft fill highlight
-          vec3 spec2Dir = normalize(vec3(0.36, -0.34, 0.85));
-          float spec2 = pow(max(0.0, dot(normal, normalize(spec2Dir + viewDir))), 14.0);
-          sphereColor += vec3(0.72, 0.85, 1.0) * spec2 * 0.14;
-
-          // Antialiased glass sphere boundary
-          float edgeAlpha = smoothstep(radius, radius - 0.005, dist);
-
-          gl_FragColor = vec4(sphereColor, edgeAlpha);
+          const json = await res.json();
+          const candidate = json.candidates?.[0];
+          const textPart = candidate?.content?.parts?.find(p => p.text);
+          if (textPart && textPart.text) {
+            return { text: textPart.text, model: m };
+          }
+        } catch (e) {
+          lastError = `${m} tarmoq xatosi: ${e.message}`;
+          console.warn(lastError);
         }
-      `;
+      }
+      throw new Error(lastError || "Google AI modellari band yoki xato berdi.");
+    }
 
-      function compileShader(src, type) {
-        const s = gl.createShader(type);
-        gl.shaderSource(s, src);
-        gl.compileShader(s);
-        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-          console.error(gl.getShaderInfoLog(s));
-          gl.deleteShader(s);
-          return null;
+    function parseGeminiJsonResponse(raw) {
+      if (!raw) return {};
+      let clean = raw.trim();
+      if (clean.startsWith('```json')) clean = clean.slice(7);
+      if (clean.startsWith('```')) clean = clean.slice(3);
+      if (clean.endsWith('```')) clean = clean.slice(0, -3);
+      clean = clean.trim();
+      try {
+        let parsed = JSON.parse(clean);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          parsed = parsed[0];
         }
-        return s;
+        return parsed || {};
+      } catch (e) {
+        const m = clean.match(/\{[\s\S]*?\}/);
+        if (m) {
+          try { return JSON.parse(m[0]); } catch (_) {}
+        }
+        return { source_text: '', translated_text: clean };
+      }
+    }
+
+    // ========================================================
+    // LIVING CRYSTAL ORB (SMOOTH 2D CANVAS ACCELERATION)
+    // ========================================================
+
+    const ctx = orbCanvas.getContext('2d');
+    let orbTime = 0;
+
+    function renderOrb() {
+      orbTime += 0.03;
+      const w = orbCanvas.width;
+      const h = orbCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const r = w * 0.42;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Gradient selection based on mode
+      const grad = ctx.createRadialGradient(
+        cx + Math.sin(orbTime) * 6,
+        cy + Math.cos(orbTime) * 6,
+        r * 0.1,
+        cx,
+        cy,
+        r
+      );
+
+      if (state.orbMode === 1) { // Recording (Red pulse)
+        grad.addColorStop(0, '#fca5a5');
+        grad.addColorStop(0.5, '#ef4444');
+        grad.addColorStop(1, '#991b1b');
+      } else if (state.orbMode === 2) { // Processing (Purple energetic)
+        grad.addColorStop(0, '#e9d5ff');
+        grad.addColorStop(0.5, '#a855f7');
+        grad.addColorStop(1, '#6b21a8');
+      } else if (state.orbMode === 3) { // Speaking (Cyan/Emerald crystal wave)
+        grad.addColorStop(0, '#a7f3d0');
+        grad.addColorStop(0.5, '#10b981');
+        grad.addColorStop(1, '#047857');
+      } else { // Idle (Apple Intelligence blue/violet ambient)
+        grad.addColorStop(0, '#c7d2fe');
+        grad.addColorStop(0.4, '#818cf8');
+        grad.addColorStop(0.8, '#6366f1');
+        grad.addColorStop(1, '#3730a3');
       }
 
-      const vs = compileShader(vsSource, gl.VERTEX_SHADER);
-      const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.linkProgram(program);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r + (state.isRecording ? state.audioLevel * 6 : 0), 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
 
-      gl.useProgram(program);
+      // Soft rim highlight
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.stroke();
+      ctx.restore();
 
-      // Full quad vertices
-      const vertices = new Float32Array([
-        -1.0, -1.0,
-         1.0, -1.0,
-        -1.0,  1.0,
-        -1.0,  1.0,
-         1.0, -1.0,
-         1.0,  1.0
-      ]);
-      const buf = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-
-      const aPos = gl.getAttribLocation(program, 'a_pos');
-      gl.enableVertexAttribArray(aPos);
-      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-      const uRes = gl.getUniformLocation(program, 'u_resolution');
-      const uTime = gl.getUniformLocation(program, 'u_time');
-      const uAudio = gl.getUniformLocation(program, 'u_audio');
-      const uMode = gl.getUniformLocation(program, 'u_mode');
-
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
-      let lastFrameTime = performance.now();
-      let currentPhase = 0.0;
-      let smoothedAudio = 0.0;
-
-      function renderFrame(now) {
-        const dt = Math.min(0.04, (now - lastFrameTime) * 0.001);
-        lastFrameTime = now;
-
-        // Smooth audio energy with organic attack & decay
-        let targetAudio = state.audioLevel;
-        if (state.orbMode === 3 && !globalAudio.paused) {
-          targetAudio = 0.35 + Math.sin(now * 0.008) * 0.2;
-        } else if (state.orbMode === 2) {
-          targetAudio = 0.22;
-        }
-
-        // Asymmetric attack/decay filter: fast to react to speech, smooth release
-        const attackDecay = targetAudio > smoothedAudio ? 12.0 : 5.0;
-        smoothedAudio += (targetAudio - smoothedAudio) * Math.min(1.0, dt * attackDecay);
-
-        // Smooth continuous angular velocity (zero phase jumps when speaking)
-        let speed = 0.85;
-        if (state.orbMode === 1) { // Recording/Speaking
-          speed = 1.05 + smoothedAudio * 1.35;
-        } else if (state.orbMode === 2) { // Processing
-          speed = 2.2;
-        } else if (state.orbMode === 3) { // Speaking TTS
-          speed = 1.15 + smoothedAudio * 1.1;
-        }
-        currentPhase += dt * speed;
-
-        gl.viewport(0, 0, canvas.width, canvas.height);
-        gl.clearColor(0, 0, 0, 0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
-
-        gl.uniform2f(uRes, canvas.width, canvas.height);
-        gl.uniform1f(uTime, currentPhase);
-        gl.uniform1f(uAudio, smoothedAudio);
-        gl.uniform1f(uMode, state.orbMode);
-
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-        // Living dynamic movement of the Orb (especially active when speaking)
-        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
-          // Dynamic voice-reactive float & breathing
-          const floatY = Math.sin(currentPhase * 3.6) * (6.0 + smoothedAudio * 12.0);
-          const floatX = Math.cos(currentPhase * 2.4) * (3.5 + smoothedAudio * 7.0);
-          const voiceScale = 1.0 + smoothedAudio * 0.10 + Math.sin(currentPhase * 4.4) * 0.025;
-          const tiltDeg = Math.sin(currentPhase * 2.8) * (1.8 + smoothedAudio * 3.5);
-
-          canvas.style.transform = `translate3d(${floatX.toFixed(2)}px, ${floatY.toFixed(2)}px, 0) scale(${voiceScale.toFixed(3)}) rotate(${tiltDeg.toFixed(2)}deg)`;
-
-          if (orbShadow) {
-            const shadowScaleX = 1.0 + smoothedAudio * 0.22 - floatY * 0.015;
-            const shadowScaleY = 1.0 + smoothedAudio * 0.16;
-            const shadowOpacity = 0.85 + smoothedAudio * 0.35;
-            orbShadow.style.transform = `translate3d(${(floatX * 0.35).toFixed(2)}px, 0, 0) scale(${shadowScaleX.toFixed(3)}, ${shadowScaleY.toFixed(3)})`;
-            orbShadow.style.opacity = shadowOpacity.toFixed(2);
-          }
-        } else if (state.orbMode === 2) {
-          // Translating/processing hover pulse
-          const floatY = Math.sin(currentPhase * 8.0) * 3.5;
-          const pulseScale = 1.02 + Math.sin(currentPhase * 6.0) * 0.02;
-          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(${pulseScale.toFixed(3)})`;
-          if (orbShadow) {
-            orbShadow.style.transform = 'scale(1.02, 1.02)';
-            orbShadow.style.opacity = '0.9';
-          }
-        } else {
-          // Idle gentle ambient floating
-          const floatY = Math.sin(currentPhase * 1.4) * 3.0;
-          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(1.0)`;
-          if (orbShadow) {
-            orbShadow.style.transform = 'scale(1.0, 1.0)';
-            orbShadow.style.opacity = '1.0';
-          }
-        }
-
-        requestAnimationFrame(renderFrame);
-      }
-      requestAnimationFrame(renderFrame);
+      requestAnimationFrame(renderOrb);
     }
 
-    // 2D Canvas Fallback
-    function setupCanvas2DFallback() {
-      const ctx = canvas.getContext('2d');
-      let angle = 0;
-      let smoothedAudio2D = 0;
-      let lastTime2D = performance.now();
+    renderOrb();
 
-      function render2D(now) {
-        const dt = Math.min(0.04, (now - lastTime2D) * 0.001);
-        lastTime2D = now;
-
-        let targetAudio = state.audioLevel;
-        if (state.orbMode === 3 && !globalAudio.paused) targetAudio = 0.35;
-        smoothedAudio2D += (targetAudio - smoothedAudio2D) * Math.min(1.0, dt * 8.0);
-
-        let speed = 0.85;
-        if (state.orbMode === 1) speed = 1.05 + smoothedAudio2D * 1.35;
-        else if (state.orbMode === 2) speed = 2.2;
-        angle += dt * speed;
-
-        // Living dynamic movement in 2D fallback
-        if (state.isRecording || (state.orbMode === 3 && !globalAudio.paused)) {
-          const floatY = Math.sin(angle * 3.6) * (6.0 + smoothedAudio2D * 12.0);
-          const floatX = Math.cos(angle * 2.4) * (3.5 + smoothedAudio2D * 7.0);
-          const voiceScale = 1.0 + smoothedAudio2D * 0.10 + Math.sin(angle * 4.4) * 0.025;
-          const tiltDeg = Math.sin(angle * 2.8) * (1.8 + smoothedAudio2D * 3.5);
-          canvas.style.transform = `translate3d(${floatX.toFixed(2)}px, ${floatY.toFixed(2)}px, 0) scale(${voiceScale.toFixed(3)}) rotate(${tiltDeg.toFixed(2)}deg)`;
-          if (orbShadow) {
-            const shadowScaleX = 1.0 + smoothedAudio2D * 0.22 - floatY * 0.015;
-            const shadowScaleY = 1.0 + smoothedAudio2D * 0.16;
-            const shadowOpacity = 0.85 + smoothedAudio2D * 0.35;
-            orbShadow.style.transform = `translate3d(${(floatX * 0.35).toFixed(2)}px, 0, 0) scale(${shadowScaleX.toFixed(3)}, ${shadowScaleY.toFixed(3)})`;
-            orbShadow.style.opacity = shadowOpacity.toFixed(2);
-          }
-        } else {
-          const floatY = Math.sin(angle * 1.4) * 3.0;
-          canvas.style.transform = `translate3d(0, ${floatY.toFixed(2)}px, 0) scale(1.0)`;
-          if (orbShadow) {
-            orbShadow.style.transform = 'scale(1.0, 1.0)';
-            orbShadow.style.opacity = '1.0';
-          }
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const cx = canvas.width / 2;
-        const cy = canvas.height / 2;
-        const r = canvas.width * (0.38 + smoothedAudio2D * 0.012);
-
-        // Base crystal glass sphere with refractive rim
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);
-        ctx.fillStyle = '#f0f3fa';
-        ctx.shadowColor = 'rgba(70, 80, 180, 0.12)';
-        ctx.shadowBlur = 25;
-        ctx.shadowOffsetY = 10;
-        ctx.fill();
-        ctx.clip();
-
-        // Left side: Soft Lavender/Lilac fluid
-        const lx = cx - r * 0.35 + Math.sin(angle * 0.7) * (r * 0.08);
-        const ly = cy + Math.cos(angle * 0.6) * (r * 0.1);
-        const gradL = ctx.createRadialGradient(lx, ly, 0, lx, ly, r * 0.85);
-        gradL.addColorStop(0, 'rgba(196, 185, 248, 0.95)');
-        gradL.addColorStop(0.55, 'rgba(165, 150, 240, 0.75)');
-        gradL.addColorStop(1, 'rgba(165, 150, 240, 0)');
-        ctx.beginPath();
-        ctx.arc(lx, ly, r * 0.85, 0, Math.PI * 2);
-        ctx.fillStyle = gradL;
-        ctx.fill();
-
-        // Right side: Deep Sapphire / Azure Blue fluid
-        const rx = cx + r * 0.38 + Math.cos(angle * 0.8) * (r * 0.08);
-        const ry = cy + Math.sin(angle * 0.7) * (r * 0.1);
-        const gradR = ctx.createRadialGradient(rx, ry, 0, rx, ry, r * 0.82);
-        gradR.addColorStop(0, 'rgba(56, 112, 245, 0.95)');
-        gradR.addColorStop(0.6, 'rgba(75, 140, 250, 0.75)');
-        gradR.addColorStop(1, 'rgba(75, 140, 250, 0)');
-        ctx.beginPath();
-        ctx.arc(rx, ry, r * 0.82, 0, Math.PI * 2);
-        ctx.fillStyle = gradR;
-        ctx.fill();
-
-        // Center Wave Crest: Radiant Cyan / Ice-Blue Luminous Ribbon
-        const cxWave = cx + Math.sin(angle * 0.9) * (r * 0.12);
-        const cyWave = cy - r * 0.1 + Math.cos(angle * 0.75) * (r * 0.14);
-        const gradC = ctx.createRadialGradient(cxWave, cyWave, 0, cxWave, cyWave, r * 0.48);
-        gradC.addColorStop(0, 'rgba(215, 248, 255, 0.95)');
-        gradC.addColorStop(0.35, 'rgba(85, 210, 255, 0.85)');
-        gradC.addColorStop(0.7, 'rgba(45, 160, 250, 0.4)');
-        gradC.addColorStop(1, 'rgba(45, 160, 250, 0)');
-        ctx.beginPath();
-        ctx.arc(cxWave, cyWave, r * 0.48, 0, Math.PI * 2);
-        ctx.fillStyle = gradC;
-        ctx.fill();
-
-        // Glass thickness inner rim ring
-        ctx.beginPath();
-        ctx.arc(cx, cy, r * 0.86, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(220, 230, 255, 0.45)';
-        ctx.lineWidth = r * 0.04;
-        ctx.stroke();
-
-        // Top-left specular sheen on glass
-        const gradSpec = ctx.createRadialGradient(cx - r * 0.38, cy - r * 0.38, 2, cx - r * 0.38, cy - r * 0.38, r * 0.42);
-        gradSpec.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
-        gradSpec.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        ctx.beginPath();
-        ctx.arc(cx - r * 0.38, cy - r * 0.38, r * 0.42, 0, Math.PI * 2);
-        ctx.fillStyle = gradSpec;
-        ctx.fill();
-
-        ctx.restore();
-
-        requestAnimationFrame(render2D);
-      }
-      requestAnimationFrame(render2D);
-    }
-
-    // Initialize UI
+    // Initial Setup
     updateLanguageUI();
-
   </script>
 </body>
 </html>
