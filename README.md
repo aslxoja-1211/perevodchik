@@ -1,6 +1,6 @@
-# Ovozli Tarjimon — O'zbekcha ➔ Ruscha AI Ovozli Tarjimon
+# HopTell — Ovozli Tarjimon (AI Speech-to-Speech)
 
-**Ovozli Tarjimon** — foydalanuvchi o'zbek tilida gapirganida, uni bir zumda aniqlab, tabiiy rus tiliga tarjima qiluvchi va yuqori sifatli ruscha neyron ovozda (`Edge-TTS` Svetlana / Dmitry) eshittiruvchi zamonaviy Speech-to-Speech (S2ST) sun'iy intellekt tizimi.
+**HopTell** — jonli nutqni bir zumda aniqlab, neyron tarmoqlar (Google Gemini AI) orqali tabiiy rus, turk, ingliz, xitoy va o'zbek tillariga tarjima qiluvchi va yuqori sifatli neyron ovozda eshittiruvchi zamonaviy Speech-to-Speech (S2ST) sun'iy intellekt tizimi.
 
 Ushbu loyiha **Aqua Voice** arxitekturasining mantiqiy davomi bo'lib, ovozli matn tahrirlash mexanizmi o'rniga to'liq ovozli tarjimonlik (Speech-to-Speech Translation) yo'nalishiga moslashtirilgan.
 
