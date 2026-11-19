@@ -1,4 +1,14 @@
-# HopTell — Ovozli Tarjimon (AI Speech-to-Speech)
+<p align="center">
+  <img src="assets/logo.png" alt="HopTell Logo" width="130" style="border-radius: 26px;" />
+</p>
+
+<h1 align="center">HopTell — AI Voice Translator</h1>
+
+<p align="center">
+  <b>Speech-to-Speech Translation Platform (Web & Mobile)</b>
+</p>
+
+---
 
 **HopTell** — jonli nutqni bir zumda aniqlab, neyron tarmoqlar (Google Gemini AI) orqali tabiiy rus, turk, ingliz, xitoy va o'zbek tillariga tarjima qiluvchi va yuqori sifatli neyron ovozda eshittiruvchi zamonaviy Speech-to-Speech (S2ST) sun'iy intellekt tizimi.
 
